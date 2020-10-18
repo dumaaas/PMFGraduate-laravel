@@ -1,6 +1,6 @@
 # movieTime
 
-Laravel + Blade + Bootstrap application for movie reviews and connecting people with same movie interest. 
+Laravel + MySQL + Blade + Bootstrap application for movie reviews and connecting people with same movie interest. 
 
 Registered user can see all movies in database and add different movies in lists (custom, watched, watchlist, favorite). User can set reminder for specific movie and application will notify user via email on requested day. He can follow/unfollow other users. On each movie user can post comments or review. User will be notified of new followers and new movies. Also he can change avatar, personal informations, password or profile privacy. 
 
