@@ -36,10 +36,10 @@ Route::get('/movies/{movie}', 'MovieController@show');
 Route::get('/sortMovies', 'MovieController@sortMovies');
 Route::get('/editMovie/{movie}', 'MovieController@edit');
 Route::put('/movies/{movie}', 'MovieController@update');
-Route::get('/{addToList}/{movie}', 'MovieController@storeListItem')
-->where('addToList', 'addFavorite|addCustom|addWatchlist|addWatched');
-Route::get('/{destroyFromList}/{movie}', 'MovieController@destroyFromList')
-->where('destroyFromList','favoriteDestroy|customDestroy|watchlistDestroy|watchedDestroy');
+Route::get('/{addToList}/{movie}/{type}', 'MovieController@storeListItem')
+->where('addToList', 'addFavorite|addCustom|addWatchlist|addWatched')->name('movies.add');
+Route::get('/{destroyFromList}/{movie}/{type}', 'MovieController@destroyFromList')
+->where('destroyFromList','favoriteDestroy|customDestroy|watchlistDestroy|watchedDestroy')->name('movies.delete');
 Route::get('/movies/delete/{movie}', 'MovieController@destroy');
 //----------------------------------------------------------------------\\
 
@@ -62,6 +62,11 @@ Route::get('/dislike/{comment}', 'LikeController@destroy');
 //-----------------------ROUTES FOR RATING------------------------------\\
 Route::post('/addRating/{movie}', 'RatingController@store');
 Route::get('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
+//----------------------------------------------------------------------\\
+
+//-----------------------ROUTES FOR MOVIELIST------------------------------\\
+Route::get('/users/{user}/{type}', 'MovieListController@index')->name('movielist.index');
+
 //----------------------------------------------------------------------\\
 
 //-----------------------ROUTES FOR CUSTOM------------------------------\\
@@ -89,7 +94,7 @@ Route::get('/favoritecastDestroy/{cast}', 'FavoritecastController@favoriteDestro
 //------------------------ROUTES FOR FOLLOW-----------------------------\\
 Route::get('/users/{user}/following', 'FollowController@following');
 Route::get('/followUser/{user}', 'FollowController@followUser');
-Route::get('/users/{user}/followers', 'FollowController@followers'); 
+Route::get('/users/{user}/followers', 'FollowController@followers');
 Route::get('/unfollowUser/{user}', 'FollowController@unfollowUser');
 //----------------------------------------------------------------------\\
 

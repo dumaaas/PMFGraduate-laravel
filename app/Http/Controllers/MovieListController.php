@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Favorite;
+use App\MovieList;
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
 
-class FavoriteController extends Controller
+class MovieListController extends Controller
 {
-//------------------------SHOW FAVORITE LIST-----------------------------\\
-    public function index(User $user)
+    //------------------------SHOW MOVIE LIST-----------------------------\\
+    public function index(User $user, $type)
     {
+
         //authorize who can see user favorite list
         $this->authorize('checkFollow', $user);
-        
+
         //find user favorite list
-        $favorites = Favorite::where('user_id', '=', $user->id)->paginate(10);
+        $movielist = MovieList::where('user_id', '=', $user->id)->where('type', 'LIKE', $type)->paginate(10);
 
         //return favorite view page with details
-        return view('users.favorite',[
+        return view('users.movielist',[
             'user'=>$user,
-            'favorites'=>$favorites
+            'movielist'=>$movielist,
+            'type' => $type
         ]);
     }
 //------------------------------------------------------------------------\\
-
 }

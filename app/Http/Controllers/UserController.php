@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MovieList;
 use Illuminate\Http\Request;
 use App\User;
 use App\Watched;
@@ -20,13 +21,13 @@ class UserController extends Controller
 //-------------------------------SHOWING USER PROFILE----------------------------------\\
     public function show(User $user)
     {
-        //find movies that user watched, sum durations and count 
+        //find movies that user watched, sum durations and count
         $sum=0;
-        $watchedMovies = Watched::where('user_id', 'LIKE', $user->id)->get();
+        $watchedMovies = MovieList::where('user_id', 'LIKE', $user->id)->where('type', 'LIKE', 'watched')->get();
         foreach($watchedMovies as $wm) {
             $sum = $sum + $wm->movie->duration;
         }
-        $moviesNum = $watchedMovies->count();     
+        $moviesNum = $watchedMovies->count();
         $movieTime = CarbonInterval::minutes($sum)->cascade()->forHumans();
 
         //find number of followers and followings of user
@@ -56,7 +57,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function uploadImage(Request $request, User $user) 
+    public function uploadImage(Request $request, User $user)
     {
         //authorize so only auth user can upload his profile photo
         $this->authorize('uploadImage', $user);
@@ -75,18 +76,18 @@ class UserController extends Controller
         return back();
     }
 
-    public function updatePassword(Request $request, User $user) 
+    public function updatePassword(Request $request, User $user)
     {
-        //request all data from input and validate it 
+        //request all data from input and validate it
         $request->validate([
             'oldPassword' => ['required', new MatchOldPassword],
             'newPassword' => ['required'],
             'confirmPassword' => ['same:newPassword'],
         ]);
-            
-        //if validation was successful, update password 
+
+        //if validation was successful, update password
         $user->update(['password'=> Hash::make($request->newPassword)]);
-        
+
         //flash success message if user changed photo
         flash('Password changed!')->success();
 
@@ -94,7 +95,7 @@ class UserController extends Controller
         return back();
     }
 
-    public function updateUserDetails(Request $request, User $user) 
+    public function updateUserDetails(Request $request, User $user)
     {
         //request data from inputs and validate it and update user details
         $request->validate([
@@ -114,7 +115,7 @@ class UserController extends Controller
         $user->description=request('description');
 
         $user->save();
-       
+
         //flash success message if user updated profile
         flash('Profile updated!')->success();
 
@@ -122,30 +123,30 @@ class UserController extends Controller
         return back();
     }
 
-    public function privateProfile(Request $request, User $user) 
+    public function privateProfile(Request $request, User $user)
     {
         //request input value to check if user want to set profile on private or public
         $privacy = request('privateOrPublic');
 
-        //update profile privacy 
+        //update profile privacy
         if($privacy == 'private'){
             $user->privacy = 'private';
         } else{
             $user->privacy = 'public';
-        } 
+        }
 
         $user->save();
 
         //flash success message if user updated privacy
         flash('Profile privacy changed!')->success();
-       
+
         //return back to the user editing form
         return back();
     }
 //--------------------------------------------------------------------------------------\\
 
 //----------------------------------SORTING USERS---------------------------------------\\
-    public function sortUsers(Request $request) 
+    public function sortUsers(Request $request)
     {
         //get value of sort
         if(isset($_GET['sort'])) {
@@ -153,7 +154,7 @@ class UserController extends Controller
         } else {
             $sort = '';
         }
-        
+
         //sort users from sort value
         switch ($sort) {
             case 'a-z':
@@ -165,22 +166,22 @@ class UserController extends Controller
             case 'mostWatched':
                 $users = User::withCount('watched')->orderBy('watched_count', 'desc')->get();
                 break;
-            case 'leastWatched': 
+            case 'leastWatched':
                 $users = User::withCount('watched')->orderBy('watched_count')->get();
                 break;
-            case 'mostComments': 
+            case 'mostComments':
                 $users = User::withCount('comment')->orderBy('comment_count', 'desc')->get();
                 break;
-            case 'leastComments': 
+            case 'leastComments':
                 $users = User::withCount('comment')->orderBy('comment_count')->get();
                 break;
-            case 'mostRatings': 
+            case 'mostRatings':
                 $users = User::withCount('rating')->orderBy('rating_count', 'desc')->get();
                 break;
-            case 'leastRatings': 
+            case 'leastRatings':
                 $users = User::withCount('rating')->orderBy('rating_count')->get();
                 break;
-            default: 
+            default:
                 $users = User::latest()->get();
 
         }
@@ -188,7 +189,7 @@ class UserController extends Controller
         //return number of users and most active users to display them on index page
         $usersNum = $users->count();
         $mostActive = User::withCount('watched', 'rating', 'comment')->orderBy('watched_count', 'desc')->orderBy('rating_count', 'desc')->orderBy('comment_count', 'desc')->take(4)->get();
-        
+
         //return view that show list of sorted users
         return view('users.index', [
             'users'=>$users,
@@ -206,13 +207,13 @@ class UserController extends Controller
         return back();
     }
 
-    public function ban(User $user) 
+    public function ban(User $user)
     {
         //ban user for 7 days and return to the userTable in dashboard
         $user->banned_until = Carbon::now()->addDays(7);
         $user->save();
         return back();
     }
-//--------------------------------------------------------------------------------------\\ 
- 
+//--------------------------------------------------------------------------------------\\
+
 }

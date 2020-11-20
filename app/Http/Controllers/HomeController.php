@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-     
+
     }
 
     /**
@@ -28,10 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $randomMovies = Movie::inRandomOrder()->take(9)->get();
-        $popularMovies = Movie::withCount('favorite')->orderBy('favorite_count', 'desc')->take(9)->get();
+        $popularMovies = Movie::inRandomOrder()->take(9)->get();
         $featuredCelebrities = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->take(4)->get();
         $topRatedMovies = Movie::where('imdb', '>=', 9)->take(9)->get();
-        $mostWatchedMovies = Movie::withCount('watched')->orderBy('watched_count', 'desc')->take(9)->get();
+        $mostWatchedMovies = Movie::inRandomOrder()->take(9)->get();
         $latestDramaMovies = Movie::where('genre', 'LIKE', 'Drama')->latest()->take(9)->get();
         $latestComedyMovies = Movie::where('genre', 'LIKE', 'Comedy')->latest()->take(9)->get();
         $latestActionMovies = Movie::where('genre', 'LIKE', 'Action')->latest()->take(9)->get();

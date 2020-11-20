@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Watchlist extends Model
+class MovieList extends Model
 {
     protected $guarded = [];
 
@@ -15,5 +15,4 @@ class Watchlist extends Model
     public function movie() {
         return $this->belongsTo(Movie::class);
     }
-    
 }

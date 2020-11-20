@@ -16,31 +16,19 @@ class Movie extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function custom() {
-        return $this->hasMany(Custom::class);
-    }
-
-    public function favorite() {
-        return $this->hasMany(Favorite::class);
+    public function movielist() {
+        return $this->hasMany(MovieList::class);
     }
 
     public function rating() {
         return $this->hasMany(Rating::class);
     }
 
-    public function watched() {
-        return $this->hasMany(Watched::class);
-    }
-
-    public function watchlist() {
-        return $this->hasMany(Watchlist::class);
-    }
-
     public function scopeFilterByName($query, $name, $boolean = 'or')
-{
-    if ($name) {
-        return $query->where('name','LIKE', '%'.$name.'%');
+    {
+        if ($name) {
+            return $query->where('name','LIKE', '%'.$name.'%');
+        }
     }
-}
 
 }

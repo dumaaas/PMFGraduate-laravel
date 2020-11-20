@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatchlistsTable extends Migration
+class CreateMovieListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,22 @@ class CreateWatchlistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('watchlists', function (Blueprint $table) {
-            $table->primary(['user_id', 'movie_id']);
+        Schema::create('movie_lists', function (Blueprint $table) {
+            $table->id('id');
             $table->foreignId('user_id');
             $table->foreignId('movie_id');
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('movie_id')
-            ->references('id')
-            ->on('movies')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('movies')
+                ->onDelete('cascade');
         });
     }
 
@@ -38,6 +39,6 @@ class CreateWatchlistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watchlists');
+        Schema::dropIfExists('movie_lists');
     }
 }

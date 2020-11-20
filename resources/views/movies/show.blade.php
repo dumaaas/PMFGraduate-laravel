@@ -29,11 +29,11 @@
 
                             </div>
                             @auth
-                                @if (Auth::user()->isInWatched($movie->id))
+                                @if (Auth::user()->isInMovieList($movie->id, 'watched'))
                                     <div class="btn-transform transform-vertical">
                                         <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Remove
                                                 from watched</a></div>
-                                        <div><a href="/watchedDestroy/{{ $movie->id }}" class="item item-2 yellowbtn"><i
+                                        <div><a href="{{route('movies.delete', ['destroyFromList' => 'watchedDestroy', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i
                                                     class="ion-checkmark"></i></a></div>
                                     </div>
                                 @else
@@ -41,7 +41,7 @@
 
                                         <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark
                                                 as watched</a></div>
-                                        <div><a href="/addWatched/{{ $movie->id }}" class="item item-2 yellowbtn"><i
+                                        <div><a href="{{route('movies.add', ['addToList' => 'addWatched', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i
                                                     class="ion-checkmark"></i></a></div>
 
                                     </div>
@@ -95,30 +95,28 @@
                         <h1 class="bd-hd">{{ $movie->name }} <span> {{ $movie->releaseYear }}</span></h1>
                         <div class="social-btn">
                             @auth
-                                @if (Auth::user()->isInFavorite($movie->id))
-                                    <a href="/favoriteDestroy/{{ $movie->id }} " class="parent-btn"><i class="ion-heart"></i>
+                                @if (Auth::user()->isInMovieList($movie->id, 'favorite'))
+                                    <a href="{{route('movies.delete', ['destroyFromList' => 'favoriteDestroy', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>
                                         Remove Favorite</a>
-
                                 @else
-                                    <a href="/addFavorite/{{ $movie->id }} " class="parent-btn"><i class="ion-heart"></i>
+                                    <a href="{{route('movies.add', ['addToList' => 'addFavorite', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>
                                         Add to Favorite</a>
                                 @endif
 
-                                @if (Auth::user()->isInCustom($movie->id))
-                                    <a href="/customDestroy/{{ $movie->id }}" class="parent-btn"><i class="ion-ios-film"></i>
+                                @if (Auth::user()->isInMovieList($movie->id, 'custom'))
+                                    <a href="{{route('movies.delete', ['destroyFromList' => 'customDestroy', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>
                                         Remove Custom</a>
-
                                 @else
-                                    <a href="/addCustom/{{ $movie->id }}" class="parent-btn"><i class="ion-ios-film"></i>
+                                    <a href="{{route('movies.add', ['addToList' => 'addCustom', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>
                                         Add to Custom</a>
                                 @endif
 
-                                @if (Auth::user()->isInWatchlist($movie->id) and !Auth::user()->isInWatched($movie->id))
-                                    <a href="/watchlistDestroy/{{ $movie->id }}" class="parent-btn"><i class="ion-eye"></i>
+                                    @if (Auth::user()->isInMovieList($movie->id, 'watchlist'))
+                                    <a href="{{route('movies.delete', ['destroyFromList' => 'watchlistDestroy', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i>
                                         Remove
                                         Watchlist</a>
-                                @elseif(!Auth::user()->isInWatched($movie->id))
-                                    <a href="/addWatchlist/{{ $movie->id }}" class="parent-btn"><i class="ion-eye"></i> Add
+                                @else
+                                    <a href="{{route('movies.add', ['addToList' => 'addWatchlist', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i> Add
                                         to
                                         Watchlist</a>
                                 @endif
@@ -283,8 +281,8 @@
                                                         </h6> <span class="time"> {{ $comment->created_at->diffForHumans() }}</span>
                                                     </div>
                                                     <p>{{ $comment->content }}</p>
-                                                    
-                                                    @auth 
+
+                                                    @auth
                                                         <p><a href="/addLike/{{$comment->id}}"><i class="{{$comment->isLikedBy(Auth::user(), $comment) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>   {{$comment->likes ?: 0}}      <a href="/dislike/{{$comment->id}}"><i class="{{$comment->isDislikedBy(Auth::user(), $comment) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  {{$comment->dislikes ?: 0}}</p>
                                                     @endauth
                                                 </div>
@@ -347,7 +345,7 @@
 
                                                 <h4>{{ $ratingNum }} reviews</h4>
                                                 @foreach ($ratings as $rating)
-                                                    
+
                                                     <div class="cmt-item flex-it">
                                                         <img src="/images/users/{{ $rating->user->avatar }}" alt=""
                                                             style="border-radius: 50%" width="75px">
@@ -358,7 +356,7 @@
                                                                 </h6> <span class="time"> {{ $rating->created_at->diffForHumans() }}</span>
                                                             </div>
                                                             <div class="rate2">
-                                                               
+
                                                                 @for ($i = 0; $i < $rating->rating; $i++)
                                                                     <i class="ion-android-star"></i>
                                                                 @endfor

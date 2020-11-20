@@ -72,10 +72,11 @@
                                         <li><a href="/users/{{ $user->id }}/following">Following</a></li>
                                         <li><a href="/users/{{ $user->id }}/followers">Followers</a></li>
 
-                                        <li><a href="/users/{{ $user->id }}/watched">Watched movies</a></li>
-                                        <li><a href="/users/{{ $user->id }}/favorite">Favorite movies</a></li>
-                                        <li><a href="/users/{{ $user->id }}/watchlist">Watchlist</a></li>
-                                        <li><a href="/users/{{ $user->id }}/custom">Custom movies</a></li>
+
+                                        <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'watched'])}}">Watched movies</a></li>
+                                        <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'favorite'])}}">Favorite movies</a></li>
+                                        <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'watchlist'])}}">Watchlist</a></li>
+                                        <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'custom'])}}">Custom movies</a></li>
                                         <li><a href="/users/{{ $user->id }}/favoriteCelebrities">Favorite celebrities</a></li>
 
                                         @can('edit', $user)
@@ -107,6 +108,7 @@
                 @yield('following')
                 @yield('watchedList')
                 @yield('watchlist')
+                @yield('movieList')
                 @yield('name')
                 @yield('notifications')
 
@@ -114,13 +116,6 @@
         </div>
     </div>
 
-    </div>
-    </div>
-    </div>
-
-    </div>
-    </div>
-    </div>
     <script>
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
