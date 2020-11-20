@@ -22,7 +22,11 @@ class Controller extends BaseController
         $moviesNum = $movies->count();
         if(Auth::check()) {
             $watchedCount = Watched::where('user_id', 'LIKE', Auth::user()->id)->count();
-            $percent = number_format(($moviesNum/$watchedCount)*100,2);
+            if($watchedCount!=0) {
+                $percent = number_format(($moviesNum/$watchedCount)*100,2);
+            } else {
+                $percent = 0;
+            }
 
             return view('movies.index', [
                 'movies'=>$movies,
@@ -32,10 +36,10 @@ class Controller extends BaseController
                 'moviesTotal'=>$moviesTotal
             ]);
         } else {
-  
+
             return view('movies.index', [
                 'movies'=>$movies,
-                'moviesNum'=>$moviesNum    
+                'moviesNum'=>$moviesNum
             ]);
         }
     }
