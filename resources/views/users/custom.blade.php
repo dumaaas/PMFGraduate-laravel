@@ -11,7 +11,7 @@
             <div class="movie-item-style-2 movie-item-style-1 style-3">
                 <img src="/images/movies/{{$custom->movie->avatar}}" alt="">
                 <div class="hvr-inner">
-                    <a href="images/movies/{{ $custom->movie->id }}"> See <i
+                    <a href="/movies/{{ $custom->movie->id }}"> See <i
                             class="ion-android-arrow-dropright"></i>
                     </a>
                 </div>
