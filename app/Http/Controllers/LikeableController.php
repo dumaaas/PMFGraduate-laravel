@@ -12,7 +12,7 @@ class LikeableController extends Controller
     public function likeComment($commentId, $type) {
         $comment = Comment::find($commentId);
         auth()->user()->toggleVoteComment($comment, $type);
-        return $this->showMovie($comment->movie);
+        return $this->showMovie($comment->commentable);
     }
 
     public function likeCast($id, $type) {

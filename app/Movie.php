@@ -13,7 +13,7 @@ class Movie extends Model
     }
 
     public function comment() {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function movielist() {

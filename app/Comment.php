@@ -14,8 +14,8 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function movie() {
-        return $this->belongsTo(Movie::class);
+    public function commentable() {
+        return $this->morphTo();
     }
 
     public function likes() {

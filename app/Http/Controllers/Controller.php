@@ -67,8 +67,8 @@ class Controller extends BaseController
         $stars = Acting::where('movie_id', '=', $movie->id)->latest()->take(3)->get();
         $director = Cast::where('occupation', '=', 'director')->first();
         $sumWatched = MovieList::where('movie_id', '=', $movie->id)->where('type', 'LIKE', 'watched')->count();
-        $comments = Comment::where('movie_id', '=', $movie->id)->latest()->paginate(5);
-        $sumComments = Comment::where('movie_id', '=', $movie->id)->count();
+        $comments = Comment::where('commentable_id', '=', $movie->id)->latest()->paginate(5);
+        $sumComments = Comment::where('commentable_id', '=', $movie->id)->count();
 
     //return movie show page with
         return view('movies.show',[

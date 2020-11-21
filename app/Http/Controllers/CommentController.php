@@ -27,7 +27,8 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->content=request('content');
         $comment->user_id=Auth::user()->id;
-        $comment->movie_id=$movie->id;
+        $comment->commentable_id=$movie->id;
+        $comment->commentable_type="App\Movie";
 
         $comment->save();
 
