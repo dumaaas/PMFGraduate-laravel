@@ -19,41 +19,10 @@ class Comment extends Model
     }
 
     public function likes() {
-        return $this->hasMany(Like::class);
+        return $this->morphMany(Likeable::class, 'likeable');
     }
 
-    public function like($liked = true) {   
-        $this->likes()->updateOrCreate([
-            'user_id' => Auth::user()->id,
-        ], [
-            'liked' => $liked
-        ]);
-    }
-
-    public function dislike() {
-        return $this->like(false);
-    }
-
-    public function isLikedBy(User $user, Comment $comment) {
-       return (bool) $user->likes
-            ->where('comment_id', $comment->id)
-            ->where('liked', true)
-            ->count();
-    }
-
-    public function isDislikedBy(User $user, Comment $comment) {
-        return (bool) $user->likes
-            ->where('comment_id', $comment->id)
-            ->where('liked', false)
-            ->count();
-    }
-
-    public function scopeWithLikes(Builder $query) {
-        $query->leftJoinSub(
-            'select comment_id, sum(liked) likes, sum(!liked) dislikes from likes group by comment_id',
-            'likes',
-            'likes.comment_id',
-            'comments.id'
-        );
+    public function isCommentLiked($id) {
+        return $this->likes()->where('user_id', '=', Auth::user()->id)->where('likeable_id', '=', $id)->where('liked', 'LIKE', 'up')->exists();
     }
 }

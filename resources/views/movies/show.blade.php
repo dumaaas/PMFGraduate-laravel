@@ -283,7 +283,7 @@
                                                     <p>{{ $comment->content }}</p>
 
                                                     @auth
-                                                        <p><a href="/addLike/{{$comment->id}}"><i class="{{$comment->isLikedBy(Auth::user(), $comment) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>   {{$comment->likes ?: 0}}      <a href="/dislike/{{$comment->id}}"><i class="{{$comment->isDislikedBy(Auth::user(), $comment) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  {{$comment->dislikes ?: 0}}</p>
+                                                        <p><a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'up'])}}"><i class="{{$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>     <a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'down'])}}"><i class="{{!$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  </p>
                                                     @endauth
                                                 </div>
                                             </div>

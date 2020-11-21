@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Cast extends Model
@@ -12,7 +12,11 @@ class Cast extends Model
         return $this->hasMany(Acting::class);
     }
 
-    public function favoriteCast() {
-        return $this->hasMany(Favoritecast::class);
+    public function likes() {
+        return $this->morphMany(Likeable::class, 'likeable');
+    }
+
+    public function isInFavoriteCast($id) {
+        return $this->likes()->where('user_id', '=', Auth::user()->id)->where('likeable_id', '=', $id)->where('liked', 'LIKE', 'up')->exists();
     }
 }

@@ -45,6 +45,7 @@ Route::get('/movies/delete/{movie}', 'MovieController@destroy');
 
 //------------------------ROUTES FOR CAST-------------------------------\\
 Route::get('/cast', 'CastController@index');
+Route::get('/users/{user}/favoriteCast', 'CastController@showFavoriteCast');
 Route::get('/cast/{cast}', 'CastController@show');
 Route::get('/sortCast', 'CastController@sortCast');
 //----------------------------------------------------------------------\\
@@ -54,10 +55,11 @@ Route::post('/addComment/{movie}', 'CommentController@store');
 Route::get('/comments/delete/{comment}', 'CommentController@destroy');
 //----------------------------------------------------------------------\\
 
-//------------------------ROUTES FOR LIKE-------------------------------\\
-Route::get('/addLike/{comment}', 'LikeController@store');
-Route::get('/dislike/{comment}', 'LikeController@destroy');
+//------------------------ROUTES FOR LIKEABLE---------------------------\\
+Route::get('/likeCast/{cast}/{type}', 'LikeableController@likeCast')->name('likeable.cast');
+Route::get('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->name('likeable.comment');
 //----------------------------------------------------------------------\\
+
 
 //-----------------------ROUTES FOR RATING------------------------------\\
 Route::post('/addRating/{movie}', 'RatingController@store');
@@ -67,28 +69,6 @@ Route::get('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
 //-----------------------ROUTES FOR MOVIELIST------------------------------\\
 Route::get('/users/{user}/{type}', 'MovieListController@index')->name('movielist.index');
 
-//----------------------------------------------------------------------\\
-
-//-----------------------ROUTES FOR CUSTOM------------------------------\\
-Route::get('/users/{user}/custom', 'CustomController@index');
-//----------------------------------------------------------------------\\
-
-//----------------------ROUTES FOR FAVORITE-----------------------------\\
-Route::get('/users/{user}/favorite','FavoriteController@index');
-//----------------------------------------------------------------------\\
-
-//-----------------------ROUTES FOR WATCHED-----------------------------\\
-Route::get('/users/{user}/watched', 'WatchedController@index');
-//----------------------------------------------------------------------\\
-
-//----------------------ROUTES FOR WATCHLIST----------------------------\\
-Route::get('/users/{user}/watchlist', 'WatchlistController@index');
-//----------------------------------------------------------------------\\
-
-//---------------------ROUTES FOR FAVORITECAST--------------------------\\
-Route::get('/users/{user}/favoriteCelebrities', 'FavoritecastController@index');
-Route::get('/addFavoritecast/{cast}', 'FavoritecastController@favoriteStore');
-Route::get('/favoritecastDestroy/{cast}', 'FavoritecastController@favoriteDestroy');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR FOLLOW-----------------------------\\
@@ -103,7 +83,6 @@ Route::get('/search', 'SearchController@search');
 Route::get('/searchCast', 'SearchController@searchCast');
 Route::get('/searchMovies', 'SearchController@searchMovies');
 //----------------------------------------------------------------------\\
-
 
 //-------------------------ROUTES FOR ADMIN-----------------------------\\
 Route::get('/showDashboard', 'AdminController@showDashboard');

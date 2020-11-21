@@ -27,14 +27,13 @@
                         <h1 class="bd-hd"><span>{{ $cast->occupation }} </span> </h1>
 
                         <div class="social-btn">
-
                             @auth
-                            @if (Auth::user()->isInFavoriteCast($cast->id))
-                                <a href="/favoritecastDestroy/{{ $cast->id }} " class="parent-btn"><i class="ion-heart"></i>
+                            @if ($cast->isInFavoriteCast($cast->id))
+                                <a href="{{route('likeable.cast', ['cast' => $cast->id, 'type' => 'down'])}}" class="parent-btn"><i class="ion-heart"></i>
                                     Remove Favorite</a>
-                                
+
                             @else
-                                <a href="/addFavoritecast/{{ $cast->id }} " class="parent-btn"><i class="ion-heart"></i>
+                                <a href="{{route('likeable.cast', ['cast' => $cast->id, 'type' => 'up'])}}" class="parent-btn"><i class="ion-heart"></i>
                                     Add to Favorite</a>
                             @endif
                             @endauth

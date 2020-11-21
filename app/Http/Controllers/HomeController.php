@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $randomMovies = Movie::inRandomOrder()->take(9)->get();
         $popularMovies = Movie::inRandomOrder()->take(9)->get();
-        $featuredCelebrities = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->take(4)->get();
+        $featuredCelebrities = Cast::latest()->take(4)->get();
         $topRatedMovies = Movie::where('imdb', '>=', 9)->take(9)->get();
         $mostWatchedMovies = Movie::inRandomOrder()->take(9)->get();
         $latestDramaMovies = Movie::where('genre', 'LIKE', 'Drama')->latest()->take(9)->get();

@@ -9,14 +9,14 @@
             @foreach ($favorites as $favorite)
 
                 <div class="movie-item-style-2 movie-item-style-1 style-3">
-                    <img src="/images/actors/{{ $favorite->cast->avatar }}" alt="">
+                    <img src="/images/actors/{{ $favorite->likeable->avatar }}" alt="">
                     <div class="hvr-inner">
-                        <a href="/cast/{{ $favorite->cast->id }}"> See <i class="ion-android-arrow-dropright"></i>
+                        <a href="/cast/{{ $favorite->likeable->id }}"> See <i class="ion-android-arrow-dropright"></i>
                         </a>
                     </div>
                     <div class="mv-item-infor">
-                        <h6><a href="/cast/{{ $favorite->cast->id }}">{{ $favorite->cast->firstName }}
-                                {{ $favorite->cast->lastName }}</a>
+                        <h6><a href="/cast/{{ $favorite->likeable->id }}">{{ $favorite->likeable->firstName }}
+                                {{ $favorite->likeable->lastName }}</a>
                         </h6>
 
                     </div>

@@ -11,20 +11,13 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    public function likes() {
-        return $this->hasMany(Like::class);
-    }
 
     public function comment() {
         return $this->hasMany(Comment::class);
     }
 
     public function reminder() {
-        return $this->hasMany(Remind::class);
-    }
-
-    public function favoriteCast() {
-        return $this->hasMany(Favoritecast::class);
+        return $this->hasMany(Reminder::class);
     }
 
     public function rating() {
@@ -58,26 +51,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->follows()->where('following_user_id', $user->id)->exists();
     }
 
-    public function isInFavorite($id) {
-        return $this->favorite()->where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $id)->exists();
-    }
-
-    public function isInCustom($id) {
-        return $this->custom()->where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $id)->exists();
-    }
-
-    public function isInWatchList($id) {
-        return $this->watchlist()->where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $id)->exists();
-    }
-
-    public function isInWatched($id) {
-        return $this->watched()->where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $id)->exists();
-    }
-
-    public function isInFavoriteCast($id) {
-        return $this->favoriteCast()->where('user_id', '=', Auth::user()->id)->where('cast_id', '=', $id)->exists();
-    }
-
     public function isAdmin() {
         if(Auth::user()->role == 'admin') {
             return true;
@@ -91,6 +64,40 @@ class User extends Authenticatable implements MustVerifyEmail
             return true;
         } else {
             false;
+        }
+    }
+
+    public function toggleVoteComment($entity, $type) {
+        $vote = $entity->likes->where('user_id', $this->id)->first();
+        if($vote) {
+            $vote->update([
+                'liked' => $type
+            ]);
+
+            return $vote->refresh();
+        } else {
+            return $entity->likes()->create([
+                'likeable_type' => $type,
+                'likeable_id' => $entity->id,
+                'user_id' => $this->id
+            ]);
+        }
+    }
+
+    public function toggleVoteCast($entity, $type) {
+        $vote = $entity->likes->where('user_id', $this->id)->first();
+        if($vote) {
+            $vote->update([
+                'liked' => $type
+            ]);
+
+            return $vote->refresh();
+        } else {
+            return $entity->likes()->create([
+                'likeable_type' => $type,
+                'likeable_id' => $entity->id,
+                'user_id' => $this->id
+            ]);
         }
     }
 

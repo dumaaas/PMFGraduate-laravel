@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Acting;
 use App\Comment;
+use App\Likeable;
 use App\MovieList;
 use App\Rating;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -66,7 +67,7 @@ class Controller extends BaseController
         $stars = Acting::where('movie_id', '=', $movie->id)->latest()->take(3)->get();
         $director = Cast::where('occupation', '=', 'director')->first();
         $sumWatched = MovieList::where('movie_id', '=', $movie->id)->where('type', 'LIKE', 'watched')->count();
-        $comments = Comment::where('movie_id', '=', $movie->id)->withLikes()->latest()->paginate(5);
+        $comments = Comment::where('movie_id', '=', $movie->id)->latest()->paginate(5);
         $sumComments = Comment::where('movie_id', '=', $movie->id)->count();
 
     //return movie show page with
@@ -83,5 +84,19 @@ class Controller extends BaseController
             'ratings' => $ratings
         ]);
     }
+
+    public function showCast($cast) {
+        //get all movies where this cast is acting in and count them
+        $actings = Acting::where('cast_id', '=', $cast->id)->get();
+        $moviesNum = $actings->count();
+
+        //retun cast show view with details
+        return view('cast.show',[
+            'cast'=>$cast,
+            'actings'=>$actings,
+            'moviesNum' => $moviesNum,
+        ]);
+    }
+
 
 }

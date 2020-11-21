@@ -77,7 +77,7 @@
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'favorite'])}}">Favorite movies</a></li>
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'watchlist'])}}">Watchlist</a></li>
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'custom'])}}">Custom movies</a></li>
-                                        <li><a href="/users/{{ $user->id }}/favoriteCelebrities">Favorite celebrities</a></li>
+                                        <li><a href="/users/{{ $user->id }}/favoriteCast"">Favorite celebrities</a></li>
 
                                         @can('edit', $user)
                                             <li><a href="/users/{{ $user->id }}/edit">Edit profile</a></li>

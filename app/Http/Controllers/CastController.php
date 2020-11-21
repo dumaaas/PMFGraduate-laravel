@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cast;
 use App\Acting;
+use App\Likeable;
 use App\User;
 use App\Movie;
-use App\Favoritecast;
 use Auth;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -21,8 +21,8 @@ class CastController extends Controller
         //get all cast ordered by latest added, count them and get 4 most favorited cast
         $casts = Cast::latest()->get();
         $castNum = Cast::all()->count();
-        $mostFeatured = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->take(4)->get();
-        
+        $mostFeatured = Cast::latest()->take(4)->get();
+
         //return cast index view with details
         return view('cast.index',[
             'casts'=>$casts,
@@ -32,24 +32,29 @@ class CastController extends Controller
     }
 //----------------------------------------------------------------------------------\\
 
+    public function showFavoriteCast($id) {
+        $user = User::find($id);
+        //authorize who can see user favorite cast list
+        $this->authorize('checkFollow', $user);
+
+        //find user favorite cast list
+        $favorites = Likeable::where('user_id', '=', $user->id)->where('likeable_type', Cast::class)->where('liked', 'LIKE', 'up')->paginate(10);
+        //return favorite cast view page with details
+        return view('users.favoritecast',[
+            'user'=>$user,
+            'favorites'=>$favorites
+        ]);
+    }
+
 //--------------------------------SHOW CAST-----------------------------------------\\
     public function show(Cast $cast)
     {
-        //get all movies where this cast is acting in and count them
-        $actings = Acting::where('cast_id', '=', $cast->id)->get();
-        $moviesNum = $actings->count();
-
-        //retun cast show view with details
-        return view('cast.show',[
-            'cast'=>$cast,
-            'actings'=>$actings,
-            'moviesNum' => $moviesNum,
-        ]);
+        return $this->showCast($cast);
     }
 //----------------------------------------------------------------------------------\\
 
 //---------------------------------SORT CAST----------------------------------------\\
-    public function sortCast(Request $request) 
+    public function sortCast(Request $request)
     {
         //get value of sort
         if(isset($_GET['sort'])) {
@@ -69,29 +74,29 @@ class CastController extends Controller
             case 'birthDate':
                 $casts = Cast::orderBy('birthDate')->get();
                 break;
-            case 'birthDate1': 
+            case 'birthDate1':
                 $casts = Cast::orderBy('birthDate', 'desc')->get();
                 break;
             case 'mostFavorite':
-                $casts = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->get();
+                $casts = Cast::latest()->take(4)->get();
                 break;
-            case 'leastFavorite': 
-                $casts = Cast::withCount('favoritecast')->orderBy('favoritecast_count')->get();
+            case 'leastFavorite':
+                $casts = Cast::latest()->take(3)->get();
                 break;
-            case 'mostMovies': 
+            case 'mostMovies':
                 $casts = Cast::withCount('acting')->orderBy('acting_count', 'desc')->get();
                 break;
-            case 'leastMovies': 
+            case 'leastMovies':
                 $casts = Cast::withCount('acting')->orderBy('acting_count')->get();
                 break;
-            default: 
+            default:
                 $casts = Cast::latest()->paginate(6);
 
         }
 
         //get cast sum and get 4 most favorited cast
         $castNum = $casts->count();
-        $mostFeatured = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->take(4)->get();
+        $mostFeatured = Cast::latest()->take(4)->get();
 
         //return cast index view with details
         return view('cast.index', [
