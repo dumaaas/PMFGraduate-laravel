@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Cast;
-use App\Acting;
 use App\Likeable;
 use App\User;
-use App\Movie;
 use Auth;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic as Image;
-
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class CastController extends Controller
 {
@@ -19,9 +17,15 @@ class CastController extends Controller
     public function index()
     {
         //get all cast ordered by latest added, count them and get 4 most favorited cast
-        $casts = Cast::latest()->get();
-        $castNum = Cast::all()->count();
-        $mostFeatured = Cast::latest()->take(4)->get();
+        $casts = Cache::remember('casts', Carbon::now()->addDay(), function () {
+           return Cast::latest()->get();
+        });
+        $castNum = Cache::remember('casts', Carbon::now()->addDay(), function () {
+            return Cast::all()->count();
+        });
+        $mostFeatured = Cache::remember('casts', Carbon::now()->addDay(), function () {
+            return Cast::latest()->take(4)->get();
+        });
 
         //return cast index view with details
         return view('cast.index',[

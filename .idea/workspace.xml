@@ -20,13 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/movieTime.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/movieTime.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CastController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CastController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LikeableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LikeableController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Movie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_08_174336_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_08_174336_create_comments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/movies/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/movies/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +153,9 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1idh5KZZ9Ho0G2nQVkCli3FAnN9" />
@@ -160,7 +166,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Laravel/ytClone" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -185,7 +191,8 @@
       <workItem from="1605887515781" duration="582000" />
       <workItem from="1605891751892" duration="23873000" />
       <workItem from="1605992034711" duration="47000" />
-      <workItem from="1605997865736" duration="1274000" />
+      <workItem from="1605997865736" duration="3404000" />
+      <workItem from="1606080491718" duration="3218000" />
     </task>
     <servers />
   </component>
@@ -205,9 +212,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="451" y="270" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605916661451">
-      <screen x="70" y="142" width="1296" height="741" />
+    <state x="1667" y="248" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606083651282">
+      <screen x="1366" y="115" width="1024" height="768" />
     </state>
+    <state x="1667" y="248" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1606083651282" />
     <state x="1667" y="248" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1605904696064" />
     <state x="451" y="270" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1605916661451" />
     <state x="501" y="270" width="424" height="491" key="FileChooserDialogImpl" timestamp="1605997879516">
@@ -219,6 +227,10 @@
       <screen x="70" y="142" width="1296" height="626" />
     </state>
     <state x="70" y="142" width="1012" height="626" key="SettingsEditor/70.142.1296.626/3286.0.1024.768/1366.0.1920.1080@70.142.1296.626" timestamp="1603061456085" />
+    <state x="1541" y="161" width="672" height="678" key="search.everywhere.popup" timestamp="1606083251353">
+      <screen x="1366" y="115" width="1024" height="768" />
+    </state>
+    <state x="1541" y="161" width="672" height="678" key="search.everywhere.popup/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1606083251353" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

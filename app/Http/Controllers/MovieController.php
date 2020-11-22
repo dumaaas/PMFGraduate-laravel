@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MovieList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Acting;
@@ -10,6 +11,7 @@ use App\Cast;
 use App\Comment;
 use App\User;
 use App\Rating;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewMovie;
@@ -23,7 +25,9 @@ class MovieController extends Controller
     public function index()
     {
         //get all movies ordered by latest added and return movie index
-        $movies = Movie::latest()->get();
+        $movies = Cache::remember('movies', Carbon::now()->addDay(), function() {
+            return Movie::latest()->get();
+        });
         return $this->movieViewDetails($movies);
     }
 //---------------------------------------------------------------------------------\\

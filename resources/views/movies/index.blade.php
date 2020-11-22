@@ -59,12 +59,7 @@
                                 --}}
 
                                 <p>Stars:
-                                    @foreach ($movie
-            ->acting()
-            ->latest()
-            ->take(3)
-            ->get()
-        as $acting)
+                                    @foreach ($movie->acting()->latest()->take(3)->get() as $acting)
                                         <a href="/cast/{{ $acting->cast->id }}">{{ $acting->cast->firstName }}
                                             {{ $acting->cast->lastName }}</a>
                                         @if (!$loop->last)
