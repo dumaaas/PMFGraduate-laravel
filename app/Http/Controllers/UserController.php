@@ -13,7 +13,7 @@ use Hash;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use App\Rules\MatchOldPassword;
-
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -59,15 +59,7 @@ class UserController extends Controller
 
     public function uploadImage(Request $request, User $user)
     {
-        //authorize so only auth user can upload his profile photo
-        $this->authorize('uploadImage', $user);
-
-        //request data from input['file'], get extension, then resize image and save it to users folder on server
-        $avatar = $request->file('avatar');
-        $filename = time() . '.' . $avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(300,300)->save(public_path('/images/users/' . $filename));
-        $user->avatar = $filename;
-        $user->save();
+        $this->updateImage($request, $user);
 
         //flash success message if user changed photo
         flash('Profile image changed!')->success();
@@ -78,15 +70,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, User $user)
     {
-        //request all data from input and validate it
-        $request->validate([
-            'oldPassword' => ['required', new MatchOldPassword],
-            'newPassword' => ['required'],
-            'confirmPassword' => ['same:newPassword'],
-        ]);
-
-        //if validation was successful, update password
-        $user->update(['password'=> Hash::make($request->newPassword)]);
+        $this->updatePass($request, $user);
 
         //flash success message if user changed photo
         flash('Password changed!')->success();
@@ -97,24 +81,7 @@ class UserController extends Controller
 
     public function updateUserDetails(Request $request, User $user)
     {
-        //request data from inputs and validate it and update user details
-        $request->validate([
-            'firstName'=>'required',
-            'lastName'=>'required',
-            'username'=>'required',
-            'email'=>'required',
-        ]);
-
-        $user->firstName=request('firstName');
-        $user->lastName=request('lastName');
-        $user->username=request('username');
-        $user->email=request('email');
-        $user->phoneNumber=request('phoneNumber');
-        $user->country=request('country');
-        $user->city=request('city');
-        $user->description=request('description');
-
-        $user->save();
+        $this->updateDetails($request, $user);
 
         //flash success message if user updated profile
         flash('Profile updated!')->success();
@@ -215,5 +182,146 @@ class UserController extends Controller
         return back();
     }
 //--------------------------------------------------------------------------------------\\
+
+//--------------------------------USER REST API------------------------------------------\\
+    //returns all users in json
+    public function indexApi()
+    {
+        $users = User::all();
+
+        if(is_null($users)) {
+            return response()->json(["message" => "Users not found!"], 404);
+        }
+
+        return response()->json($users, 200);
+    }
+
+    //returns specific user in json
+    public function showApi($id)
+    {
+        $user = User::find($id);
+
+        if(is_null($user)) {
+            return response()->json(["message" => "User not found!"], 404);
+        }
+
+        return response()->json($user, 200);
+    }
+
+    public function storeApi(Request $request)
+    {
+        $rules = [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'username' => 'required|min:6',
+            'email' => 'required',
+            'password' => 'required|min:8'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::create($request->all());
+
+        return response()->json($user, 201);
+    }
+
+    public function updatePasswordApi(Request $request, User $user)
+    {
+        if(is_null($user)) {
+            return response()->json(["message" => "User not found!"], 404);
+        }
+
+        $this->updatePass($request, $user);
+
+        return response()->json($user, 201);
+    }
+
+    public function updateUserDetailsApi(Request $request, User $user)
+    {
+        if(is_null($user)) {
+            return response()->json(["message" => "User not found!"], 404);
+        }
+
+        $this->updateDetails($request, $user);
+
+        return response()->json($user, 201);
+    }
+
+    public function updateImageApi(Request $request, User $user)
+    {
+        if(is_null($user)) {
+            return response()->json(["message" => "User not found!"], 404);
+        }
+
+        $this->updateImage($request, $user);
+
+        return response()->json($user, 201);
+    }
+
+    public function destroyApi(Request $request, User $user)
+    {
+        if(is_null($user)) {
+            return response()->json(["message" => "User not found!"], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(null, 204);
+    }
+//---------------------------------------------------------------------------------------\\
+
+//-----------------------------------HELPING METHODS--------------------------------------\\
+    public function updatePass($request, $user)
+    {
+        //request all data from input and validate it
+        $request->validate([
+            'oldPassword' => ['required', new MatchOldPassword],
+            'newPassword' => ['required'],
+            'confirmPassword' => ['same:newPassword'],
+        ]);
+
+        //if validation was successful, update password
+        $user->update(['password'=> Hash::make($request->newPassword)]);
+    }
+
+    public function updateDetails($request, $user)
+    {
+        //request data from inputs and validate it and update user details
+        $request->validate([
+            'firstName'=>'required',
+            'lastName'=>'required',
+            'username'=>'required',
+            'email'=>'required',
+        ]);
+
+        $user->firstName=request('firstName');
+        $user->lastName=request('lastName');
+        $user->username=request('username');
+        $user->email=request('email');
+        $user->phoneNumber=request('phoneNumber');
+        $user->country=request('country');
+        $user->city=request('city');
+        $user->description=request('description');
+
+        $user->save();
+    }
+
+    public function updateImage($request, $user)
+    {
+        //authorize so only auth user can upload his profile photo
+        $this->authorize('uploadImage', $user);
+
+        //request data from input['file'], get extension, then resize image and save it to users folder on server
+        $avatar = $request->file('avatar');
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300,300)->save(public_path('/images/users/' . $filename));
+        $user->avatar = $filename;
+        $user->save();
+    }
+//---------------------------------------------------------------------------------------------------------------\\
 
 }

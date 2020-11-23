@@ -20,16 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/movieTime.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/movieTime.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CastController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CastController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/movies/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/movies/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +185,7 @@
       <workItem from="1605891751892" duration="23873000" />
       <workItem from="1605992034711" duration="47000" />
       <workItem from="1605997865736" duration="3404000" />
-      <workItem from="1606080491718" duration="3218000" />
+      <workItem from="1606080491718" duration="10023000" />
     </task>
     <servers />
   </component>
@@ -212,6 +205,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="436" y="199" width="654" height="417" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606088285198">
+      <screen x="0" y="115" width="1366" height="768" />
+    </state>
+    <state x="436" y="199" width="654" height="417" key="#com.intellij.fileTypes.FileTypeChooser/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606088285198" />
+    <state x="477" y="157" width="462" height="496" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606088211740">
+      <screen x="0" y="115" width="1366" height="768" />
+    </state>
+    <state x="477" y="157" width="462" height="496" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606088211740" />
     <state x="1667" y="248" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606083651282">
       <screen x="1366" y="115" width="1024" height="768" />
     </state>
