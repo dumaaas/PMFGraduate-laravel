@@ -208,6 +208,7 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
+    //store users in db via api
     public function storeApi(Request $request)
     {
         $rules = [
@@ -229,6 +230,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
+    // update user password via api
     public function updatePasswordApi(Request $request, User $user)
     {
         if(is_null($user)) {
@@ -240,6 +242,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
+    // update user details via api
     public function updateUserDetailsApi(Request $request, User $user)
     {
         if(is_null($user)) {
@@ -251,6 +254,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
+    //update user image via api
     public function updateImageApi(Request $request, User $user)
     {
         if(is_null($user)) {
@@ -262,6 +266,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
+    //delete user from db via api
     public function destroyApi(Request $request, User $user)
     {
         if(is_null($user)) {
