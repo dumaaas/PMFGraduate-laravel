@@ -133,7 +133,7 @@ class MovieController extends Controller
             'imdb'=>'required',
             'duration'=>'required',
             'trailer'=>'required',
-            'descrption'=>'required',
+            'description'=>'required',
         ]);
 
         $movie->name=request('name');
@@ -236,19 +236,19 @@ class MovieController extends Controller
         //delete movie from the wished list and flash message
         switch ($route) {
             case 'favoriteDestroy/'.$movie->id.'/favorite':
-                $favorite = MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
+                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
                 flash('Movie removed from favorites!')->success();
                 break;
             case 'customDestroy/'.$movie->id.'/custom':
-                $custom = MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
+                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
                 flash('Movie removed from custom!')->success();
                 break;
             case 'watchlistDestroy/'.$movie->id.'/watchlist':
-                $watchlist = MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
+                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
                 flash('Movie removed from watchlist!')->success();
                 break;
             case 'watchedDestroy/'.$movie->id.'/watched':
-                $watched = MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
+                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
                 flash('Movie removed from watched!')->success();
                 break;
         }
