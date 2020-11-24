@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,10 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/SendReminderEmails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/SendReminderEmails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReminderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReminderController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,11 +232,11 @@
       <screen x="70" y="142" width="1296" height="626" />
     </state>
     <state x="70" y="142" width="1012" height="626" key="SettingsEditor/70.142.1296.626/3286.0.1024.768/1366.0.1920.1080@70.142.1296.626" timestamp="1603061456085" />
-    <state x="291" y="71" width="851" height="655" key="search.everywhere.popup" timestamp="1606240631749">
+    <state x="291" y="71" width="851" height="655" key="search.everywhere.popup" timestamp="1606244891411">
       <screen x="70" y="27" width="1296" height="741" />
     </state>
     <state x="1541" y="161" width="672" height="678" key="search.everywhere.popup/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1606083251353" />
-    <state x="291" y="71" width="851" height="655" key="search.everywhere.popup/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606240631749" />
+    <state x="291" y="71" width="851" height="655" key="search.everywhere.popup/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606244891411" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
