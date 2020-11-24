@@ -10,7 +10,7 @@ use App\Reminder;
 class ReminderController extends Controller
 {
 //---------------------SET REMINDER FOR MOVIE-----------------------------\\
-    public function store(Request $request, Movie $movie, User $user) 
+    public function store(Request $request, Movie $movie, User $user)
     {
         //save new reminder for movie
         $reminder = new Reminder();

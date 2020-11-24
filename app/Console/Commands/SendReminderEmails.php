@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Console\Command;
 use App\Mail\ReminderEmailDigest;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Queue;
 
 
 class SendReminderEmails extends Command
@@ -40,18 +40,6 @@ class SendReminderEmails extends Command
             $data[$reminder->user_id][] = $reminder->toArray();
         }
 
-        //send email remainder to each user
-        foreach($data as $userId => $reminders) {
-            $this->sendEmailToUser($userId, $reminders);
-        }
-    }
-    
-    //function for sending email to user
-    private function sendEmailToUser($userId, $reminders) {
-        //find user
-        $user = User::find($userId);
-
-        //send email to user, with RemainderEmailDiger (this class is showing markdown for email and send data to markdown)
-        Mail::to($user)->send(new ReminderEmailDigest($reminders));
+        Queue::push(new \App\Jobs\SendReminderEmails($data));
     }
 }
