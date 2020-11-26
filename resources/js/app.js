@@ -1,8 +1,8 @@
 import Form from './classes/Form.js'
-import EditPassword from "./components/Forms/EditPassword";
-import EditDetails from "./components/Forms/EditDetails";
-import EditPrivacy from "./components/Forms/EditPrivacy";
-
+import EditPassword from "./components/User/EditPassword";
+import EditDetails from "./components/User/EditDetails";
+import EditPrivacy from "./components/User/EditPrivacy";
+import MovieIndex from "./components/Movie/MovieIndex";
 require('./bootstrap');
 
 window.Form = Form;
@@ -11,6 +11,7 @@ window.Vue = require('vue');
 Vue.component('edit-password', EditPassword);
 Vue.component('edit-details', EditDetails);
 Vue.component('edit-privacy', EditPrivacy);
+Vue.component('movie-index', MovieIndex);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

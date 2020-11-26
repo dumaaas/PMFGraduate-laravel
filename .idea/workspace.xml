@@ -23,18 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/classes/Errors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/classes/Form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/users/1606352952.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SearchController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/EditDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/EditDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/EditPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/EditPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/EditPrivacy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/EditPrivacy.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userLayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/movies/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/movies/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +185,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ytClone" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -220,7 +219,9 @@
       <workItem from="1606080491718" duration="11689000" />
       <workItem from="1606237420200" duration="370000" />
       <workItem from="1606261786894" duration="2133000" />
-      <workItem from="1606332287994" duration="20189000" />
+      <workItem from="1606332287994" duration="20631000" />
+      <workItem from="1606382855569" duration="17683000" />
+      <workItem from="1606402109287" duration="10632000" />
     </task>
     <servers />
   </component>
@@ -264,10 +265,14 @@
       <screen x="70" y="142" width="1296" height="626" />
     </state>
     <state x="70" y="142" width="1012" height="626" key="SettingsEditor/70.142.1296.626/3286.0.1024.768/1366.0.1920.1080@70.142.1296.626" timestamp="1603061456085" />
-    <state x="1366" y="75" width="848" height="563" maximized="true" key="dock-window-1" timestamp="1606350075269">
+    <state x="1501" y="0" width="834" height="563" maximized="true" key="dock-window-1" timestamp="1606393210175">
       <screen x="1366" y="0" width="1024" height="768" />
     </state>
-    <state x="1366" y="75" width="848" height="563" maximized="true" key="dock-window-1/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606350075269" />
+    <state x="1501" y="0" width="834" height="563" maximized="true" key="dock-window-1/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606393210175" />
+    <state x="1556" y="0" width="834" height="563" maximized="true" key="dock-window-2" timestamp="1606402434011">
+      <screen x="1366" y="0" width="1024" height="768" />
+    </state>
+    <state x="1556" y="0" width="834" height="563" maximized="true" key="dock-window-2/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606402434011" />
     <state x="291" y="71" width="851" height="655" key="search.everywhere.popup" timestamp="1606244891411">
       <screen x="70" y="27" width="1296" height="741" />
     </state>

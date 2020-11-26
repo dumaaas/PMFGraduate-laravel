@@ -46,10 +46,6 @@ export default {
     },
 
     methods: {
-        onSubmit() {
-            console.log(this.form)
-
-        },
         onChange(event) {
             var data = event.target.value;
             this.form.post('/privateProfile/'+this.user.id+'/'+event.target.value);

@@ -12,11 +12,11 @@ use Auth;
 class SearchController extends Controller
 {
 //---------------------------SEARCH CAST AND MOVIE BY FILTER--------------------------------\\
-   
+
     public function searchCast(Request $request) {
 
         $casts = Cast::query();
-        
+
         if($request->input('country')) {
             $country = $request->input('country');
             $casts = $casts->where('country', 'LIKE', $country);
@@ -33,7 +33,7 @@ class SearchController extends Controller
             $keyword = $request->input('keyword');
             $casts = $casts->where('firstName','LIKE', '%'.$keyword.'%');
         }
-        
+
         $castNum = $casts->count();
         $mostFeatured = Cast::withCount('favoritecast')
                             ->orderBy('favoritecast_count', 'desc'
@@ -47,29 +47,31 @@ class SearchController extends Controller
         ]);
     }
 
-    public function searchMovies(Request $request) {
+    public function searchMovies(Request $request ) {
 
-        $movies = Movie::query();
-        
+        $moviesQuery = Movie::query();
+
         if($request->input('keyword')) {
             $keyword = $request->input('keyword');
-            $movies = $movies->where('name','LIKE', '%'.$keyword.'%');
+            $moviesQuery = $moviesQuery->where('name','LIKE', '%'.$keyword.'%');
         }
         if($request->input('genre')) {
             $genre = $request->input('genre');
-            $movies = $movies->where('genre', 'LIKE', $genre);
+            $moviesQuery = $moviesQuery->where('genre', 'LIKE', $genre);
         }
         if($request->input('from') && $request->input('to')) {
             $from = $request->input('from');
             $to = $request->input('to');
-            $movies = $movies->where('imdb', '>=', $from)->where('imdb', '<=', $to);
+            $moviesQuery = $moviesQuery->where('imdb', '>=', $from)->where('imdb', '<=', $to);
         }
         if($request->input('year')) {
             $year = $request->input('year');
-            $movies = $movies->where('releaseYear', 'LIKE', $year);
-            
+            $moviesQuery = $moviesQuery->where('releaseYear', 'LIKE', $year);
         }
-        return $this->movieViewDetails($movies->get());
+
+        $movies = $moviesQuery->get();
+
+        return response()->json($movies);
     }
 //------------------------------------------------------------------------------------------\\
 
@@ -79,13 +81,13 @@ class SearchController extends Controller
 
         $search = $_GET['search'];
         if($searchOptions=='celebrities') {
-            
+
             $castLastName = Cast::where('lastName', 'LIKE', '%'.$search.'%');
             $casts = Cast::where('firstName', 'LIKE', '%'.$search.'%')
                     ->union($castLastName)
                     ->latest()
                     ->get();
-    
+
             $castNum = $casts->count();
 
             $mostFeatured = Cast::withCount('favoritecast')->orderBy('favoritecast_count', 'desc')->take(4)->get();

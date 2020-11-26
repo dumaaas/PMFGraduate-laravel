@@ -165,8 +165,9 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/plugins2.js"></script>
     <script src="/js/custom.js"></script>
+
     <script>
-        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        window.AuthUser = @json(auth()->user())
     </script>
 </body>
 

@@ -24,13 +24,33 @@ class MovieController extends Controller
 //-----------------------------SHOW ALL MOVIES-------------------------------------\\
     public function index()
     {
-        //get all movies ordered by latest added and return movie index
-        $movies = Cache::remember('movies', Carbon::now()->addDay(), function() {
-            return Movie::latest()->get();
+        $moviesTotal = Cache::remember('moviesTotal', Carbon::now()->addMinutes(10), function () {
+            return Movie::all()->count();
         });
-        return $this->movieViewDetails($movies);
+        $watchedCount = Cache::remember('watchedCount', Carbon::now()->addMinutes(10), function () {
+            return MovieList::where('user_id', 'LIKE', Auth::user()->id)->where('type', 'LIKE', 'watched')->count();
+        });
+
+        if($watchedCount!=0) {
+            $percent = number_format(($watchedCount/$moviesTotal)*100,2);
+        } else {
+            $percent = 0;
+        }
+        return view('movies.index', [
+            'moviesTotal' => $moviesTotal,
+            'watchedCount' => $watchedCount,
+            'percent' => $percent
+        ]);
     }
 //---------------------------------------------------------------------------------\\
+
+public function getMovies() {
+    //get all movies ordered by latest added and return movie index
+    $movies = Cache::remember('movies', Carbon::now()->addMinutes(10), function() {
+        return Movie::latest()->get();
+    });
+    return $movies;
+}
 
 //---------------------------------SHOW MOVIE--------------------------------------\\
     public function show(Movie $movie)
@@ -159,34 +179,18 @@ class MovieController extends Controller
 //----------------------------------------------------------------------------------\\
 
 //--------------------------------SORT MOVIES---------------------------------------\\
-    public function sortMovies(Request $request)
+    public function sortMovies(Request $request, $sort)
     {
         //get value of sort
-        if(isset($_GET['sort'])) {
-            $sort = $_GET['sort'];
-        } else {
-            $sort = '';
-        }
+        $sort = request('sort');
 
         //sort users from sort value
         switch ($sort) {
-            case 'ratingHighest':
-                $movies = Movie::orderBy('imdb', 'desc')->get();
-                break;
-            case 'ratingLowest':
-                $movies = Movie::orderBy('imdb')->get();
-                break;
             case 'newest':
                 $movies = Movie::orderBy('created_at', 'desc')->get();
                 break;
             case 'oldest':
                 $movies = Movie::orderBy('created_at')->get();
-                break;
-            case 'commentsMost':
-                $movies = Movie::withCount('comment')->orderBy('comment_count', 'desc')->get();
-                break;
-            case 'commentsLeast':
-                $movies = Movie::withCount('comment')->orderBy('comment_count')->get();
                 break;
             default:
                 $movies = Movie::latest()->get();
@@ -194,7 +198,7 @@ class MovieController extends Controller
         }
 
         //return to the movie index with sorted movies
-        return $this->movieViewDetails($movies);
+        return $movies;
     }
 //----------------------------------------------------------------------------------\\
 

@@ -30,10 +30,11 @@ Route::get('/users/delete/{user}', 'UserController@destroy');
 
 //------------------------ROUTES FOR MOVIE------------------------------\\
 Route::get('/movies', 'MovieController@index');
+Route::get('/getMovies', 'MovieController@getMovies');
 Route::post('/addMovie', 'MovieController@store');
 Route::get('/newMovie', 'MovieController@create');
 Route::get('/movies/{movie}', 'MovieController@show');
-Route::get('/sortMovies', 'MovieController@sortMovies');
+Route::get('/sortMovies/{sort}', 'MovieController@sortMovies');
 Route::get('/editMovie/{movie}', 'MovieController@edit');
 Route::put('/movies/{movie}', 'MovieController@update');
 Route::get('/{addToList}/{movie}/{type}', 'MovieController@storeListItem')
