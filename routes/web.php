@@ -22,7 +22,7 @@ Route::get('/users/create', 'UserController@create');
 Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/{user}/edit', 'UserController@edit');
 Route::post('/updateDetails/{user}', 'UserController@updateUserDetails');
-Route::post('/privateProfile/{user}', 'UserController@privateProfile');
+Route::post('/privateProfile/{user}/{privacy}', 'UserController@privateProfile');
 Route::post('/updatePassword/{user}', 'UserController@updatePassword');
 Route::post('/uploadImage/{user}', 'UserController@uploadImage');
 Route::get('/users/delete/{user}', 'UserController@destroy');

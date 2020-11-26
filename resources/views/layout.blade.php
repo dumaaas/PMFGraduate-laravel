@@ -36,7 +36,7 @@
 </head>
 
 <body>
-
+    <div id="app">
     {{-- <div id="preloader">
         <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
         <div id="status">
@@ -69,7 +69,7 @@
                         </li>
                         <li>
                             <a href="/home" class="btn btn-default">
-                                Home 
+                                Home
                             </a>
                         </li>
                         <li>
@@ -83,12 +83,12 @@
                             </a>
                         </li>
 
-                        {{-- @can('isAdmin', Auth::user()) 
+                        {{-- @can('isAdmin', Auth::user())
                         <li>
                             <a href="/showDashboard" class="btn btn-default">
                                 Dashboard
                             </a>
-                        </li> 
+                        </li>
                         @endcan
                      --}}
                         @auth
@@ -119,7 +119,7 @@
             <!-- top search form -->
             <form metod="GET" action="/search">
                 <div class="top-search">
-                    
+
                         <select name="searchOptions">
                             <option value="movies">Movies</option>
                             <option value="celebrities">Celebrities</option>
@@ -127,13 +127,13 @@
                         </select>
                         <input type="text" name="search" placeholder="Search for a movie, celebrity or user that you are looking for">
                         <input type="submit" value="">
-                    
-                    
+
+
                 </div>
             </form>
         </div>
     </header>
-    
+
     <!-- END | Header -->
     @yield('home')
     @yield('userProfile')
@@ -142,12 +142,12 @@
     @yield('movieList')
     @yield('castList')
     @yield('userList')
-   
+
     <!-- START | Footer-->
     <footer class="ht-footer">
         <div class="container">
             <div class="flex-parent-ft">
-                
+
             </div>
         </div>
         <div class="ft-copyright">
@@ -159,8 +159,7 @@
             </div>
         </div>
     </footer>
-
-    <script src="http://unpkg.com/turbolinks"></script>
+    </div>
 
     <script src="/js/jquery.js"></script>
     <script src="/js/plugins.js"></script>

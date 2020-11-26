@@ -61,11 +61,8 @@ class UserController extends Controller
     {
         $this->updateImage($request, $user);
 
-        //flash success message if user changed photo
-        flash('Profile image changed!')->success();
-
         //return back to user profile page
-        return back();
+        return ['message' => 'Avatar changed successfully!'];
     }
 
     public function updatePassword(Request $request, User $user)
@@ -76,7 +73,7 @@ class UserController extends Controller
         flash('Password changed!')->success();
 
         //return back to the user editing form
-        return back();
+        return ['message' => 'Password changed successfully!'];
     }
 
     public function updateUserDetails(Request $request, User $user)
@@ -87,14 +84,11 @@ class UserController extends Controller
         flash('Profile updated!')->success();
 
         //return back to the user editing form
-        return back();
+        return ['message' => 'Your details changed successfully!'];
     }
 
-    public function privateProfile(Request $request, User $user)
+    public function privateProfile(Request $request, User $user, $privacy)
     {
-        //request input value to check if user want to set profile on private or public
-        $privacy = request('privateOrPublic');
-
         //update profile privacy
         if($privacy == 'private'){
             $user->privacy = 'private';
@@ -102,13 +96,10 @@ class UserController extends Controller
             $user->privacy = 'public';
         }
 
-        $user->save();
-
-        //flash success message if user updated privacy
-        flash('Profile privacy changed!')->success();
+        $user->update();
 
         //return back to the user editing form
-        return back();
+        return ['message' => 'Profile privacy changed to '.$privacy.'.'];
     }
 //--------------------------------------------------------------------------------------\\
 
@@ -312,7 +303,7 @@ class UserController extends Controller
         $user->city=request('city');
         $user->description=request('description');
 
-        $user->save();
+        $user->update();
     }
 
     public function updateImage($request, $user)
