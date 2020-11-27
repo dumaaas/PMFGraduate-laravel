@@ -73,6 +73,12 @@ class Controller extends BaseController
         $sumWatched = MovieList::where('movie_id', '=', $movie->id)->where('type', 'LIKE', 'watched')->count();
         $comments = Comment::where('commentable_id', '=', $movie->id)->latest()->paginate(5);
         $sumComments = Comment::where('commentable_id', '=', $movie->id)->count();
+        $isRated = Rating::where('movie_id', $movie->id)->where('user_id', Auth::id())->first();
+        if($isRated!=null) {
+             $userRating = $isRated->rating;
+        } else {
+             $userRating = 0;
+        }
 
     //return movie show page with
         return view('movies.show',[
@@ -85,7 +91,8 @@ class Controller extends BaseController
             'sumComments'=>$sumComments,
             'rating' => $rating,
             'ratingNum' => $ratingNum,
-            'ratings' => $ratings
+            'ratings' => $ratings,
+            'userRating' => $userRating
         ]);
     }
 

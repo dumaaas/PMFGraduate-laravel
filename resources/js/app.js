@@ -5,7 +5,7 @@ import EditPrivacy from "./components/User/EditPrivacy";
 import MovieIndex from "./components/Movie/MovieIndex";
 import MovieList from "./components/Movie/MovieList";
 import MovieReminder from "./components/Movie/MovieReminder";
-
+import MovieRating from "./components/Movie/MovieRating";
 require('./bootstrap');
 
 window.Form = Form;
@@ -17,6 +17,8 @@ Vue.component('edit-privacy', EditPrivacy);
 Vue.component('movie-index', MovieIndex);
 Vue.component('movie-list', MovieList);
 Vue.component('movie-reminder', MovieReminder);
+Vue.component('movie-rating', MovieRating);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

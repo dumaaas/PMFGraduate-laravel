@@ -61,7 +61,7 @@ Route::get('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->n
 
 
 //-----------------------ROUTES FOR RATING------------------------------\\
-Route::post('/addRating/{movie}', 'RatingController@store');
+Route::post('/addRating/{movie}/{rating}', 'RatingController@store');
 Route::get('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
 //----------------------------------------------------------------------\\
 

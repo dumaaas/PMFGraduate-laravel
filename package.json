@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "v-calendar": "^2.1.1",
+        "vue-rate": "^2.4.0",
         "vue-star-rating": "^1.6.1"
     }
 }

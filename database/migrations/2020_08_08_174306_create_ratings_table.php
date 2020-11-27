@@ -14,11 +14,11 @@ class CreateRatingsTable extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->primary(['user_id', 'movie_id']);
+            $table->id('id');
             $table->foreignId('user_id');
             $table->foreignId('movie_id');
-            $table->integer('rating');
-            $table->string('review');
+            $table->integer('rating')->default(0);
+            $table->string('review')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

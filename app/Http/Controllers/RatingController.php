@@ -11,25 +11,24 @@ use Auth;
 class RatingController extends Controller
 {
 //------------------------------ADD NEW RATING--------------------------------------\\
-    public function store(Request $request, Movie $movie)
+    public function store(Request $request, Movie $movie, $rating)
     {
-        //validate all data and save new rating
-        request()->validate([
-            'rating'=>'required',
-            'review'=>'required'
-        ]);
+        $r = Rating::where('movie_id', $movie->id)->where('user_id', Auth::id())->first();
+        if($r) {
+            $r->update([
+                'rating' => $rating
+            ]);
+        } else {
+            Rating::create([
+                'movie_id' => $movie->id,
+                'user_id' => Auth::id(),
+                'rating' => $rating,
+                'review' => 'hehehe'
+            ]);
+        }
 
-        $rating = new Rating();
+        return ['message' => 'Movie added to  list!'];
 
-        $rating->rating=request('rating');
-        $rating->review=request('review');
-        $rating->user_id=Auth::user()->id;
-        $rating->movie_id=$movie->id;
-
-        $rating->save();
-        
-        //return back to the movie page
-        return back();
     }
 //----------------------------------------------------------------------------------\\
 
