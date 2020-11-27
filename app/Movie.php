@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
@@ -29,6 +30,12 @@ class Movie extends Model
         if ($name) {
             return $query->where('name','LIKE', '%'.$name.'%');
         }
+    }
+
+    public function isInMovieList() {
+        return (bool) MovieList::where('user_id', Auth::id())
+                                ->where('movie_id', $this->id)
+                                ->first();
     }
 
 }

@@ -37,10 +37,8 @@ Route::get('/movies/{movie}', 'MovieController@show');
 Route::get('/sortMovies/{sort}', 'MovieController@sortMovies');
 Route::get('/editMovie/{movie}', 'MovieController@edit');
 Route::put('/movies/{movie}', 'MovieController@update');
-Route::get('/{addToList}/{movie}/{type}', 'MovieController@storeListItem')
-->where('addToList', 'addFavorite|addCustom|addWatchlist|addWatched')->name('movies.add');
-Route::get('/{destroyFromList}/{movie}/{type}', 'MovieController@destroyFromList')
-->where('destroyFromList','favoriteDestroy|customDestroy|watchlistDestroy|watchedDestroy')->name('movies.delete');
+Route::post('/addToList/{movie}/{type}', 'MovieController@storeListItem');
+Route::post('/removeFromList/{movie}/{type}', 'MovieController@destroyFromList');
 Route::get('/movies/delete/{movie}', 'MovieController@destroy');
 //----------------------------------------------------------------------\\
 

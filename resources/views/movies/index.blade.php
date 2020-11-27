@@ -16,6 +16,11 @@
             </div>
         </div>
     </div>
-    <movie-index :moviestotal="{{$moviesTotal}}" :watchedcount="{{$watchedCount}}" :percent="{{$percent}}"></movie-index>
+    @guest
+        <movie-index></movie-index>
+    @endguest
+    @auth
+        <movie-index :moviestotal="{{$moviesTotal}}" :watchedcount="{{$watchedCount}}" :percent="{{$percent}}"></movie-index>
+    @endauth
 
 @endsection

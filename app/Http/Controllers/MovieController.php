@@ -24,23 +24,28 @@ class MovieController extends Controller
 //-----------------------------SHOW ALL MOVIES-------------------------------------\\
     public function index()
     {
-        $moviesTotal = Cache::remember('moviesTotal', Carbon::now()->addMinutes(10), function () {
-            return Movie::all()->count();
-        });
-        $watchedCount = Cache::remember('watchedCount', Carbon::now()->addMinutes(10), function () {
-            return MovieList::where('user_id', 'LIKE', Auth::user()->id)->where('type', 'LIKE', 'watched')->count();
-        });
+        if(Auth::check()) {
+            $moviesTotal = Cache::remember('moviesTotal', Carbon::now()->addMinutes(10), function () {
+                return Movie::all()->count();
+            });
+            $watchedCount = Cache::remember('watchedCount', Carbon::now()->addMinutes(10), function () {
+                return MovieList::where('user_id', 'LIKE', Auth::user()->id)->where('type', 'LIKE', 'watched')->count();
+            });
 
-        if($watchedCount!=0) {
-            $percent = number_format(($watchedCount/$moviesTotal)*100,2);
+            if($watchedCount!=0) {
+                $percent = number_format(($watchedCount/$moviesTotal)*100,2);
+            } else {
+                $percent = 0;
+            }
+            return view('movies.index', [
+                'moviesTotal' => $moviesTotal,
+                'watchedCount' => $watchedCount,
+                'percent' => $percent
+            ]);
         } else {
-            $percent = 0;
+            return view('movies.index');
         }
-        return view('movies.index', [
-            'moviesTotal' => $moviesTotal,
-            'watchedCount' => $watchedCount,
-            'percent' => $percent
-        ]);
+
     }
 //---------------------------------------------------------------------------------\\
 
@@ -203,62 +208,15 @@ public function getMovies() {
 //----------------------------------------------------------------------------------\\
 
 //-----------------------STORE AND DELETE FROM WISHED LIST--------------------------\\
-    public function storeListItem(Request $request, $addToList, Movie $movie, $type)
-    {
-        //request route to know which operation is asked for
-        $route = $request->path();
-
-        //add movie to the wished list and flash message
-        switch ($route) {
-            case 'addFavorite/'.$movie->id.'/favorite':
-                $favorite = MovieList::create(['user_id' => Auth::user()->id, 'movie_id' => $movie->id, 'type' => $type]);
-                flash('Movie added to favorites!')->success();
-                break;
-            case 'addCustom/'.$movie->id.'/custom':
-                $custom = MovieList::create(['user_id' => Auth::user()->id, 'movie_id' => $movie->id, 'type' => $type]);
-                flash('Movie added to custom!')->success();
-                break;
-            case 'addWatchlist/'.$movie->id.'/watchlist':
-                $watchlist = MovieList::create(['user_id' => Auth::user()->id, 'movie_id' => $movie->id, 'type' => $type]);
-                flash('Movie added to watchlist!')->success();
-                break;
-            case 'addWatched/'.$movie->id.'/watched':
-                $watched = MovieList::create(['user_id' => Auth::user()->id, 'movie_id' => $movie->id, 'type' => $type]);
-                flash('Movie added to watched!')->success();
-                break;
-        }
-
-        //return to the movie page
-        return $this->showMovie($movie);
+    public function storeListItem(Movie $movie, $type) {
+        MovieList::create(['user_id' => Auth::user()->id, 'movie_id' => $movie->id, 'type' => $type]);
+        return ['message' => 'Movie added to '.$type.' list!'];
     }
 
-    public function destroyFromList(Request $request, $destroyFromList, Movie $movie, $type)
+    public function destroyFromList(Movie $movie, $type)
     {
-        //request route to know which operation is asked for
-        $route = $request->path();
-
-        //delete movie from the wished list and flash message
-        switch ($route) {
-            case 'favoriteDestroy/'.$movie->id.'/favorite':
-                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
-                flash('Movie removed from favorites!')->success();
-                break;
-            case 'customDestroy/'.$movie->id.'/custom':
-                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
-                flash('Movie removed from custom!')->success();
-                break;
-            case 'watchlistDestroy/'.$movie->id.'/watchlist':
-                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
-                flash('Movie removed from watchlist!')->success();
-                break;
-            case 'watchedDestroy/'.$movie->id.'/watched':
-                MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
-                flash('Movie removed from watched!')->success();
-                break;
-        }
-
-        //return to the movie page
-        return $this->showMovie($movie);
+        MovieList::where('user_id', '=', Auth::user()->id)->where('movie_id', '=', $movie->id)->where('type', '=', $type)->delete();
+        return ['message' => 'Movie removed from '.$type.' list!'];
     }
 //----------------------------------------------------------------------------------\\
 

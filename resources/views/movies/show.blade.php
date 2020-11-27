@@ -28,35 +28,35 @@
                                 </div>
 
                             </div>
-                            @auth
-                                @if (Auth::user()->isInMovieList($movie->id, 'watched'))
-                                    <div class="btn-transform transform-vertical">
-                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Remove
-                                                from watched</a></div>
-                                        <div><a href="{{route('movies.delete', ['destroyFromList' => 'watchedDestroy', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i
-                                                    class="ion-checkmark"></i></a></div>
-                                    </div>
-                                @else
-                                    <div class="btn-transform transform-vertical">
+{{--                            @auth--}}
+{{--                                @if (Auth::user()->isInMovieList($movie->id, 'watched'))--}}
+{{--                                    <div class="btn-transform transform-vertical">--}}
+{{--                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Remove--}}
+{{--                                                from watched</a></div>--}}
+{{--                                        <div><a href="{{route('movies.delete', ['destroyFromList' => 'watchedDestroy', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i--}}
+{{--                                                    class="ion-checkmark"></i></a></div>--}}
+{{--                                    </div>--}}
+{{--                                @else--}}
+{{--                                    <div class="btn-transform transform-vertical">--}}
 
-                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark
-                                                as watched</a></div>
-                                        <div><a href="{{route('movies.add', ['addToList' => 'addWatched', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i
-                                                    class="ion-checkmark"></i></a></div>
+{{--                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark--}}
+{{--                                                as watched</a></div>--}}
+{{--                                        <div><a href="{{route('movies.add', ['addToList' => 'addWatched', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i--}}
+{{--                                                    class="ion-checkmark"></i></a></div>--}}
 
-                                    </div>
-                                @endif
-                            @endauth
-                            @guest
-                                <div class="btn-transform transform-vertical">
+{{--                                    </div>--}}
+{{--                                @endif--}}
+{{--                            @endauth--}}
+{{--                            @guest--}}
+{{--                                <div class="btn-transform transform-vertical">--}}
 
-                                    <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark
-                                            as watched</a></div>
-                                    <div><a href="/addWatched/{{ $movie->id }}" class="item item-2 yellowbtn"><i
-                                                class="ion-checkmark"></i></a></div>
+{{--                                    <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark--}}
+{{--                                            as watched</a></div>--}}
+{{--                                    <div><a href="/addWatched/{{ $movie->id }}" class="item item-2 yellowbtn"><i--}}
+{{--                                                class="ion-checkmark"></i></a></div>--}}
 
-                                </div>
-                            @endguest
+{{--                                </div>--}}
+{{--                            @endguest--}}
 
 
                         </div>
@@ -94,42 +94,39 @@
                     <div class="movie-single-ct main-content">
                         <h1 class="bd-hd">{{ $movie->name }} <span> {{ $movie->releaseYear }}</span></h1>
                         <div class="social-btn">
-                            @auth
-                                @if (Auth::user()->isInMovieList($movie->id, 'favorite'))
-                                    <a href="{{route('movies.delete', ['destroyFromList' => 'favoriteDestroy', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>
-                                        Remove Favorite</a>
-                                @else
-                                    <a href="{{route('movies.add', ['addToList' => 'addFavorite', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>
-                                        Add to Favorite</a>
-                                @endif
+                            <movie-list :type="'favorite'" :movie="{{$movie}}" :isinmovielist="{{$movie->isInMovieList('favorite') ? 'true' : 'false'}}"></movie-list>
+                            <movie-list :type="'custom'" :movie="{{$movie}}" :isinmovielist="{{$movie->isInMovieList('custom') ? 'true' : 'false'}}"></movie-list>
+                            <movie-list :type="'watchlist'" :movie="{{$movie}}" :isinmovielist="{{$movie->isInMovieList('watchlist') ? 'true' : 'false'}}"></movie-list>
 
-                                @if (Auth::user()->isInMovieList($movie->id, 'custom'))
-                                    <a href="{{route('movies.delete', ['destroyFromList' => 'customDestroy', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>
-                                        Remove Custom</a>
-                                @else
-                                    <a href="{{route('movies.add', ['addToList' => 'addCustom', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>
-                                        Add to Custom</a>
-                                @endif
 
-                                    @if (Auth::user()->isInMovieList($movie->id, 'watchlist'))
-                                    <a href="{{route('movies.delete', ['destroyFromList' => 'watchlistDestroy', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i>
-                                        Remove
-                                        Watchlist</a>
-                                @else
-                                    <a href="{{route('movies.add', ['addToList' => 'addWatchlist', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i> Add
-                                        to
-                                        Watchlist</a>
-                                @endif
-                            @endauth
-                            @guest
-                                <a href="#" class="parent-btn"><i class="ion-heart"></i>
-                                    Add to Favorite</a>
-                                <a href="#" class="parent-btn"><i class="ion-ios-film"></i>
-                                    Add to Custom</a>
-                                <a href="#" class="parent-btn"><i class="ion-eye"></i> Add
-                                    to
-                                    Watchlist</a>
-                            @endguest
+{{--                        @auth--}}
+
+{{--                                @if (Auth::user()->isInMovieList($movie->id, 'favorite'))--}}
+{{--                                    <a href="{{route('movies.delete', ['destroyFromList' => 'favoriteDestroy', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>--}}
+{{--                                        Remove Favorite</a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{route('movies.add', ['addToList' => 'addFavorite', 'movie' => $movie->id, 'type' => 'favorite'])}}" class="parent-btn"><i class="ion-heart"></i>--}}
+{{--                                        Add to Favorite</a>--}}
+{{--                                @endif--}}
+
+{{--                                @if (Auth::user()->isInMovieList($movie->id, 'custom'))--}}
+{{--                                    <a href="{{route('movies.delete', ['destroyFromList' => 'customDestroy', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>--}}
+{{--                                        Remove Custom</a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{route('movies.add', ['addToList' => 'addCustom', 'movie' => $movie->id, 'type' => 'custom'])}}" class="parent-btn"><i class="ion-ios-film"></i>--}}
+{{--                                        Add to Custom</a>--}}
+{{--                                @endif--}}
+
+{{--                                    @if (Auth::user()->isInMovieList($movie->id, 'watchlist'))--}}
+{{--                                    <a href="{{route('movies.delete', ['destroyFromList' => 'watchlistDestroy', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i>--}}
+{{--                                        Remove--}}
+{{--                                        Watchlist</a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{route('movies.add', ['addToList' => 'addWatchlist', 'movie' => $movie->id, 'type' => 'watchlist'])}}" class="parent-btn"><i class="ion-eye"></i> Add--}}
+{{--                                        to--}}
+{{--                                        Watchlist</a>--}}
+{{--                                @endif--}}
+{{--                            @endauth--}}
 
                         </div>
                         <div class="movie-rate">
