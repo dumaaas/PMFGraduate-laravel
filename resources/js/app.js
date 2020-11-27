@@ -4,6 +4,7 @@ import EditDetails from "./components/User/EditDetails";
 import EditPrivacy from "./components/User/EditPrivacy";
 import MovieIndex from "./components/Movie/MovieIndex";
 import MovieList from "./components/Movie/MovieList";
+import MovieReminder from "./components/Movie/MovieReminder";
 
 require('./bootstrap');
 
@@ -15,6 +16,7 @@ Vue.component('edit-details', EditDetails);
 Vue.component('edit-privacy', EditPrivacy);
 Vue.component('movie-index', MovieIndex);
 Vue.component('movie-list', MovieList);
+Vue.component('movie-reminder', MovieReminder);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

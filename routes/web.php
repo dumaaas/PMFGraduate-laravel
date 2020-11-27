@@ -92,7 +92,7 @@ Route::get('/showRatingTable', 'AdminController@showRatingTable');
 //----------------------------------------------------------------------\\
 
 //-----------------------ROUTES FOR REMINDER----------------------------\\
-Route::post('/setReminder/{movie}/{user}', 'ReminderController@store');
+Route::post('/setReminder/{movie}/{date}', 'ReminderController@store');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR REPORT-----------------------------\\

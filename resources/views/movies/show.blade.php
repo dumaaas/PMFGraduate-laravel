@@ -16,8 +16,6 @@
             <div class="row ipad-width2">
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="movie-img">
-                        @include('flash::message')
-
                         <img src="/images/movies/{{ $movie->avatar }}" alt="">
                         <div class="movie-btn">
                             <div class="btn-transform transform-vertical red">
@@ -26,67 +24,22 @@
                                 <div><a href="{{ $movie->trailer }}" class="item item-2 redbtn fancybox-media hvr-grow"><i
                                             class="ion-play"></i></a>
                                 </div>
-
                             </div>
-{{--                            @auth--}}
-{{--                                @if (Auth::user()->isInMovieList($movie->id, 'watched'))--}}
-{{--                                    <div class="btn-transform transform-vertical">--}}
-{{--                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Remove--}}
-{{--                                                from watched</a></div>--}}
-{{--                                        <div><a href="{{route('movies.delete', ['destroyFromList' => 'watchedDestroy', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i--}}
-{{--                                                    class="ion-checkmark"></i></a></div>--}}
-{{--                                    </div>--}}
-{{--                                @else--}}
-{{--                                    <div class="btn-transform transform-vertical">--}}
-
-{{--                                        <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark--}}
-{{--                                                as watched</a></div>--}}
-{{--                                        <div><a href="{{route('movies.add', ['addToList' => 'addWatched', 'movie' => $movie->id, 'type' => 'watched'])}}" class="item item-2 yellowbtn"><i--}}
-{{--                                                    class="ion-checkmark"></i></a></div>--}}
-
-{{--                                    </div>--}}
-{{--                                @endif--}}
-{{--                            @endauth--}}
-{{--                            @guest--}}
-{{--                                <div class="btn-transform transform-vertical">--}}
-
-{{--                                    <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-checkmark"></i> Mark--}}
-{{--                                            as watched</a></div>--}}
-{{--                                    <div><a href="/addWatched/{{ $movie->id }}" class="item item-2 yellowbtn"><i--}}
-{{--                                                class="ion-checkmark"></i></a></div>--}}
-
-{{--                                </div>--}}
-{{--                            @endguest--}}
-
-
+                                    <div class="btn-transform transform-vertical">
+                                        <div>
+                                            <a class="item item-1 yellowbtn">
+                                                <i class="ion-checkmark"></i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a class="item item-2 yellowbtn">
+                                                <movie-list :type="'watched'" :movie="{{$movie}}" :isinmovielist="{{$movie->isInMovieList('favorite') ? 'true' : 'false'}}"></movie-list>
+                                            </a>
+                                        </div>
+                                    </div>
                         </div>
-                        @auth
                         <div class="movie-btn">
-                            <form action="/setReminder/{{ $movie->id }}/{{ Auth::user()->id }}" method="POST">
-                                @csrf
-                                <input type="date" id="start" name="reminder">
-
-                                <div class="btn-transform transform-vertical red">
-                                    <br>
-
-                                    <input type="submit" class="redbtn" value="Set reminder">
-
-
-
-                                </div>
-                            </form>
-
-                        </div>
-                        @endauth
-                        <div class="movie-btn">
-
-                            <div class="social-btn2">
-
-                                <a href="#" class="parent-btn"><i class="ion-ios-people"></i> {{ $sumWatched }} users
-                                    added movie</a>
-                            </div>
-
-
+                            <movie-reminder :movie="{{$movie}}"></movie-reminder>
                         </div>
                     </div>
                 </div>
