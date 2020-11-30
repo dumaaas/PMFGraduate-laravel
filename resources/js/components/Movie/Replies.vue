@@ -68,6 +68,7 @@ export default {
                         ]
                     }
                     this.hideReplies = true
+                    this.$emit('showReplies', true)
                 })
         },
         addReply(reply) {
@@ -84,6 +85,7 @@ export default {
         hide() {
             this.replies.data = ''
             this.hideReplies= false
+            this.$emit('showReplies', false)
         }
     }
 }
@@ -114,8 +116,6 @@ export default {
         margin-left: 70px;
         Float:left;
         height:30px;
-        border:1px dotted #f00;
-        width:1px; /* edit this if you want */
-        background-color: red
+        border-left:1px solid  red;
     }
 </style>

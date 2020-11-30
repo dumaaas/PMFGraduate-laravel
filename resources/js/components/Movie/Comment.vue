@@ -18,13 +18,16 @@
                      <votes :default_votes="comment.likes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
                     </div>
                     <div class="floatRight">
-                        <button @click="addingReply = !addingReply"  class="button">
+                        <button @click="(addingReply = !addingReply)"  class="button">
                             {{addingReply ? 'Cancel' : 'Add Reply'}}
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+        <div v-if="!addingReply && comment.repliesCount > 0 && showRep" class="line"></div>
+        <div v-if="addingReply && comment.repliesCount > 0 && showRep" class="line2"></div>
+
         <div class="comment-form reply-form">
             <form  v-if="addingReply">
                 <div class="row">
@@ -37,7 +40,7 @@
                 </div>
             </form>
         </div>
-        <replies ref="replies" :comment="comment"></replies>
+        <replies @showReplies="showReplies" ref="replies" :comment="comment"></replies>
     </div>
 </template>
 
@@ -67,7 +70,8 @@ export default {
     data() {
         return {
             addingReply: false,
-            content: ''
+            content: '',
+            showRep: false
         }
     },
 
@@ -82,7 +86,12 @@ export default {
                 this.addingReply = false
                 this.$refs.replies.addReply(data)
             })
-        }
+        },
+
+        showReplies(data) {
+            this.showRep = data
+        },
+
     }
 }
 </script>
@@ -130,5 +139,66 @@ export default {
     .reply-form {
         margin-top: 20px;
     }
+
+    .line {
+        display: flex;
+        background: transparent;
+        position: relative;
+    }
+
+    .line:before,
+    .line:after {
+        margin-left: 30px;
+        width: 30px;
+        height: 50px;
+        content: '';
+        position: absolute;
+    }
+
+    .line:before {
+        border-bottom: 1px solid red;
+        border-left: 1px solid red;
+        top: 0;
+        left: 0;
+    }
+
+    .line2 {
+        display: flex;
+        background: transparent;
+        position: relative;
+    }
+
+    .line2:before
+    {
+        margin-top: -15px;
+        margin-left: -30px;
+        width: 30px;
+        height: 160px;
+        content: '';
+        position: absolute;
+    }
+
+    .line2:after
+    {
+        margin-top: -15px;
+        margin-left: -15px;
+        width: 75px;
+        height: 160px;
+        content: '';
+        position: absolute;
+    }
+
+    .line2:before {
+        border-top: 1px solid red;
+        top: 0;
+        left: 0;
+    }
+    .line2:after {
+        border-left: 1px solid red;
+        border-bottom: 1px solid red;
+        top: 0;
+        left: 0;
+    }
+
 
 </style>

@@ -1954,6 +1954,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1980,7 +1983,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       addingReply: false,
-      content: ''
+      content: '',
+      showRep: false
     };
   },
   methods: {
@@ -1998,6 +2002,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$refs.replies.addReply(data);
       });
+    },
+    showReplies: function showReplies(data) {
+      this.showRep = data;
     }
   }
 });
@@ -2792,6 +2799,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           data: [].concat(_toConsumableArray(_this.replies.data), _toConsumableArray(data.data))
         });
         _this.hideReplies = true;
+
+        _this.$emit('showReplies', true);
       });
     },
     addReply: function addReply(reply) {
@@ -2804,6 +2813,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hide: function hide() {
       this.replies.data = '';
       this.hideReplies = false;
+      this.$emit('showReplies', false);
     }
   }
 });
@@ -7628,7 +7638,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.button[data-v-eb1c83f6] {\n    margin-top: 10px;\n    background-color: #dd003f;\n    padding: 0 20px;\n    height: 30px;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.floatRight[data-v-eb1c83f6] {\n    float: right;\n    margin-top: 0;\n    margin-left: 400px;\n}\n.reply-form form button[data-v-eb1c83f6] {\n    padding-top: 12.5px;\n    padding-bottom: 12.5px;\n    padding-left: 20px;\n    padding-right: 20px;\n    background-color: #dd003f;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.reply-form[data-v-eb1c83f6] {\n    margin-top: 20px;\n}\n\n", ""]);
+exports.push([module.i, "\n.button[data-v-eb1c83f6] {\n    margin-top: 10px;\n    background-color: #dd003f;\n    padding: 0 20px;\n    height: 30px;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.floatRight[data-v-eb1c83f6] {\n    float: right;\n    margin-top: 0;\n    margin-left: 400px;\n}\n.reply-form form button[data-v-eb1c83f6] {\n    padding-top: 12.5px;\n    padding-bottom: 12.5px;\n    padding-left: 20px;\n    padding-right: 20px;\n    background-color: #dd003f;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.reply-form[data-v-eb1c83f6] {\n    margin-top: 20px;\n}\n.line[data-v-eb1c83f6] {\n    display: flex;\n    background: transparent;\n    position: relative;\n}\n.line[data-v-eb1c83f6]:before,\n.line[data-v-eb1c83f6]:after {\n    margin-left: 30px;\n    width: 30px;\n    height: 50px;\n    content: '';\n    position: absolute;\n}\n.line[data-v-eb1c83f6]:before {\n    border-bottom: 1px solid red;\n    border-left: 1px solid red;\n    top: 0;\n    left: 0;\n}\n.line2[data-v-eb1c83f6] {\n    display: flex;\n    background: transparent;\n    position: relative;\n}\n.line2[data-v-eb1c83f6]:before\n{\n    margin-top: -15px;\n    margin-left: -30px;\n    width: 30px;\n    height: 160px;\n    content: '';\n    position: absolute;\n}\n.line2[data-v-eb1c83f6]:after\n{\n    margin-top: -15px;\n    margin-left: -15px;\n    width: 75px;\n    height: 160px;\n    content: '';\n    position: absolute;\n}\n.line2[data-v-eb1c83f6]:before {\n    border-top: 1px solid red;\n    top: 0;\n    left: 0;\n}\n.line2[data-v-eb1c83f6]:after {\n    border-left: 1px solid red;\n    border-bottom: 1px solid red;\n    top: 0;\n    left: 0;\n}\n\n\n", ""]);
 
 // exports
 
@@ -7685,7 +7695,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cmt-item[data-v-5bd5b7a4] {\n    margin-left: 60px;\n}\n.button[data-v-5bd5b7a4] {\n    margin-top: 10px;\n    background-color: #dd003f;\n    padding: 0 20px;\n    height: 30px;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.line[data-v-5bd5b7a4] {\n    margin-left: 70px;\n    Float:left;\n    height:30px;\n    border:1px dotted #f00;\n    width:1px; /* edit this if you want */\n    background-color: red\n}\n", ""]);
+exports.push([module.i, "\n.cmt-item[data-v-5bd5b7a4] {\n    margin-left: 60px;\n}\n.button[data-v-5bd5b7a4] {\n    margin-top: 10px;\n    background-color: #dd003f;\n    padding: 0 20px;\n    height: 30px;\n    border-radius: 30px;\n    font-family: 'Dosis', sans-serif;\n    font-size: 14px;\n    color: #ffffff;\n    font-weight: bold;\n    text-transform: uppercase;\n    border: none;\n}\n.line[data-v-5bd5b7a4] {\n    margin-left: 70px;\n    Float:left;\n    height:30px;\n    border-left:1px solid  red;\n}\n", ""]);
 
 // exports
 
@@ -62629,6 +62639,14 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      !_vm.addingReply && _vm.comment.repliesCount > 0 && _vm.showRep
+        ? _c("div", { staticClass: "line" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.addingReply && _vm.comment.repliesCount > 0 && _vm.showRep
+        ? _c("div", { staticClass: "line2" })
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "comment-form reply-form" }, [
         _vm.addingReply
           ? _c("form", [
@@ -62679,7 +62697,11 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("replies", { ref: "replies", attrs: { comment: _vm.comment } })
+      _c("replies", {
+        ref: "replies",
+        attrs: { comment: _vm.comment },
+        on: { showReplies: _vm.showReplies }
+      })
     ],
     1
   )
