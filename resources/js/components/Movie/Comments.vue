@@ -2,16 +2,16 @@
     <div>
         <div class="comment-form">
             <h4>Leave a comment</h4>
-            <form @click.prevent="addComment">
+            <form>
                 <div class="row">
                     <div class="col-md-12">
                         <textarea name="content" v-model="newComment" placeholder="Comment"></textarea>
                     </div>
                 </div>
-                <input class="submit" type="submit" value="submit">
+                <input @click.prevent="addComment" class="submit" type="submit" value="submit">
             </form>
         </div>
-        <h4>{{ comments.length }} comments</h4>
+        <h4>{{ commentCount}} comments</h4>
         <comment v-for="comment in comments.data" :comment="comment" :key="comment.id" :movie="movie"></comment>
         <div class="text-center">
             <input v-if="comments.next_page_url" @click="fetchComments" class="button" type="submit" value="Load more">
@@ -35,12 +35,15 @@ export default {
         this.fetchComments()
     },
 
-    data: () => ({
-        comments: {
-            data: []
-        },
-        newComment: ''
-    }),
+    data() {
+        return {
+            comments: {
+                data: []
+            },
+            newComment: '',
+            commentCount: this.movie.commentCount
+        }
+    },
 
 
 
@@ -71,6 +74,8 @@ export default {
                         ...this.comments.data
                     ]
                 }
+                this.commentCount++
+                this.newComment = ''
             })
         }
     }

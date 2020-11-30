@@ -8,6 +8,7 @@ import MovieReminder from "./components/Movie/MovieReminder";
 import MovieShow from "./components/Movie/MovieShow";
 import Comments from "./components/Movie/Comments";
 import Comment from "./components/Movie/Comment";
+import Replies from "./components/Movie/Replies";
 
 require('./bootstrap');
 
@@ -23,6 +24,7 @@ Vue.component('movie-reminder', MovieReminder);
 Vue.component('movie-show', MovieShow);
 Vue.component('comments', Comments);
 Vue.component('comment', Comment);
+Vue.component('replies', Replies);
 
 
 /**

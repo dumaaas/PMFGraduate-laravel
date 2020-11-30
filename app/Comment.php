@@ -10,6 +10,7 @@ class Comment extends Model
 
     protected $guarded = [];
     protected $with = ['user'];
+    protected $appends = ['repliesCount'];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -21,6 +22,14 @@ class Comment extends Model
 
     public function likes() {
         return $this->morphMany(Likeable::class, 'likeable');
+    }
+
+    public function replies() {
+        return $this->hasMany(Comment::class, 'comment_id')->whereNotNull('comment_id');
+    }
+
+    public function getRepliesCountAttribute() {
+        return $this->replies->count();
     }
 
     public function isCommentLiked($id) {

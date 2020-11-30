@@ -26,10 +26,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Movie.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Movie/MovieShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Movie/MovieShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Movie/Comment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Movie/Comment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Movie/Comments.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Movie/Comments.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +226,8 @@
       <workItem from="1606422723638" duration="1689000" />
       <workItem from="1606488381487" duration="25480000" />
       <workItem from="1606586185098" duration="14283000" />
-      <workItem from="1606678555870" duration="24406000" />
+      <workItem from="1606678555870" duration="24870000" />
+      <workItem from="1606733234225" duration="13701000" />
     </task>
     <servers />
   </component>
@@ -270,10 +272,11 @@
       <screen x="70" y="142" width="1296" height="626" />
     </state>
     <state x="70" y="142" width="1012" height="626" key="SettingsEditor/70.142.1296.626/3286.0.1024.768/1366.0.1920.1080@70.142.1296.626" timestamp="1603061456085" />
-    <state x="1366" y="115" width="1024" height="553" maximized="true" key="dock-window-1" timestamp="1606598626512">
+    <state x="1366" y="87" width="956" height="445" maximized="true" key="dock-window-1" timestamp="1606736624485">
       <screen x="1366" y="115" width="1024" height="768" />
     </state>
     <state x="1366" y="115" width="1024" height="553" maximized="true" key="dock-window-1/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606598626512" />
+    <state x="1366" y="87" width="956" height="445" maximized="true" key="dock-window-1/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606736624485" />
     <state x="1366" y="0" width="920" height="572" key="dock-window-1/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606506129862" />
     <state x="1366" y="0" width="920" height="572" maximized="true" key="dock-window-2" timestamp="1606506129862">
       <screen x="1366" y="0" width="1024" height="768" />
@@ -283,6 +286,10 @@
       <screen x="1366" y="0" width="1024" height="768" />
     </state>
     <state x="1366" y="0" width="920" height="572" key="dock-window-3/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606506723147" />
+    <state x="382" y="231" key="run.anything.popup" timestamp="1606742110528">
+      <screen x="70" y="142" width="1296" height="741" />
+    </state>
+    <state x="382" y="231" key="run.anything.popup/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606742110528" />
     <state x="291" y="71" width="851" height="655" key="search.everywhere.popup" timestamp="1606244891411">
       <screen x="70" y="27" width="1296" height="741" />
     </state>

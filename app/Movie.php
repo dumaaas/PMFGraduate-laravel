@@ -8,13 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     protected $guarded = [];
+    protected $appends = ['commentCount'];
 
     public function acting() {
         return $this->hasMany(Acting::class);
     }
 
     public function comment() {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('comment_id');
+    }
+
+    public function getCommentCountAttribute() {
+        return $this->comment->count();
     }
 
     public function movielist() {

@@ -16,13 +16,19 @@ use Auth;
 
 class CommentController extends Controller
 {
+    public function show(Comment $comment)
+    {
+        return $comment->replies()->paginate(25);
+    }
+
 //-----------------------------ADD NEW COMMENT--------------------------------------\\
     public function store(Request $request, Movie $movie)
     {
         return auth()->user()->comment()->create([
             'content' => $request->content,
             'commentable_id' => $movie->id,
-            'commentable_type' => "App\Movie"
+            'commentable_type' => "App\Movie",
+            'comment_id' => $request->comment_id
         ])->fresh();
     }
 //----------------------------------------------------------------------------------\\
@@ -39,5 +45,6 @@ class CommentController extends Controller
         return back();
     }
 //----------------------------------------------------------------------------------\\
+
 
 }
