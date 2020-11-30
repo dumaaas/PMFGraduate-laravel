@@ -6,6 +6,9 @@ import MovieIndex from "./components/Movie/MovieIndex";
 import MovieList from "./components/Movie/MovieList";
 import MovieReminder from "./components/Movie/MovieReminder";
 import MovieShow from "./components/Movie/MovieShow";
+import Comments from "./components/Movie/Comments";
+import Comment from "./components/Movie/Comment";
+
 require('./bootstrap');
 
 window.Form = Form;
@@ -18,6 +21,8 @@ Vue.component('movie-index', MovieIndex);
 Vue.component('movie-list', MovieList);
 Vue.component('movie-reminder', MovieReminder);
 Vue.component('movie-show', MovieShow);
+Vue.component('comments', Comments);
+Vue.component('comment', Comment);
 
 
 /**

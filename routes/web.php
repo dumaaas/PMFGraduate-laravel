@@ -53,6 +53,7 @@ Route::get('/sortCast', 'CastController@sortCast');
 //---------------------ROUTES FOR COMMENTS------------------------------\\
 Route::post('/addComment/{movie}', 'CommentController@store');
 Route::get('/comments/delete/{comment}', 'CommentController@destroy');
+Route::get('/movies/{movie}/comments', 'CommentController@index');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR LIKEABLE---------------------------\\

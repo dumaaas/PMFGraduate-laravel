@@ -19,23 +19,17 @@ class CommentController extends Controller
 //-----------------------------ADD NEW COMMENT--------------------------------------\\
     public function store(Request $request, Movie $movie)
     {
-        //request all data, validate and add new comment
-        request()->validate([
-            'content'=>'required',
-        ]);
-
-        $comment = new Comment();
-        $comment->content=request('content');
-        $comment->user_id=Auth::user()->id;
-        $comment->commentable_id=$movie->id;
-        $comment->commentable_type="App\Movie";
-
-        $comment->save();
-
-        //return back to the movie page;
-        return back();
+        return auth()->user()->comment()->create([
+            'content' => $request->content,
+            'commentable_id' => $movie->id,
+            'commentable_type' => "App\Movie"
+        ])->fresh();
     }
 //----------------------------------------------------------------------------------\\
+
+    public function index(Movie $movie) {
+        return $movie->comment()->latest()->paginate(10);
+    }
 
 //-----------------------------DELETE COMMENT---------------------------------------\\
     public function destroy($id)

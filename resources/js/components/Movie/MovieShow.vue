@@ -86,19 +86,18 @@
                                                     <div class="title-hd-sm">
                                                         <h4>Full Cast & Crew <i class="ion-ios-arrow-right"></i></h4>
                                                     </div>
-                                                    <!-- movie cast -->
-<!--                                                    <div v-for="acting in actings" class="mvcast-item">-->
-<!--                                                        <div class="cast-it">-->
-<!--                                                            <div class="cast-left">-->
-<!--                                                                <img :src="'/images/actors/'+acting.cast.avatar"-->
-<!--                                                                     style="width:60px; height:70px; float:left; border-radius:50%; margin-right:25px;"-->
-<!--                                                                     alt="">-->
-<!--                                                                <a :href="'/cast/'+acting.cast.id">{{ acting.cast.firstName}}-->
-<!--                                                                    {{ acting.cast.lastName }} </a>-->
-<!--                                                            </div>-->
-<!--                                                            <p>... {{ acting.cast.movieName }} </p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
+                                                    <div v-for="acting in actings" class="mvcast-item">
+                                                        <div class="cast-it">
+                                                            <div class="cast-left">
+                                                                <img :src="'/images/actors/'+acting.cast.avatar"
+                                                                     style="width:60px; height:70px; float:left; border-radius:50%; margin-right:25px;"
+                                                                     alt="">
+                                                                <a :href="'/cast/'+acting.cast.id">{{ acting.cast.firstName}}
+                                                                    {{ acting.cast.lastName }} </a>
+                                                            </div>
+                                                            <p>... {{ acting.cast.movieName }} </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="cont2 col-md-4 col-xs-12 col-sm-12">
                                                     <div class="sb-it">
@@ -110,11 +109,10 @@
                                                     <div class="sb-it">
                                                         <h6>Stars: </h6>
                                                         <p>
-<!--                                                            @foreach ($stars as $star)-->
-<!--                                                            <a href="/cast/{{ $star->cast->id }}">{{ $star->cast->firstName }}-->
-<!--                                                                {{ $star->cast->lastName }}</a>-->
-<!--                                                            <br />-->
-<!--                                                            @endforeach-->
+                                                            <a v-for="star in stars" :href="'/cast/'+star.cast.id">
+                                                                {{ star.cast.firstName }} {{ star.cast.lastName }}
+                                                                <br/>
+                                                            </a>
                                                         </p>
                                                     </div>
                                                     <div class="sb-it">
@@ -136,60 +134,9 @@
                                                 </div>
                                             </div>
                                         </div>
-<!--                                        <div id="comments" class="tab blog-detail-ct">-->
-<!--                                            @auth-->
-<!--                                            <div class="comment-form">-->
-<!--                                                <h4>Leave a comment</h4>-->
-<!--                                                <form action="/addComment/{{ $movie->id }}" method="post">-->
-<!--                                                    @csrf-->
-
-<!--                                                    <div class="row">-->
-<!--                                                        <div class="col-md-12">-->
-<!--                                                            <textarea name="content" id="" placeholder="Comment"></textarea>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                    <input class="submit" type="submit" value="submit">-->
-<!--                                                </form>-->
-<!--                                            </div>-->
-<!--                                            @endauth-->
-<!--                                            @guest-->
-<!--                                            <div class="comment-form">-->
-<!--                                                <h4><a href='/register'>Join us in order to comment</a></h4>-->
-<!--                                                <form action="/addComment/{{ $movie->id }}" method="post">-->
-<!--                                                    @csrf-->
-
-<!--                                                    <div class="row">-->
-<!--                                                        <div class="col-md-12">-->
-<!--                                                            <textarea name="content" id="" placeholder="Comment"-->
-<!--                                                                      disabled></textarea>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                    <input class="submit" type="submit" value="submit" disabled>-->
-<!--                                                </form>-->
-<!--                                            </div>-->
-<!--                                            @endguest-->
-<!--                                            <h4>{{ $sumComments }} comments</h4>-->
-<!--                                            @foreach ($comments as $comment)-->
-<!--                                            <div class="cmt-item flex-it">-->
-<!--                                                <img src="/images/users/{{ $comment->user->avatar }}" alt=""-->
-<!--                                                     style="border-radius: 50%" width="75px">-->
-<!--                                                <div class="author-infor">-->
-<!--                                                    <div class="flex-it2">-->
-<!--                                                        <h6>-->
-<!--                                                            <a href="/users/{{ $comment->user->id }}">{{ $comment->user->username }}</a>-->
-<!--                                                        </h6>-->
-<!--                                                        <span class="time"> {{ $comment->created_at->diffForHumans() }}</span>-->
-<!--                                                    </div>-->
-<!--                                                    <p>{{ $comment->content }}</p>-->
-<!--                                                    @auth-->
-<!--                                                    <p><a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'up'])}}"><i class="{{$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>     <a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'down'])}}"><i class="{{!$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  </p>-->
-<!--                                                    @endauth-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            @endforeach-->
-<!--                                            {{ $comments->links() }}-->
-<!--                                            &lt;!&ndash; comment form &ndash;&gt;-->
-<!--                                        </div>-->
+                                        <div id="comments" class="tab blog-detail-ct">
+                                            <comments :movie="movie"></comments>
+                                        </div>
                                         <div id="reviews" class="tab blog-detail-ct">
                                             <div class="comment-form2">
                                                 <h4>Rate this movie</h4>
@@ -246,6 +193,7 @@ export default {
             sumWatched: '',
             userRating: 0,
             movieRating: 0,
+            actings: '',
         }
     },
     props: {
@@ -283,6 +231,8 @@ export default {
                 this.sumComments = response.data.sumComments
                 this.sumWatched = response.data.sumWatched
                 this.userRating = response.data.userRating
+                this.stars = response.data.stars
+                this.actings = response.data.actings
             })
     },
 
@@ -290,7 +240,7 @@ export default {
 
         setRating(rating) {
             if(!AuthUser){
-                return alert("Please log in!")
+                return alert("Please log in if u want to leave review!")
             }
             this.userRating = rating;
             axios.post('/addRating/'+this.movie.id+'/'+this.userRating)

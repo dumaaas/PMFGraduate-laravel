@@ -77,15 +77,15 @@ public function getMovies() {
         if($ratingNum==0) {
             $movieRating = 0;
         } else {
-            $movieRating = round($ratingSum/$ratingNum);
+            $movieRating = number_format($ratingSum/$ratingNum, 2);
         }
 
         //find all details which are needed to show on movie show page
-        $actings = Acting::where('movie_id', '=', $movie->id)->get();
-        $stars = Acting::where('movie_id', '=', $movie->id)->latest()->take(3)->get();
+        $actings = $movie->acting()->with('cast')->get();
+        $stars = $movie->acting()->with('cast')->latest()->take(3)->get();
         $director = Cast::where('occupation', '=', 'director')->first();
         $sumWatched = MovieList::where('movie_id', '=', $movie->id)->where('type', 'LIKE', 'watched')->count();
-        $comments = Comment::where('commentable_id', '=', $movie->id)->latest()->paginate(5);
+        $comments = Comment::where('commentable_id', '=', $movie->id)->with('user')->latest()->paginate(5);
         $sumComments = Comment::where('commentable_id', '=', $movie->id)->count();
         $isRated = Rating::where('movie_id', $movie->id)->where('user_id', Auth::id())->first();
         if($isRated!=null) {
