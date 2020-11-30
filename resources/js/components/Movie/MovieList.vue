@@ -36,7 +36,7 @@ export default {
     },
 
     mounted() {
-        this.isAdded = this.isinmovielist ? true: false;
+        this.isAdded = this.isinmovielist ? true : false;
     },
 
     computed: {

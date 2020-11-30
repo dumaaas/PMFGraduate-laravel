@@ -60,8 +60,58 @@ public function getMovies() {
 //---------------------------------SHOW MOVIE--------------------------------------\\
     public function show(Movie $movie)
     {
-       return $this->showMovie($movie);
+       return view('movies.show', [
+           'movie' => $movie
+       ]);
     }
+
+    public function responseMovie(Movie $movie) {
+        //find all ratings for current movie, count ratings and find average rating
+        $ratings = $movie->rating()->with('user')->get();
+        $ratingNum = (int) $ratings->count();
+        $ratingSum=0;
+        foreach($ratings as $rating) {
+            $ratingSum=$ratingSum+(int) $rating->rating;
+        }
+
+        if($ratingNum==0) {
+            $movieRating = 0;
+        } else {
+            $movieRating = round($ratingSum/$ratingNum);
+        }
+
+        //find all details which are needed to show on movie show page
+        $actings = Acting::where('movie_id', '=', $movie->id)->get();
+        $stars = Acting::where('movie_id', '=', $movie->id)->latest()->take(3)->get();
+        $director = Cast::where('occupation', '=', 'director')->first();
+        $sumWatched = MovieList::where('movie_id', '=', $movie->id)->where('type', 'LIKE', 'watched')->count();
+        $comments = Comment::where('commentable_id', '=', $movie->id)->latest()->paginate(5);
+        $sumComments = Comment::where('commentable_id', '=', $movie->id)->count();
+        $isRated = Rating::where('movie_id', $movie->id)->where('user_id', Auth::id())->first();
+        if($isRated!=null) {
+            $userRating = $isRated->rating;
+        } else {
+            $userRating = 0;
+        }
+
+        //return movie show page with
+        return response()->json
+        ([
+            'movie'=>$movie,
+            'actings'=>$actings,
+            'director'=>$director,
+            'sumWatched'=>$sumWatched,
+            'comments'=>$comments,
+            'stars'=>$stars,
+            'sumComments'=>$sumComments,
+            'movieRating' => $movieRating,
+            'ratingNum' => $ratingNum,
+            'ratings' => $ratings,
+            'userRating' => $userRating
+        ]);
+    }
+
+
 //----------------------------------------------------------------------------------\\
 
 //----------------------------CREATE NEW MOVIE--------------------------------------\\

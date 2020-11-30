@@ -5,7 +5,7 @@ import EditPrivacy from "./components/User/EditPrivacy";
 import MovieIndex from "./components/Movie/MovieIndex";
 import MovieList from "./components/Movie/MovieList";
 import MovieReminder from "./components/Movie/MovieReminder";
-import MovieRating from "./components/Movie/MovieRating";
+import MovieShow from "./components/Movie/MovieShow";
 require('./bootstrap');
 
 window.Form = Form;
@@ -17,7 +17,7 @@ Vue.component('edit-privacy', EditPrivacy);
 Vue.component('movie-index', MovieIndex);
 Vue.component('movie-list', MovieList);
 Vue.component('movie-reminder', MovieReminder);
-Vue.component('movie-rating', MovieRating);
+Vue.component('movie-show', MovieShow);
 
 
 /**

@@ -32,9 +32,10 @@ class Movie extends Model
         }
     }
 
-    public function isInMovieList() {
+    public function isInMovieList($type) {
         return (bool) MovieList::where('user_id', Auth::id())
                                 ->where('movie_id', $this->id)
+                                ->where('type', $type)
                                 ->first();
     }
 

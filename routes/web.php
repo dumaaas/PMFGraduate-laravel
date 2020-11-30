@@ -40,6 +40,7 @@ Route::put('/movies/{movie}', 'MovieController@update');
 Route::post('/addToList/{movie}/{type}', 'MovieController@storeListItem');
 Route::post('/removeFromList/{movie}/{type}', 'MovieController@destroyFromList');
 Route::get('/movies/delete/{movie}', 'MovieController@destroy');
+Route::get('/responseMovie/{movie}', 'MovieController@responseMovie');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR CAST-------------------------------\\
@@ -63,6 +64,7 @@ Route::get('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->n
 //-----------------------ROUTES FOR RATING------------------------------\\
 Route::post('/addRating/{movie}/{rating}', 'RatingController@store');
 Route::get('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
+Route::get('/ratings/{movie}', 'RatingController@index');
 //----------------------------------------------------------------------\\
 
 //-----------------------ROUTES FOR MOVIELIST------------------------------\\

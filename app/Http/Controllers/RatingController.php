@@ -10,6 +10,11 @@ use Auth;
 
 class RatingController extends Controller
 {
+    public function index(Movie $movie) {
+        $ratings = $movie->rating()->with('user')->get();
+        return $ratings;
+    }
+
 //------------------------------ADD NEW RATING--------------------------------------\\
     public function store(Request $request, Movie $movie, $rating)
     {
@@ -27,7 +32,7 @@ class RatingController extends Controller
             ]);
         }
 
-        return ['message' => 'Movie added to  list!'];
+        return ['message' => 'New movie rating'.$rating];
 
     }
 //----------------------------------------------------------------------------------\\
