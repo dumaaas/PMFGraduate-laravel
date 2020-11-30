@@ -59,7 +59,7 @@ Route::get('/comments/{comment}/replies', 'CommentController@show');
 
 //------------------------ROUTES FOR LIKEABLE---------------------------\\
 Route::get('/likeCast/{cast}/{type}', 'LikeableController@likeCast')->name('likeable.cast');
-Route::get('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->name('likeable.comment');
+Route::post('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->name('likeable.comment');
 //----------------------------------------------------------------------\\
 
 

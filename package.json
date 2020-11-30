@@ -24,7 +24,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "numeral": "^2.0.6",
         "v-calendar": "^2.1.1",
+        "vue-moments-ago": "^0.2.0",
         "vue-rate": "^2.4.0",
         "vue-star-rating": "^1.6.1"
     }

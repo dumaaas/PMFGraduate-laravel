@@ -9,7 +9,7 @@ class Comment extends Model
 {
 
     protected $guarded = [];
-    protected $with = ['user'];
+    protected $with = ['user', 'likes'];
     protected $appends = ['repliesCount'];
 
     public function user() {

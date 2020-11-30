@@ -155,7 +155,10 @@
                                                     <div class="flex-it2">
                                                         <h6>
                                                             <a :href="'/users/'+rating.user.id">{{ rating.user.username }}</a>
-                                                        </h6> <span class="time"> {{ rating.created_at }}</span>
+                                                        </h6>
+                                                        <span class="time">
+                                                            <vue-moments-ago prefix="posted" suffix="ago" :date="rating.created_at"></vue-moments-ago>
+                                                        </span>
                                                     </div>
                                                     <div class="rate2">
                                                         <Rate :rating="rating.rating" :readOnly="true" :activeColor="'#FFFF00'" :star-size="10" :animate="false" :maxRating="10" :showRating="false"></Rate>
@@ -177,9 +180,11 @@
 
 <script>
 import Rate from 'vue-star-rating';
+import VueMomentsAgo from 'vue-moments-ago';
 export default {
     components: {
-        Rate
+        Rate,
+        VueMomentsAgo
     },
 
     data() {

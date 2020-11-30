@@ -8,14 +8,21 @@
                     <h6>
                         <a :href="'/users/'+comment.user.id">{{ comment.user.username }}</a>
                     </h6>
-                    <span class="time"> {{  comment.created_at }}</span>
+                    <span class="time">
+                        <vue-moments-ago prefix="posted" suffix="ago" :date="comment.created_at"></vue-moments-ago>
+                    </span>
                 </div>
                 <p>{{ comment.content }}</p>
-                <button @click="addingReply = !addingReply"  class="button">
-                    {{addingReply ? 'Cancel' : 'Add Reply'}}
-                </button>
-
-            <!--<p><a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'up'])}}"><i class="{{$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>     <a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'down'])}}"><i class="{{!$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  </p>-->
+                <div class="row">
+                    <div class="col-md-8 form-it">
+                     <votes :default_votes="comment.likes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
+                    </div>
+                    <div class="floatRight">
+                        <button @click="addingReply = !addingReply"  class="button">
+                            {{addingReply ? 'Cancel' : 'Add Reply'}}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="comment-form reply-form">
@@ -36,10 +43,14 @@
 
 <script>
 import Replies from "./Replies";
+import Votes from "./Votes";
+import VueMomentsAgo from 'vue-moments-ago';
 export default {
 
     components: {
-        Replies
+        Votes,
+        Replies,
+        VueMomentsAgo
     },
 
     props: {
@@ -91,6 +102,12 @@ export default {
         font-weight: bold;
         text-transform: uppercase;
         border: none;
+    }
+
+    .floatRight {
+        float: right;
+        margin-top: 0;
+        margin-left: 400px;
     }
 
     .reply-form form button {

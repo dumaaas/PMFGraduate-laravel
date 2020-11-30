@@ -11,10 +11,16 @@
                                 <h6>
                                     <a :href="'/users/'+reply.user.id">{{ reply.user.username }}</a>
                                 </h6>
-                                <span class="time"> {{  reply.created_at }}</span>
+                                <span class="time">
+                                    <vue-moments-ago prefix="posted" suffix="ago" :date="reply.created_at"></vue-moments-ago>
+                                </span>
                             </div>
                             <p>{{ reply.content }}</p>
-                            <!--<p><a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'up'])}}"><i class="{{$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-up' : 'fa fa-thumbs-up'}}"></i></a>     <a href="{{route('likeable.comment', ['comment' => $comment->id, 'type' => 'down'])}}"><i class="{{!$comment->isCommentLiked($comment->id) ? 'blue fa fa-thumbs-down' : 'fa fa-thumbs-down'}}"></i></a>  </p>-->
+                            <div class="row">
+                                <div class="col-md-8 form-it">
+                                    <votes :default_votes="reply.likes" :entity_id="reply.id" :entity_owner="reply.user.id"></votes>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div v-if="key+1 != replies.data.length" class="line"></div>
@@ -29,10 +35,15 @@
         </div>
     </div>
 </template>
-
 <script>
+import Votes from "./Votes";
+import VueMomentsAgo from 'vue-moments-ago';
 export default {
     props: ['comment'],
+
+    components: {
+        Votes, VueMomentsAgo
+    },
 
     data() {
         return {

@@ -73,12 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail
             $vote->update([
                 'liked' => $type
             ]);
-
             return $vote->refresh();
         } else {
             return $entity->likes()->create([
-                'likeable_type' => $type,
-                'likeable_id' => $entity->id,
+                'liked' => $type,
                 'user_id' => $this->id
             ]);
         }

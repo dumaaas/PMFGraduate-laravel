@@ -18,7 +18,7 @@ class CommentController extends Controller
 {
     public function show(Comment $comment)
     {
-        return $comment->replies()->paginate(25);
+        return $comment->replies()->latest()->paginate(25);
     }
 
 //-----------------------------ADD NEW COMMENT--------------------------------------\\

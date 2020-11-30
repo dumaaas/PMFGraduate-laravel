@@ -12,6 +12,7 @@ import Replies from "./components/Movie/Replies";
 
 require('./bootstrap');
 
+window.numeral = require('numeral');
 window.Form = Form;
 window.Vue = require('vue');
 
