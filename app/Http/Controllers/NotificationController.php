@@ -10,17 +10,21 @@ class NotificationController extends Controller
     public function notifications()
     {
         //get all new followed notifications for user
-        $notifications = Auth::user()->notifications()->where('type', 'App\Notifications\UserFollowed')->get();
+        $notifications = Auth::user()->notifications()->get();
 
         //get all new movie notifications for user
-        $movieNotifications = Auth::user()->notifications()->where('type', 'App\Notifications\NewMovie')->get();
-
         return view('users.notifications', [
             'notifications' => $notifications,
             'user' => Auth::user(),
-            'movieNotifications' => $movieNotifications
         ]);
     }
 //-----------------------------------------------------------------------------\\
+
+    public function getNotifications()
+    {
+        $notifications = Auth::user()->notifications()->latest()->get();
+        return response()->json($notifications);
+    }
+
 
 }

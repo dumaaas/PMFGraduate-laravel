@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Movie;
-use App\User;
-use App\Cast;
-use App\Comment;
 
 //------------------------ROUTES FOR AUTH------------------------------\\
 Auth::routes(['verify' => true]);
@@ -105,6 +101,7 @@ Route::get('/report', 'ReportController@report');
 
 //---------------------ROUTES FOR NOTIFICATIONS-------------------------\\
 Route::get('/notifications', 'NotificationController@notifications');
+Route::get('/getNotifications', 'NotificationController@getNotifications');
 //----------------------------------------------------------------------\\
 
 

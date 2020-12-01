@@ -16,7 +16,7 @@ class FollowController extends Controller
     public function followers(User $user) {
         //get list of followers for user
         $followers = Follow::where('following_user_id', 'LIKE', $user->id)->get();
-       
+
         //return followers view with details
         return view('users.followers', [
             'user'=>User::find($user->id),

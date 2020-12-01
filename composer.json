@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "barryvdh/laravel-dompdf": "^0.8.6",
+        "beyondcode/laravel-websockets": "^1.9",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -17,6 +18,7 @@
         "laracasts/flash": "^3.1",
         "laravel/framework": "^v8.0.4",
         "laravel/tinker": "^2.0",
+        "pusher/pusher-php-server": "^4.1",
         "willvincent/laravel-rateable": "^2.2"
     },
     "require-dev": {

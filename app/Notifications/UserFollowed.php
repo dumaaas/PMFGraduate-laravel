@@ -4,9 +4,11 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\User;
+use Illuminate\Support\Facades\Date;
 
 class UserFollowed extends Notification implements ShouldQueue
 {
@@ -23,9 +25,9 @@ class UserFollowed extends Notification implements ShouldQueue
     //sending notification via database
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
-   
+
     //sending data array of follower details to Notification table
     public function toDatabase($notifiable)
     {
@@ -37,10 +39,23 @@ class UserFollowed extends Notification implements ShouldQueue
        ];
     }
 
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data' => [
+                'follower_id' => $this->follower->id,
+                'follower_firstName' => $this->follower->firstName,
+                'follower_lastName' => $this->follower->lastName,
+                'follower_avatar' => $this->follower->avatar
+            ],
+            'created_at' => Date::now(),
+        ]);
+    }
+
     public function toArray($notifiable)
     {
         return [
-            
+
         ];
     }
 }
