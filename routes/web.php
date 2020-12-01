@@ -102,6 +102,7 @@ Route::get('/report', 'ReportController@report');
 //---------------------ROUTES FOR NOTIFICATIONS-------------------------\\
 Route::get('/notifications', 'NotificationController@notifications');
 Route::get('/getNotifications', 'NotificationController@getNotifications');
+Route::get('/markAsReadNotifications', 'NotificationController@markAsReadNotifications');
 //----------------------------------------------------------------------\\
 
 

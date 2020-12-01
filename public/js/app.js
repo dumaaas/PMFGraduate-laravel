@@ -2993,6 +2993,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3004,14 +3009,17 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       showNot: false,
-      notifications: ''
+      oldNotifications: '',
+      newNotifications: '',
+      showNotNumber: true
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     axios.get('/getNotifications').then(function (response) {
-      _this.notifications = response.data;
+      _this.oldNotifications = response.data.oldNotifications;
+      _this.newNotifications = response.data.newNotifications;
     });
   },
   created: function created() {
@@ -3020,14 +3028,24 @@ __webpack_require__.r(__webpack_exports__);
     Echo["private"]('App.User.' + this.user.id).notification(function (notification) {
       console.log(notification);
 
-      _this2.notifications.push(notification);
+      _this2.newNotifications.unshift(notification);
     });
   },
   methods: {
     showNotifications: function showNotifications() {
+      var _this3 = this;
+
       this.showNot = !this.showNot;
+      console.log(this.newNotifications);
       console.log(this.notifications);
-    }
+      setTimeout(function () {
+        return axios.get('/markAsReadNotifications').then(function (response) {
+          _this3.newNotifications = response.data.newNotifications;
+          _this3.oldNotifications = response.data.oldNotifications;
+        });
+      }, 5000);
+    },
+    markAsRead: function markAsRead() {}
   }
 });
 
@@ -70352,21 +70370,13 @@ var render = function() {
   return _c("div", [
     _c(
       "a",
-      {
-        staticClass: "notification",
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.showNotifications($event)
-          }
-        }
-      },
+      { staticClass: "notification", on: { click: _vm.showNotifications } },
       [
         _c("span", [_vm._v("Notifications")]),
         _vm._v(" "),
-        _vm.notifications.length > 0
+        _vm.newNotifications.length > 0
           ? _c("span", { staticClass: "badge" }, [
-              _vm._v(_vm._s(_vm.notifications.length))
+              _vm._v(_vm._s(_vm.newNotifications.length))
             ])
           : _vm._e()
       ]
@@ -70379,61 +70389,70 @@ var render = function() {
           [
             _c("h1", [_vm._v("New notifications")]),
             _vm._v(" "),
-            _vm._l(_vm.notifications, function(notification) {
-              return _c("div", { staticClass: "not-body" }, [
-                _c("img", {
-                  staticStyle: { "border-radius": "50%" },
-                  attrs: {
-                    src:
-                      "/images/users/" + notification.data["follower_avatar"],
-                    alt: "",
-                    width: "50px",
-                    height: "50px"
-                  }
-                }),
-                _vm._v(" "),
-                _c("p", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: "/users/" + notification.data["follower_id"]
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(notification.data["follower_firstName"]) +
-                          "\n                            " +
-                          _vm._s(notification.data["follower_lastName"]) +
-                          "\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v("   followed you\n                    "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "time" },
-                    [
-                      _c("vue-moments-ago", {
+            _vm.newNotifications.length > 0
+              ? _c(
+                  "div",
+                  _vm._l(_vm.newNotifications, function(notification) {
+                    return _c("div", { staticClass: "not-body" }, [
+                      _c("img", {
+                        staticStyle: { "border-radius": "50%" },
                         attrs: {
-                          prefix: "",
-                          suffix: "ago",
-                          date: notification.created_at
+                          src:
+                            "/images/users/" +
+                            notification.data["follower_avatar"],
+                          alt: "",
+                          width: "50px",
+                          height: "50px"
                         }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ])
-            }),
+                      }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: "/users/" + notification.data["follower_id"]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(
+                                  notification.data["follower_firstName"]
+                                ) +
+                                "\n                        " +
+                                _vm._s(notification.data["follower_lastName"]) +
+                                "\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v("   followed you\n                    "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { staticClass: "time" },
+                          [
+                            _c("vue-moments-ago", {
+                              attrs: {
+                                prefix: "",
+                                suffix: "ago",
+                                date: notification.created_at
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              : _c("div", [_c("a", [_vm._v("No new notifications :)")])]),
             _vm._v(" "),
             _c("h1", [_vm._v("Earlier notifications")]),
             _vm._v(" "),
-            _vm._l(_vm.notifications, function(notification) {
+            _vm._l(_vm.oldNotifications, function(notification) {
               return _c("div", { staticClass: "not-body" }, [
                 _c("img", {
                   staticStyle: { "border-radius": "50%" },

@@ -22,8 +22,23 @@ class NotificationController extends Controller
 
     public function getNotifications()
     {
-        $notifications = Auth::user()->notifications()->latest()->get();
-        return response()->json($notifications);
+        $oldNotifications = Auth::user()->readNotifications()->latest()->take(3)->get();
+        $newNotifications = Auth::user()->unreadNotifications()->latest()->get();
+        return response()->json([
+            'oldNotifications' => $oldNotifications,
+            'newNotifications' => $newNotifications
+        ]);
+    }
+
+    public function markAsReadNotifications()
+    {
+        Auth::user()->unreadNotifications->markAsRead();
+        $oldNotifications = Auth::user()->readNotifications()->latest()->take(3)->get();
+        $newNotifications = Auth::user()->unreadNotifications()->latest()->take(3)->get();
+        return response()->json([
+            'newNotifications' => $newNotifications,
+            'oldNotifications' => $oldNotifications,
+        ]);
     }
 
 

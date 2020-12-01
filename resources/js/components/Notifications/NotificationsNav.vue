@@ -1,27 +1,32 @@
 <template>
     <div>
-        <a @click.prevent="showNotifications" class="notification">
+        <a @click="showNotifications" class="notification">
             <span >Notifications</span>
-            <span v-if="notifications.length > 0" class="badge">{{notifications.length}}</span>
+            <span v-if="newNotifications.length > 0" class="badge">{{newNotifications.length}}</span>
         </a>
         <div class="not-block" v-if="showNot">
             <h1>New notifications</h1>
-            <div class="not-body" v-for="notification in notifications">
-                <img :src="'/images/users/'+notification.data['follower_avatar']" alt="" style="border-radius: 50%"
-                     width="50px" height="50px">
-                        <p>
-                            <a :href="'/users/'+notification.data['follower_id']">
-                                {{ notification.data['follower_firstName'] }}
-                                {{ notification.data['follower_lastName'] }}
-                            </a> &nbsp followed you
+            <div v-if="newNotifications.length > 0">
+                <div class="not-body" v-for="notification in newNotifications">
+                    <img :src="'/images/users/'+notification.data['follower_avatar']" alt="" style="border-radius: 50%"
+                         width="50px" height="50px">
+                    <p>
+                        <a :href="'/users/'+notification.data['follower_id']">
+                            {{ notification.data['follower_firstName'] }}
+                            {{ notification.data['follower_lastName'] }}
+                        </a> &nbsp followed you
                         <br>
                         <span class="time">
                             <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
                         </span>
-                        </p>
+                    </p>
+                </div>
+            </div>
+            <div v-else>
+                <a>No new notifications :)</a>
             </div>
             <h1>Earlier notifications</h1>
-            <div class="not-body" v-for="notification in notifications">
+            <div class="not-body" v-for="notification in oldNotifications">
                 <img :src="'/images/users/'+notification.data['follower_avatar']" alt="" style="border-radius: 50%"
                      width="50px" height="50px">
                 <p>
@@ -56,14 +61,17 @@ export default {
     data() {
         return {
             showNot: false,
-            notifications: '',
+            oldNotifications: '',
+            newNotifications: '',
+            showNotNumber: true
         }
     },
 
     mounted() {
         axios.get('/getNotifications')
             .then(response => {
-                this.notifications = response.data
+                this.oldNotifications = response.data.oldNotifications
+                this.newNotifications = response.data.newNotifications
             })
     },
 
@@ -72,7 +80,7 @@ export default {
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
                 console.log(notification);
-                this.notifications.push(notification);
+                this.newNotifications.unshift(notification);
             })
 
     },
@@ -80,7 +88,17 @@ export default {
     methods: {
         showNotifications() {
             this.showNot = !this.showNot
+            console.log(this.newNotifications)
             console.log(this.notifications)
+            setTimeout(() =>
+                axios.get('/markAsReadNotifications')
+                    .then(response => {
+                        this.newNotifications = response.data.newNotifications
+                        this.oldNotifications = response.data.oldNotifications
+                    }), 5000);
+        },
+        markAsRead() {
+
         }
     }
 }
