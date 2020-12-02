@@ -8,18 +8,39 @@
             <h1>New notifications</h1>
             <div v-if="newNotifications.length > 0">
                 <div class="not-body" v-for="notification in newNotifications">
-                    <img :src="'/images/users/'+notification.data['follower_avatar']" alt="" style="border-radius: 50%"
-                         width="50px" height="50px">
-                    <p>
-                        <a :href="'/users/'+notification.data['follower_id']">
-                            {{ notification.data['follower_firstName'] }}
-                            {{ notification.data['follower_lastName'] }}
-                        </a> &nbsp followed you
-                        <br>
-                        <span class="time">
-                            <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
-                        </span>
-                    </p>
+                    <div v-show="notification.type === 'App\\Notifications\\NewMovie'">
+                        <img :src="'/images/movies/'+notification.data['avatar']" alt="">
+                        <p>
+                            <a :href="'/movies/'+notification.data['id']">
+                                {{ notification.data['name'] }}
+                            </a> <br> new movie,
+                            <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                        </p>
+                    </div>
+                    <div v-show="notification.type === 'App\\Notifications\\UserFollowed'">
+                        <img  :src="'/images/users/'+notification.data['avatar']" alt="">
+                        <p>
+                            <a :href="'/users/'+notification.data['id']">
+                                {{ notification.data['name'] }}
+                            </a> <br>followed you,
+                            <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                        </p>
+                    </div>
+                    <div v-show="notification.type === 'App\\Notifications\\UserLike'">
+                        <img :src="'/images/users/'+notification.data['avatar']" alt="">
+                        <p>
+                            <a :href="'/user/'+notification.data['id']">
+                                {{ notification.data['name'] }}
+                            </a> <br> liked your comment,
+                            <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div v-else>
@@ -27,18 +48,39 @@
             </div>
             <h1>Earlier notifications</h1>
             <div class="not-body" v-for="notification in oldNotifications">
-                <img :src="'/images/users/'+notification.data['follower_avatar']" alt="" style="border-radius: 50%"
-                     width="50px" height="50px">
-                <p>
-                    <a :href="'/users/'+notification.data['follower_id']">
-                        {{ notification.data['follower_firstName'] }}
-                        {{ notification.data['follower_lastName'] }}
-                    </a> &nbsp followed you
-                    <br>
-                    <span class="time">
-                            <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
-                        </span>
-                </p>
+                <div v-show="notification.type === 'App\\Notifications\\NewMovie'">
+                    <img :src="'/images/movies/'+notification.data['avatar']" alt="">
+                    <p>
+                        <a :href="'/movies/'+notification.data['id']">
+                            {{ notification.data['name'] }}
+                        </a> <br> new movie,
+                        <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                    </p>
+                </div>
+                <div v-show="notification.type === 'App\\Notifications\\UserFollowed'">
+                    <img  :src="'/images/users/'+notification.data['avatar']" alt="">
+                    <p>
+                        <a :href="'/users/'+notification.data['id']">
+                            {{ notification.data['name'] }}
+                        </a> <br> followed you,
+                        <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                    </p>
+                </div>
+                <div v-show="notification.type === 'App\\Notifications\\UserLike'">
+                    <img :src="'/images/users/'+notification.data['avatar']" alt="">
+                    <p>
+                        <a :href="'/user/'+notification.data['id']">
+                            {{ notification.data['name'] }}
+                        </a> <br> liked your comment,
+                        <span class="time">
+                                <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
+                            </span>
+                    </p>
+                </div>
             </div>
             <hr>
             <a href="/notifications">Show all notifications</a>
@@ -79,8 +121,8 @@ export default {
 
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
-                console.log(notification);
-                this.newNotifications.unshift(notification);
+                this.newNotifications.unshift(notification)
+                console.log(notification)
             })
 
     },
@@ -88,8 +130,6 @@ export default {
     methods: {
         showNotifications() {
             this.showNot = !this.showNot
-            console.log(this.newNotifications)
-            console.log(this.notifications)
             setTimeout(() =>
                 axios.get('/markAsReadNotifications')
                     .then(response => {
@@ -97,9 +137,6 @@ export default {
                         this.oldNotifications = response.data.oldNotifications
                     }), 5000);
         },
-        markAsRead() {
-
-        }
     }
 }
 </script>
@@ -153,6 +190,13 @@ export default {
 
     .not-body {
         margin-bottom: 8px;
+    }
+
+    img {
+        width:  50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
 </style>

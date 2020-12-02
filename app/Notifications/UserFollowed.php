@@ -32,10 +32,9 @@ class UserFollowed extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
        return [
-           'follower_id' => $this->follower->id,
-           'follower_firstName' => $this->follower->firstName,
-           'follower_lastName' => $this->follower->lastName,
-           'follower_avatar' => $this->follower->avatar
+           'id' => $this->follower->id,
+           'name' => $this->follower->firstName.$this->follower->lastName,
+           'avatar' => $this->follower->avatar
        ];
     }
 
@@ -43,10 +42,9 @@ class UserFollowed extends Notification implements ShouldQueue
     {
         return new BroadcastMessage([
             'data' => [
-                'follower_id' => $this->follower->id,
-                'follower_firstName' => $this->follower->firstName,
-                'follower_lastName' => $this->follower->lastName,
-                'follower_avatar' => $this->follower->avatar
+                'id' => $this->follower->id,
+                'name' => $this->follower->firstName.$this->follower->lastName,
+                'avatar' => $this->follower->avatar
             ],
             'created_at' => Date::now(),
         ]);

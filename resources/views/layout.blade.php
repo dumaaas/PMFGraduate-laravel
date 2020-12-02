@@ -84,14 +84,14 @@
                                 </a>
                             </li>
 
-                            {{-- @can('isAdmin', Auth::user())
+                             @can('isAdmin', Auth::user())
                             <li>
                                 <a href="/showDashboard" class="btn btn-default">
                                     Dashboard
                                 </a>
                             </li>
                             @endcan
-                         --}}
+
                             @auth
                                 <li>
                                     <a href="/users/{{Auth::user()->id}}">

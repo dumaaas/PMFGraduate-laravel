@@ -149,7 +149,7 @@
                                 <tbody>
                                     @foreach ($comments as $comment)
                                         <tr>
-                                            <td>{{ $comment->movie->name }}</td>
+                                            <td></td>
                                             <td>{{ $comment->user->username }}</td>
                                             <td>{{ Str::limit($comment->content, 20) }}</td>
                                         </tr>

@@ -4,9 +4,11 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Movie;
+use Illuminate\Support\Facades\Date;
 
 class NewMovie extends Notification implements ShouldQueue
 {
@@ -15,7 +17,7 @@ class NewMovie extends Notification implements ShouldQueue
     //create new notification instance
     protected $movie;
 
-    public function __construct(Movie $movie) 
+    public function __construct(Movie $movie)
     {
         $this->movie = $movie;
     }
@@ -23,25 +25,35 @@ class NewMovie extends Notification implements ShouldQueue
     //sending notification via database
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     //sending data array of movies details to Notification table
     public function toDatabase($notifiable)
     {
         return [
-            'movie_id' => $this->movie->id,
-            'movie_name' => $this->movie->name,
-            'movie_genre' => $this->movie->genre,
-            'movie_releaseYear' => $this->movie->releaseYear,
-            'movie_avatar' => $this->movie->avatar
+            'id' => $this->movie->id,
+            'name' => $this->movie->name,
+            'avatar' => $this->movie->avatar,
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data' => [
+                'id' => $this->movie->id,
+                'name' => $this->movie->name,
+                'avatar' => $this->movie->avatar,
+            ],
+            'created_at' => Date::now(),
+        ]);
     }
 
     public function toArray($notifiable)
     {
         return [
-            
+
         ];
     }
 }

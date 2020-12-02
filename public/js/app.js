@@ -2998,6 +2998,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3026,9 +3068,9 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     Echo["private"]('App.User.' + this.user.id).notification(function (notification) {
-      console.log(notification);
-
       _this2.newNotifications.unshift(notification);
+
+      console.log(notification);
     });
   },
   methods: {
@@ -3036,16 +3078,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.showNot = !this.showNot;
-      console.log(this.newNotifications);
-      console.log(this.notifications);
       setTimeout(function () {
         return axios.get('/markAsReadNotifications').then(function (response) {
           _this3.newNotifications = response.data.newNotifications;
           _this3.oldNotifications = response.data.oldNotifications;
         });
       }, 5000);
-    },
-    markAsRead: function markAsRead() {}
+    }
   }
 });
 
@@ -7844,7 +7883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.notification[data-v-2c52c5ad] {\n    background-color: transparent;\n    color: white;\n    text-decoration: none;\n    padding: 15px 26px;\n    position: relative;\n    display: inline-block;\n    border-radius: 2px;\n}\n.notification .badge[data-v-2c52c5ad] {\n    position: absolute;\n    top: -7px;\n    right: 0px;\n    padding: 5px 10px;\n    border-radius: 50%;\n    background: red;\n    color: white;\n}\n.not-block[data-v-2c52c5ad] {\n    position: absolute;\n    width: 300px;\n    padding: 10px 20px;\n    background-color: #020D18;\n    border-radius: 20px;\n}\n.not-block h1[data-v-2c52c5ad] {\n    font-size: 20px;\n    color: #233A50;\n}\n.not-block p[data-v-2c52c5ad] {\n    position: absolute;\n    margin-left: 60px;\n    margin-top: -45px;\n}\n.not-block a[data-v-2c52c5ad] {\n    text-align: center;\n    font-size: 15px;\n    color: #367C8E;\n}\n.not-body[data-v-2c52c5ad] {\n    margin-bottom: 8px;\n}\n\n", ""]);
+exports.push([module.i, "\n.notification[data-v-2c52c5ad] {\n    background-color: transparent;\n    color: white;\n    text-decoration: none;\n    padding: 15px 26px;\n    position: relative;\n    display: inline-block;\n    border-radius: 2px;\n}\n.notification .badge[data-v-2c52c5ad] {\n    position: absolute;\n    top: -7px;\n    right: 0px;\n    padding: 5px 10px;\n    border-radius: 50%;\n    background: red;\n    color: white;\n}\n.not-block[data-v-2c52c5ad] {\n    position: absolute;\n    width: 300px;\n    padding: 10px 20px;\n    background-color: #020D18;\n    border-radius: 20px;\n}\n.not-block h1[data-v-2c52c5ad] {\n    font-size: 20px;\n    color: #233A50;\n}\n.not-block p[data-v-2c52c5ad] {\n    position: absolute;\n    margin-left: 60px;\n    margin-top: -45px;\n}\n.not-block a[data-v-2c52c5ad] {\n    text-align: center;\n    font-size: 15px;\n    color: #367C8E;\n}\n.not-body[data-v-2c52c5ad] {\n    margin-bottom: 8px;\n}\nimg[data-v-2c52c5ad] {\n    width:  50px;\n    height: 50px;\n    -o-object-fit: cover;\n       object-fit: cover;\n    border-radius: 50%;\n}\n\n", ""]);
 
 // exports
 
@@ -70394,56 +70433,190 @@ var render = function() {
                   "div",
                   _vm._l(_vm.newNotifications, function(notification) {
                     return _c("div", { staticClass: "not-body" }, [
-                      _c("img", {
-                        staticStyle: { "border-radius": "50%" },
-                        attrs: {
-                          src:
-                            "/images/users/" +
-                            notification.data["follower_avatar"],
-                          alt: "",
-                          width: "50px",
-                          height: "50px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/users/" + notification.data["follower_id"]
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                notification.type ===
+                                "App\\Notifications\\NewMovie",
+                              expression:
+                                "notification.type === 'App\\\\Notifications\\\\NewMovie'"
                             }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(
-                                  notification.data["follower_firstName"]
-                                ) +
-                                "\n                        " +
-                                _vm._s(notification.data["follower_lastName"]) +
-                                "\n                    "
-                            )
                           ]
-                        ),
-                        _vm._v("   followed you\n                    "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          { staticClass: "time" },
-                          [
-                            _c("vue-moments-ago", {
-                              attrs: {
-                                prefix: "",
-                                suffix: "ago",
-                                date: notification.created_at
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "/images/movies/" + notification.data["avatar"],
+                              alt: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/movies/" + notification.data["id"]
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(notification.data["name"]) +
+                                    "\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" new movie,\n                        "),
+                            _c(
+                              "span",
+                              { staticClass: "time" },
+                              [
+                                _c("vue-moments-ago", {
+                                  attrs: {
+                                    prefix: "",
+                                    suffix: "ago",
+                                    date: notification.created_at
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                notification.type ===
+                                "App\\Notifications\\UserFollowed",
+                              expression:
+                                "notification.type === 'App\\\\Notifications\\\\UserFollowed'"
+                            }
+                          ]
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "/images/users/" + notification.data["avatar"],
+                              alt: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/users/" + notification.data["id"]
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(notification.data["name"]) +
+                                    "\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v("followed you,\n                        "),
+                            _c(
+                              "span",
+                              { staticClass: "time" },
+                              [
+                                _c("vue-moments-ago", {
+                                  attrs: {
+                                    prefix: "",
+                                    suffix: "ago",
+                                    date: notification.created_at
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                notification.type ===
+                                "App\\Notifications\\UserLike",
+                              expression:
+                                "notification.type === 'App\\\\Notifications\\\\UserLike'"
+                            }
+                          ]
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "/images/users/" + notification.data["avatar"],
+                              alt: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/user/" + notification.data["id"]
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(notification.data["name"]) +
+                                    "\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(
+                              " liked your comment,\n                        "
+                            ),
+                            _c(
+                              "span",
+                              { staticClass: "time" },
+                              [
+                                _c("vue-moments-ago", {
+                                  attrs: {
+                                    prefix: "",
+                                    suffix: "ago",
+                                    date: notification.created_at
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      )
                     ])
                   }),
                   0
@@ -70454,53 +70627,175 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.oldNotifications, function(notification) {
               return _c("div", { staticClass: "not-body" }, [
-                _c("img", {
-                  staticStyle: { "border-radius": "50%" },
-                  attrs: {
-                    src:
-                      "/images/users/" + notification.data["follower_avatar"],
-                    alt: "",
-                    width: "50px",
-                    height: "50px"
-                  }
-                }),
-                _vm._v(" "),
-                _c("p", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: "/users/" + notification.data["follower_id"]
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value:
+                          notification.type === "App\\Notifications\\NewMovie",
+                        expression:
+                          "notification.type === 'App\\\\Notifications\\\\NewMovie'"
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(notification.data["follower_firstName"]) +
-                          "\n                    " +
-                          _vm._s(notification.data["follower_lastName"]) +
-                          "\n                "
-                      )
                     ]
-                  ),
-                  _vm._v("   followed you\n                "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "time" },
-                    [
-                      _c("vue-moments-ago", {
-                        attrs: {
-                          prefix: "",
-                          suffix: "ago",
-                          date: notification.created_at
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/images/movies/" + notification.data["avatar"],
+                        alt: ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/movies/" + notification.data["id"] }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(notification.data["name"]) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" new movie,\n                    "),
+                      _c(
+                        "span",
+                        { staticClass: "time" },
+                        [
+                          _c("vue-moments-ago", {
+                            attrs: {
+                              prefix: "",
+                              suffix: "ago",
+                              date: notification.created_at
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value:
+                          notification.type ===
+                          "App\\Notifications\\UserFollowed",
+                        expression:
+                          "notification.type === 'App\\\\Notifications\\\\UserFollowed'"
+                      }
+                    ]
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/images/users/" + notification.data["avatar"],
+                        alt: ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/users/" + notification.data["id"] }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(notification.data["name"]) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" followed you,\n                    "),
+                      _c(
+                        "span",
+                        { staticClass: "time" },
+                        [
+                          _c("vue-moments-ago", {
+                            attrs: {
+                              prefix: "",
+                              suffix: "ago",
+                              date: notification.created_at
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value:
+                          notification.type === "App\\Notifications\\UserLike",
+                        expression:
+                          "notification.type === 'App\\\\Notifications\\\\UserLike'"
+                      }
+                    ]
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/images/users/" + notification.data["avatar"],
+                        alt: ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c(
+                        "a",
+                        { attrs: { href: "/user/" + notification.data["id"] } },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(notification.data["name"]) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" liked your comment,\n                    "),
+                      _c(
+                        "span",
+                        { staticClass: "time" },
+                        [
+                          _c("vue-moments-ago", {
+                            attrs: {
+                              prefix: "",
+                              suffix: "ago",
+                              date: notification.created_at
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]
+                )
               ])
             }),
             _vm._v(" "),
