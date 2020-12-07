@@ -24,13 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LikeableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LikeableController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewMovie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewMovie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/UserFollowed.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/UserFollowed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Notifications/NotificationsNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Notifications/NotificationsNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/notifications.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/notifications.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +243,9 @@
       <workItem from="1606586185098" duration="14283000" />
       <workItem from="1606678555870" duration="24870000" />
       <workItem from="1606733234225" duration="26975000" />
-      <workItem from="1606820687613" duration="33264000" />
+      <workItem from="1606820687613" duration="34128000" />
+      <workItem from="1607114317041" duration="3403000" />
+      <workItem from="1607343109724" duration="5238000" />
     </task>
     <servers />
   </component>

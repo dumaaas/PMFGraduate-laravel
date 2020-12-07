@@ -78,7 +78,7 @@
                         </a> <br> liked your comment,
                         <span class="time">
                                 <vue-moments-ago prefix="" suffix="ago" :date="notification.created_at"></vue-moments-ago>
-                            </span>
+                        </span>
                     </p>
                 </div>
             </div>

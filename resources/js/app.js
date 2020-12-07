@@ -10,6 +10,7 @@ import Comments from "./components/Movie/Comments";
 import Comment from "./components/Movie/Comment";
 import Replies from "./components/Movie/Replies";
 import NotificationsNav from "./components/Notifications/NotificationsNav";
+import NotificationsAll from "./components/Notifications/NotificationsAll";
 
 require('./bootstrap');
 
@@ -28,6 +29,7 @@ Vue.component('comments', Comments);
 Vue.component('comment', Comment);
 Vue.component('replies', Replies);
 Vue.component('notifications-nav', NotificationsNav)
+Vue.component('notifications-all', NotificationsAll);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
