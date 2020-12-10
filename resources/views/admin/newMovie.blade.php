@@ -17,16 +17,16 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Movie name</label>
-                                            <input type="text" class="form-control" name="name" v-model="name">
+                                            <input type="text" class="form-control" name="name">
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Genre</label>
-                                            <input type="text" class="form-control" name="genre" v-model="genre">
+                                            <input type="text" class="form-control" name="genre">
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Release year</label>
-                                            <input type="text" class="form-control" name="releaseYear" v-model="releaseYear">
+                                            <input type="text" class="form-control" name="releaseYear">
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">iMDB</label>
-                                            <input type="text" class="form-control" name="imdb" v-model="imdb">
+                                            <input type="text" class="form-control" name="imdb">
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Duration</label>
-                                            <input type="text" class="form-control" name="duration" v-model="duration">
+                                            <input type="text" class="form-control" name="duration">
                                         </div>
                                     </div>
                                 </div>
@@ -58,18 +58,18 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Trailer</label>
-                                            <input type="text" class="form-control" name="trailer" v-model="trailer">
+                                            <input type="text" class="form-control" name="trailer">
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
                                             <div class="form-group">
-                                                
-                                                <textarea class="form-control" rows="5" name="description" v-model="description"></textarea>
+
+                                                <textarea class="form-control" rows="5" name="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                                 @foreach ($actors as $actor)
                                                 <option value="{{$actor->id}}">{{$actor->firstName}} {{$actor->lastName}}</option>
                                                 @endforeach
-                                            </select>   
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -91,13 +91,13 @@
                                         <label>Upload movie cover</label>
                                         <div class="file-field">
                                             <div class="btn btn-primary btn-sm float-left">
-                                              
+
                                               <input type="file" name="avatar">
                                             </div>
-                                            
-                                            
+
+
                                         </div>
-                                          
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">Add new movie</button>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

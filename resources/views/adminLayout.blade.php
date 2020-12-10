@@ -19,12 +19,34 @@
     <link href="/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/demo/demo.css" rel="stylesheet" />
-  
-    
+
+    <!--   Core JS Files   -->
+
+
+
+    <script src="/js/core/jquery.min.js"></script>
+    <script src="/js/core/popper.min.js"></script>
+    <script src="/js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chartist JS -->
+    <script src="/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="/js/material-dashboard.js?v=2.1.0"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="/demo/demo.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 </head>
 
 <body class="dark-edition">
-    <div class="wrapper ">
+    <div id="app" class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/cover.jpg">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -34,7 +56,7 @@
             <div class="logo"><a href="/home" class="simple-text logo-normal">
                     movieTime
                 </a></div>
-          
+
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{{Request::is('showDashboard') ? 'nav-item active' : 'nav-item'}} ">
@@ -72,7 +94,7 @@
                             <i class="material-icons">add_to_queue</i>
                             <p>Add movie</p>
                         </a>
-                    </li>        
+                    </li>
                 </ul>
             </div>
         </div>
@@ -91,7 +113,7 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    
+
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -99,27 +121,10 @@
             @yield('table')
             @yield('newMovie')
             @yield('editMovie')
-            >
-            <!--   Core JS Files   -->
-      
-            <script src="/js/core/jquery.min.js"></script>
-            <script src="/js/core/popper.min.js"></script>
-            <script src="/js/core/bootstrap-material-design.min.js"></script>
-            <script src="https://unpkg.com/default-passive-events"></script>
-            <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-            <!-- Place this tag in your head or just before your close body tag. -->
-            <script async defer src="https://buttons.github.io/buttons.js"></script>
-            <!--  Google Maps Plugin    -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-            <!-- Chartist JS -->
-            <script src="/js/plugins/chartist.min.js"></script>
-            <!--  Notifications Plugin    -->
-            <script src="/js/plugins/bootstrap-notify.js"></script>
-            <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-            <script src="/js/material-dashboard.js?v=2.1.0"></script>
-            <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-            <script src="/demo/demo.js"></script>
-          
+        </div>
+    </div>
+
+
 
 
 </body>

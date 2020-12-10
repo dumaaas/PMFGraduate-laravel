@@ -26,6 +26,7 @@ class AdminController extends Controller
         $usersNum = User::all()->count();
         $commentsNum = Comment::all()->count();
         $ratingsNum = Rating::all()->count();
+        $movie = Movie::latest()->take(1)->get();
 
         //return dashboard view with details
         return view('admin.dashboard',[
@@ -36,13 +37,14 @@ class AdminController extends Controller
             'moviesNum'=>$moviesNum,
             'usersNum'=>$usersNum,
             'commentsNum'=>$commentsNum,
-            'ratingsNum'=>$ratingsNum
+            'ratingsNum'=>$ratingsNum,
+            'movie'=>$movie
         ]);
     }
 //----------------------------------------------------------------------\\
 
 //-----------------------SHOW DASHBOARD TABLES--------------------------\\
-    public function showUserTable() 
+    public function showUserTable()
     {
         //authorize so only admin can see user table
         $this->authorize('isAdmin', Auth::user());
@@ -56,7 +58,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showMovieTable() 
+    public function showMovieTable()
     {
         //authorize so only admin can see movie table
         $this->authorize('isAdmin', Auth::user());
@@ -70,7 +72,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showCommentTable() 
+    public function showCommentTable()
     {
         //authorize so only admin can see comment table
         $this->authorize('isAdmin', Auth::user());
@@ -84,7 +86,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showRatingTable() 
+    public function showRatingTable()
     {
         //authorize so only admin can see rating table
         $this->authorize('isAdmin', Auth::user());
@@ -98,5 +100,19 @@ class AdminController extends Controller
         ]);
     }
 //----------------------------------------------------------------------\\
+
+    public function getStats() {
+        $moviesNum = Movie::all()->count();
+        $usersNum = User::all()->count();
+        $commentsNum = Comment::all()->count();
+        $ratingsNum = Rating::all()->count();
+
+        return response()->json([
+            'moviesNum' => $moviesNum,
+            'usersNum' => $usersNum,
+            'commentsNum' => $commentsNum,
+            'ratingsNum' => $ratingsNum
+        ]);
+    }
 
 }

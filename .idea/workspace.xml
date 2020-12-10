@@ -23,12 +23,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Admin/AdminStats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/component.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/normalize.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/codropsicons/codropsicons.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/codropsicons/license.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/codropsicons/license.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1598720061.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606859125.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606859180.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606859327.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606859980.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606860003.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606860064.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606860621.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606860972.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606862347.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606863168.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606863236.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606863304.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606863472.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606863529.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606864643.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606865135.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606865217.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606865924.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606866315.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1606866850.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1607345939.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1607348436.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/movies/1607348463.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597686464.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597800017.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597806049.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597869634.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597871027.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597877151.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597950905.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1597975113.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598350432.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720205.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720600.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720648.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720790.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720901.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720941.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598720998.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598721114.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598721618.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598721690.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598721850.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598722049.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1598722148.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1605887299.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606350985.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606351379.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606352952.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606598044.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606598047.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606826858.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1606826862.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/core/bootstrap-material-design.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/core/bootstrap-material-design.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Notifications/NotificationsNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Notifications/NotificationsNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/notifications.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/notifications.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/channels.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/channels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/public/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/public/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/testing/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/testing/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,8 +283,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ytClone" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -245,7 +333,13 @@
       <workItem from="1606733234225" duration="26975000" />
       <workItem from="1606820687613" duration="34128000" />
       <workItem from="1607114317041" duration="3403000" />
-      <workItem from="1607343109724" duration="5238000" />
+      <workItem from="1607343109724" duration="9097000" />
+      <workItem from="1607455316700" duration="2832000" />
+      <workItem from="1607459885202" duration="190000" />
+      <workItem from="1607517116152" duration="1272000" />
+      <workItem from="1607587531182" duration="1840000" />
+      <workItem from="1607589669349" duration="16481000" />
+      <workItem from="1607617024595" duration="4742000" />
     </task>
     <servers />
   </component>
@@ -263,67 +357,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="436" y="199" width="654" height="417" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606088285198">
-      <screen x="0" y="115" width="1366" height="768" />
-    </state>
-    <state x="436" y="199" width="654" height="417" key="#com.intellij.fileTypes.FileTypeChooser/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606088285198" />
-    <state x="477" y="157" width="462" height="496" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606088211740">
-      <screen x="0" y="115" width="1366" height="768" />
-    </state>
-    <state x="477" y="157" width="462" height="496" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606088211740" />
-    <state x="451" y="270" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606867076694">
-      <screen x="70" y="142" width="1296" height="741" />
-    </state>
-    <state x="1667" y="248" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1606083651282" />
-    <state x="1667" y="248" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1605904696064" />
-    <state x="451" y="270" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606867076694" />
-    <state x="451" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606513554280" />
-    <state x="501" y="270" width="424" height="491" key="FileChooserDialogImpl" timestamp="1606867200760">
-      <screen x="70" y="142" width="1296" height="741" />
-    </state>
-    <state x="454" y="248" key="FileChooserDialogImpl/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606594257975" />
-    <state x="501" y="270" width="424" height="491" key="FileChooserDialogImpl/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606867200760" />
-    <state x="501" y="155" width="424" height="491" key="FileChooserDialogImpl/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606349862934" />
-    <state x="70" y="142" width="1012" height="626" key="SettingsEditor" timestamp="1603061456085">
-      <screen x="70" y="142" width="1296" height="626" />
-    </state>
-    <state x="70" y="142" width="1012" height="626" key="SettingsEditor/70.142.1296.626/3286.0.1024.768/1366.0.1920.1080@70.142.1296.626" timestamp="1603061456085" />
-    <state x="1366" y="115" width="943" height="580" maximized="true" key="dock-window-1" timestamp="1606826160476">
-      <screen x="1366" y="115" width="1024" height="768" />
-    </state>
-    <state x="1366" y="115" width="1024" height="553" maximized="true" key="dock-window-1/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@0.115.1366.768" timestamp="1606598626512" />
-    <state x="1366" y="115" width="943" height="580" maximized="true" key="dock-window-1/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606826160476" />
-    <state x="1366" y="0" width="920" height="572" key="dock-window-1/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606506129862" />
-    <state x="1366" y="115" width="1005" height="519" maximized="true" key="dock-window-2" timestamp="1606834994720">
-      <screen x="1366" y="115" width="1024" height="768" />
-    </state>
-    <state x="1366" y="115" width="1005" height="519" maximized="true" key="dock-window-2/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606834994720" />
-    <state x="1366" y="0" width="920" height="572" maximized="true" key="dock-window-2/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606506129862" />
-    <state x="1366" y="150" width="1005" height="529" maximized="true" key="dock-window-3" timestamp="1606858411404">
-      <screen x="1366" y="115" width="1024" height="768" />
-    </state>
-    <state x="1366" y="150" width="1005" height="529" maximized="true" key="dock-window-3/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606858411404" />
-    <state x="1366" y="0" width="920" height="572" key="dock-window-3/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606506723147" />
-    <state x="1366" y="115" width="1005" height="529" maximized="true" key="dock-window-4" timestamp="1606859077764">
-      <screen x="1366" y="115" width="1024" height="768" />
-    </state>
-    <state x="1366" y="115" width="1005" height="529" maximized="true" key="dock-window-4/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606859077764" />
-    <state x="1366" y="130" width="1005" height="529" maximized="true" key="dock-window-5" timestamp="1606867029579">
-      <screen x="1366" y="115" width="1024" height="768" />
-    </state>
-    <state x="1366" y="130" width="1005" height="529" maximized="true" key="dock-window-5/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606867029579" />
-    <state x="382" y="231" key="run.anything.popup" timestamp="1606867105800">
-      <screen x="70" y="142" width="1296" height="741" />
-    </state>
-    <state x="382" y="231" key="run.anything.popup/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606867105800" />
-    <state x="291" y="186" width="851" height="655" key="search.everywhere.popup" timestamp="1606826205718">
-      <screen x="70" y="142" width="1296" height="741" />
-    </state>
-    <state x="1541" y="161" width="672" height="678" key="search.everywhere.popup/0.115.1366.768/1366.115.1024.768/2390.0.1920.1080@1366.115.1024.768" timestamp="1606083251353" />
-    <state x="291" y="186" width="851" height="655" key="search.everywhere.popup/70.142.1296.741/1366.115.1024.768/2390.0.1920.1080@70.142.1296.741" timestamp="1606826205718" />
-    <state x="291" y="71" width="851" height="655" key="search.everywhere.popup/70.27.1296.741/1366.0.1024.768@70.27.1296.741" timestamp="1606244891411" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

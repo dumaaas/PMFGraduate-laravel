@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Notifications\NewComment;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Favorite;
 use App\Custom;
 use App\Watchlist;
-use App\Acting;
-use App\Cast;
+use App\User;
 use App\Watched;
 use Auth;
-
 
 class CommentController extends Controller
 {
@@ -24,6 +23,10 @@ class CommentController extends Controller
 //-----------------------------ADD NEW COMMENT--------------------------------------\\
     public function store(Request $request, Movie $movie)
     {
+        $users = User::where('role', 'LIKE', 'admin')->get();
+        foreach ($users as $u) {
+            $u->notify(new NewComment());
+        }
         return auth()->user()->comment()->create([
             'content' => $request->content,
             'commentable_id' => $movie->id,

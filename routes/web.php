@@ -84,6 +84,7 @@ Route::get('/searchMovies', 'SearchController@searchMovies');
 //----------------------------------------------------------------------\\
 
 //-------------------------ROUTES FOR ADMIN-----------------------------\\
+Route::get('/getStats', 'AdminController@getStats');
 Route::get('/showDashboard', 'AdminController@showDashboard');
 Route::get('/showUserTable', 'AdminController@showUserTable');
 Route::get('/showMovieTable', 'AdminController@showMovieTable');

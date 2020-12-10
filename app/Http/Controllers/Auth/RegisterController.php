@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\NewUser;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -66,6 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $users = User::where('role', 'LIKE', 'admin')->get();
+        foreach ($users as $u) {
+            $u->notify(new NewUser());
+        }
+
         return User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],

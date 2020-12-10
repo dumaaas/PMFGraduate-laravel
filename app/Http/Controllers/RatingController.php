@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewRating;
 use App\Rating;
 use App\Movie;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -18,12 +20,18 @@ class RatingController extends Controller
 //------------------------------ADD NEW RATING--------------------------------------\\
     public function store(Request $request, Movie $movie, $rating)
     {
+
         $r = Rating::where('movie_id', $movie->id)->where('user_id', Auth::id())->first();
         if($r) {
             $r->update([
                 'rating' => $rating
             ]);
         } else {
+            $users = User::where('role', 'LIKE', 'admin')->get();
+            foreach ($users as $u) {
+                $u->notify(new NewRating());
+            }
+
             Rating::create([
                 'movie_id' => $movie->id,
                 'user_id' => Auth::id(),

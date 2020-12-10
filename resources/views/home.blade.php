@@ -22,8 +22,6 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
             </div>
         </div>
@@ -135,7 +133,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div id="tab4" class="tab">
+                             <div id="tab4" class="tab">
                                 <div class="row">
                                     <div class="slick-multiItem">
                                         <div class="slide-it">
@@ -215,7 +213,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="title-hd">
@@ -409,9 +407,5 @@
             </div>
         </div>
     </div>
-
-
-    <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/app.js') }}"></script>
 
 @endsection

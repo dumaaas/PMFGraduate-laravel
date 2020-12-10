@@ -4,75 +4,7 @@
 
     <div class="content">
         <div class="container-fluid">
-
-
-
-            <div class="row">
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <p class="card-category">Users</p>
-                            <h3 class="card-title">{{ $usersNum }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="fa fa-film"></i>
-                            </div>
-                            <p class="card-category">Movies</p>
-                            <h3 class="card-title">{{ $moviesNum }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="fa fa-comment"></i>
-                            </div>
-                            <p class="card-category">Comments</p>
-                            <h3 class="card-title">{{ $commentsNum }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="card-category">Ratings</p>
-                            <h3 class="card-title">{{ $ratingsNum }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <admin-stats :moviesnum="{{$moviesNum}}" :user="{{Auth::user()}}" :movie="{{$movie}}"></admin-stats>
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="card">

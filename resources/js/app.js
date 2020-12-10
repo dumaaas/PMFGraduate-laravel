@@ -11,10 +11,11 @@ import Comment from "./components/Movie/Comment";
 import Replies from "./components/Movie/Replies";
 import NotificationsNav from "./components/Notifications/NotificationsNav";
 import NotificationsAll from "./components/Notifications/NotificationsAll";
+import AdminStats from "./components/Admin/AdminStats";
 
 require('./bootstrap');
 
-window.numeral = require('numeral');
+window.numeral = require('numeral')
 window.Form = Form;
 window.Vue = require('vue');
 
@@ -30,6 +31,7 @@ Vue.component('comment', Comment);
 Vue.component('replies', Replies);
 Vue.component('notifications-nav', NotificationsNav)
 Vue.component('notifications-all', NotificationsAll);
+Vue.component('admin-stats', AdminStats);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
