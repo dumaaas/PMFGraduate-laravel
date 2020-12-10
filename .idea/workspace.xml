@@ -24,18 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewComment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewComment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewMovie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewMovie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewRating.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewRating.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rating.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rating.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Admin/AdminStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Admin/AdminStats.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +249,7 @@
       <workItem from="1607517116152" duration="1272000" />
       <workItem from="1607587531182" duration="1840000" />
       <workItem from="1607589669349" duration="16481000" />
-      <workItem from="1607617024595" duration="11791000" />
+      <workItem from="1607617024595" duration="12203000" />
     </task>
     <servers />
   </component>

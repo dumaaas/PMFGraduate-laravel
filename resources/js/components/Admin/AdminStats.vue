@@ -150,7 +150,7 @@
                             <tr v-for="comment in comments">
                                 <td>{{ comment.commentable_id }}</td>
                                 <td>{{ comment.user.username }}</td>
-                                <td>{{ comment.content }}</td>
+                                <td>{{ comment.content.substring(0,20)+"..." }}</td>
                             </tr>
                             </tbody>
                         </table>

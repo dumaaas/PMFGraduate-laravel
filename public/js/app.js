@@ -69657,7 +69657,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(comment.user.username))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(comment.content))])
+                    _c("td", [
+                      _vm._v(_vm._s(comment.content.substring(0, 20) + "..."))
+                    ])
                   ])
                 }),
                 0
