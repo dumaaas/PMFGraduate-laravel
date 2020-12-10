@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
@@ -15,9 +16,10 @@ class NewUser extends Notification implements ShouldQueue
     use Queueable;
 
 
-    public function __construct()
+    protected $user;
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     public function via($notifiable)
@@ -34,7 +36,13 @@ class NewUser extends Notification implements ShouldQueue
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'created_at' => Date::now(),
+            'data' => [
+                'id' => $this->user->id,
+                'username' => $this->user->username,
+                'email' => $this->user->email,
+                'country' => $this->user->country
+            ],
+            'created_at' => Date::now()
         ]);
     }
 

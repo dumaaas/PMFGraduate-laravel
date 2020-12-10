@@ -17,29 +17,8 @@ class AdminController extends Controller
         //authorize so only admin can see dashboard
         $this->authorize('isAdmin', Auth::user());
 
-        //get details needed in dashboard
-        $movies = Movie::latest()->take(4)->get();
-        $users = User::latest()->take(4)->get();
-        $comments = Comment::latest()->take(4)->get();
-        $ratings = Rating::latest()->take(4)->get();
-        $moviesNum = Movie::all()->count();
-        $usersNum = User::all()->count();
-        $commentsNum = Comment::all()->count();
-        $ratingsNum = Rating::all()->count();
-        $movie = Movie::latest()->take(1)->get();
-
         //return dashboard view with details
-        return view('admin.dashboard',[
-            'movies'=>$movies,
-            'users'=>$users,
-            'comments'=>$comments,
-            'ratings'=>$ratings,
-            'moviesNum'=>$moviesNum,
-            'usersNum'=>$usersNum,
-            'commentsNum'=>$commentsNum,
-            'ratingsNum'=>$ratingsNum,
-            'movie'=>$movie
-        ]);
+        return view('admin.dashboard');
     }
 //----------------------------------------------------------------------\\
 
@@ -106,12 +85,20 @@ class AdminController extends Controller
         $usersNum = User::all()->count();
         $commentsNum = Comment::all()->count();
         $ratingsNum = Rating::all()->count();
+        $movies = Movie::latest()->take(4)->get();
+        $users = User::latest()->take(4)->get();
+        $comments = Comment::latest()->take(4)->get();
+        $ratings = Rating::latest()->take(4)->get();
 
         return response()->json([
             'moviesNum' => $moviesNum,
             'usersNum' => $usersNum,
             'commentsNum' => $commentsNum,
-            'ratingsNum' => $ratingsNum
+            'ratingsNum' => $ratingsNum,
+            'movies' => $movies,
+            'ratings' => $ratings,
+            'users' => $users,
+            'comments' => $comments
         ]);
     }
 

@@ -70,6 +70,120 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Latest users</h4>
+                        <p class="card-category">
+                            New user <vue-moments-ago prefix="added" suffix="ago" :date="latestUser"></vue-moments-ago>
+                        </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="user in users">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.country }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Latest movies</h4>
+                        <p class="card-category">
+                            New movie <vue-moments-ago prefix="added" suffix="ago" :date="latestMovie"></vue-moments-ago>
+                        </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Genre</th>
+                                <th>Year</th>
+                            </thead>
+                            <tbody>
+                            <tr v-for="movie in movies">
+                                <td>{{ movie.id }}</td>
+                                <td>{{ movie.name }}</td>
+                                <td>{{ movie.genre }}</td>
+                                <td>{{ movie.releaseYear }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Latest comments</h4>
+                        <p class="card-category">
+                            New comment <vue-moments-ago prefix="added" suffix="ago" :date="latestComment"></vue-moments-ago>
+                        </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Movie</th>
+                                <th>User</th>
+                                <th>Content</th>
+                            </thead>
+                            <tbody>
+                            <tr v-for="comment in comments">
+                                <td>{{ comment.commentable_id }}</td>
+                                <td>{{ comment.user.username }}</td>
+                                <td>{{ comment.content }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Latest ratings</h4>
+                        <p class="card-category">
+                            New rating <vue-moments-ago prefix="added" suffix="ago" :date="latestRating"></vue-moments-ago>
+                        </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Movie</th>
+                                <th>User</th>
+                                <th>Rating</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="rating in ratings">
+                                    <td>{{ rating.movie.name }}</td>
+                                    <td>{{ rating.user.username }}</td>
+                                    <td><i class="fa fa-star"></i> {{ rating.rating }}/10 </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -97,6 +211,14 @@ export default {
             commentUpdate: '',
             ratingUpdate: '',
             userUpdate: '',
+            latestUser: '',
+            latestMovie: '',
+            latestComment: '',
+            latestRating: '',
+            movies: '',
+            users: '',
+            ratings: '',
+            comments: ''
         }
     },
 
@@ -109,22 +231,32 @@ export default {
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
                 if(notification.type=="App\\\Notifications\\\NewMovie") {
-                    this.moviesNum++;
-                    this.movieUpdate = notification.created_at;
+                    this.moviesNum++
+                    this.movieUpdate = notification.created_at
+                    this.latestMovie = notification.created_at
+                    this.movies.unshift(notification.data)
+                    this.movies.splice(-1,1)
                 }
                 if(notification.type=="App\\\Notifications\\\NewComment") {
                     this.commentsNum++;
-                    this.commentUpdate = notification.created_at;
-                    console.log(this.commentUpdate);
-
+                    this.commentUpdate = notification.created_at
+                    this.latestComment = notification.created_at
+                    this.comments.unshift(notification.data)
+                    this.comments.splice(-1,1)
                 }
                 if(notification.type=="App\\\Notifications\\\NewRating") {
                     this.ratingsNum++;
-                    this.ratingUpdate = notification.created_at;
+                    this.ratingUpdate = notification.created_at
+                    this.latestRating = notification.created_at
+                    this.ratings.unshift(notification.data)
+                    this.ratings.splice(-1,1)
                 }
                 if(notification.type=="App\\\Notifications\\\NewUser") {
                     this.usersNum++;
-                    this.userUpdate = notification.created_at;
+                    this.userUpdate = notification.created_at
+                    this.latestUser = notification.created_at
+                    this.users.unshift(notification.data)
+                    this.users.splice(-1,1)
                 }
                 console.log(notification)
             })
@@ -144,6 +276,15 @@ export default {
                     this.usersNum = response.data.usersNum
                     this.ratingsNum = response.data.ratingsNum
                     this.commentsNum = response.data.commentsNum
+                    this.movies = response.data.movies
+                    this.ratings = response.data.ratings
+                    this.users = response.data.users
+                    this.comments = response.data.comments
+                    this.latestUser = response.data.users[0].created_at
+                    this.latestMovie = response.data.movies[0].created_at
+                    this.latestComment = response.data.comments[0].created_at
+                    this.latestRating = response.data.ratings[0].created_at
+                    console.log(response)
                 })
         }
     },

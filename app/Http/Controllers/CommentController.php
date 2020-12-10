@@ -23,16 +23,20 @@ class CommentController extends Controller
 //-----------------------------ADD NEW COMMENT--------------------------------------\\
     public function store(Request $request, Movie $movie)
     {
-        $users = User::where('role', 'LIKE', 'admin')->get();
-        foreach ($users as $u) {
-            $u->notify(new NewComment());
-        }
-        return auth()->user()->comment()->create([
+
+        $comment = auth()->user()->comment()->create([
             'content' => $request->content,
             'commentable_id' => $movie->id,
             'commentable_type' => "App\Movie",
             'comment_id' => $request->comment_id
         ])->fresh();
+
+        $users = User::where('role', 'LIKE', 'admin')->get();
+        foreach ($users as $u) {
+            $u->notify(new NewComment($comment));
+        }
+
+        return $comment;
     }
 //----------------------------------------------------------------------------------\\
 

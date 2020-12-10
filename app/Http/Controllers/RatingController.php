@@ -27,17 +27,20 @@ class RatingController extends Controller
                 'rating' => $rating
             ]);
         } else {
-            $users = User::where('role', 'LIKE', 'admin')->get();
-            foreach ($users as $u) {
-                $u->notify(new NewRating());
-            }
 
-            Rating::create([
+            $newR = Rating::create([
                 'movie_id' => $movie->id,
                 'user_id' => Auth::id(),
                 'rating' => $rating,
                 'review' => 'hehehe'
             ]);
+
+            $users = User::where('role', 'LIKE', 'admin')->get();
+            foreach ($users as $u) {
+                $u->notify(new NewRating($newR));
+            }
+
+
         }
 
         return ['message' => 'New movie rating'.$rating];

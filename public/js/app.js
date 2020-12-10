@@ -1984,6 +1984,120 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2002,7 +2116,15 @@ __webpack_require__.r(__webpack_exports__);
       movieUpdate: '',
       commentUpdate: '',
       ratingUpdate: '',
-      userUpdate: ''
+      userUpdate: '',
+      latestUser: '',
+      latestMovie: '',
+      latestComment: '',
+      latestRating: '',
+      movies: '',
+      users: '',
+      ratings: '',
+      comments: ''
     };
   },
   mounted: function mounted() {
@@ -2018,22 +2140,41 @@ __webpack_require__.r(__webpack_exports__);
       if (notification.type == "App\\\Notifications\\\NewMovie") {
         _this.moviesNum++;
         _this.movieUpdate = notification.created_at;
+        _this.latestMovie = notification.created_at;
+
+        _this.movies.unshift(notification.data);
+
+        _this.movies.splice(-1, 1);
       }
 
       if (notification.type == "App\\\Notifications\\\NewComment") {
         _this.commentsNum++;
         _this.commentUpdate = notification.created_at;
-        console.log(_this.commentUpdate);
+        _this.latestComment = notification.created_at;
+
+        _this.comments.unshift(notification.data);
+
+        _this.comments.splice(-1, 1);
       }
 
       if (notification.type == "App\\\Notifications\\\NewRating") {
         _this.ratingsNum++;
         _this.ratingUpdate = notification.created_at;
+        _this.latestRating = notification.created_at;
+
+        _this.ratings.unshift(notification.data);
+
+        _this.ratings.splice(-1, 1);
       }
 
       if (notification.type == "App\\\Notifications\\\NewUser") {
         _this.usersNum++;
         _this.userUpdate = notification.created_at;
+        _this.latestUser = notification.created_at;
+
+        _this.users.unshift(notification.data);
+
+        _this.users.splice(-1, 1);
       }
 
       console.log(notification);
@@ -2053,6 +2194,15 @@ __webpack_require__.r(__webpack_exports__);
         _this2.usersNum = response.data.usersNum;
         _this2.ratingsNum = response.data.ratingsNum;
         _this2.commentsNum = response.data.commentsNum;
+        _this2.movies = response.data.movies;
+        _this2.ratings = response.data.ratings;
+        _this2.users = response.data.users;
+        _this2.comments = response.data.comments;
+        _this2.latestUser = response.data.users[0].created_at;
+        _this2.latestMovie = response.data.movies[0].created_at;
+        _this2.latestComment = response.data.comments[0].created_at;
+        _this2.latestRating = response.data.ratings[0].created_at;
+        console.log(response);
       });
     }
   },
@@ -69374,6 +69524,195 @@ var render = function() {
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-primary" }, [
+            _c("h4", { staticClass: "card-title" }, [_vm._v("Latest users")]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "card-category" },
+              [
+                _vm._v("\n                        New user "),
+                _c("vue-moments-ago", {
+                  attrs: {
+                    prefix: "added",
+                    suffix: "ago",
+                    date: _vm.latestUser
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users, function(user) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(user.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.username))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.country))])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-primary" }, [
+            _c("h4", { staticClass: "card-title" }, [_vm._v("Latest movies")]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "card-category" },
+              [
+                _vm._v("\n                        New movie "),
+                _c("vue-moments-ago", {
+                  attrs: {
+                    prefix: "added",
+                    suffix: "ago",
+                    date: _vm.latestMovie
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.movies, function(movie) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(movie.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(movie.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(movie.genre))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(movie.releaseYear))])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-primary" }, [
+            _c("h4", { staticClass: "card-title" }, [
+              _vm._v("Latest comments")
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "card-category" },
+              [
+                _vm._v("\n                        New comment "),
+                _c("vue-moments-ago", {
+                  attrs: {
+                    prefix: "added",
+                    suffix: "ago",
+                    date: _vm.latestComment
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.comments, function(comment) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(comment.commentable_id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(comment.user.username))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(comment.content))])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-primary" }, [
+            _c("h4", { staticClass: "card-title" }, [_vm._v("Latest ratings")]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "card-category" },
+              [
+                _vm._v("\n                        New rating "),
+                _c("vue-moments-ago", {
+                  attrs: {
+                    prefix: "added",
+                    suffix: "ago",
+                    date: _vm.latestRating
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.ratings, function(rating) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(rating.movie.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(rating.user.username))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", { staticClass: "fa fa-star" }),
+                      _vm._v(" " + _vm._s(rating.rating) + "/10 ")
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -69408,6 +69747,58 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-icon" }, [
       _c("i", { staticClass: "fa fa-star" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-warning" }, [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Username")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Country")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-warning" }, [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Genre")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Year")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-warning" }, [
+      _c("th", [_vm._v("Movie")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("User")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Content")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-warning" }, [
+      _c("th", [_vm._v("Movie")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("User")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Rating")])
     ])
   }
 ]

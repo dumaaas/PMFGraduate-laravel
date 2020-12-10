@@ -14,8 +14,11 @@ class NewComment extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct()
+    protected $comment;
+
+    public function __construct(Comment $comment)
     {
+        $this->comment = $comment;
     }
 
     public function via($notifiable)
@@ -32,6 +35,11 @@ class NewComment extends Notification implements ShouldQueue
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
+            'data' => [
+                'content' => $this->comment->content,
+                'user' => $this->comment->user,
+                'commentable_id' => $this->comment->commentable_id,
+            ],
             'created_at' => Date::now(),
         ]);
     }

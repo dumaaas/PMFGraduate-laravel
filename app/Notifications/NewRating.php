@@ -14,10 +14,10 @@ class NewRating extends Notification implements ShouldQueue
 {
     use Queueable;
 
-
-    public function __construct ()
+    protected $rating;
+    public function __construct (Rating $rating)
     {
-        //
+        $this->rating = $rating;
     }
 
 
@@ -35,6 +35,11 @@ class NewRating extends Notification implements ShouldQueue
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
+            'data' => [
+                'rating' => $this->rating->rating,
+                'user' => $this->rating->user,
+                'movie' => $this->rating->movie,
+            ],
             'created_at' => Date::now(),
         ]);
     }

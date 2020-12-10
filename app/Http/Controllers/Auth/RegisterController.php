@@ -67,17 +67,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $users = User::where('role', 'LIKE', 'admin')->get();
-        foreach ($users as $u) {
-            $u->notify(new NewUser());
-        }
-
-        return User::create([
+        $user = User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $users = User::where('role', 'LIKE', 'admin')->get();
+        foreach ($users as $u) {
+            $u->notify(new NewUser($user));
+        }
+
+        return $user;
+
     }
 }
