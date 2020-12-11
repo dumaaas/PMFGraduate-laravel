@@ -45,7 +45,7 @@ class NewMovie extends Notification implements ShouldQueue
                 'id' => $this->movie->id,
                 'name' => $this->movie->name,
                 'genre' => $this->movie->genre,
-                'year' => $this->movie->releaseYear,
+                'releaseYear' => $this->movie->releaseYear,
                 'avatar' => $this->movie->avatar,
             ],
             'created_at' => Date::now(),

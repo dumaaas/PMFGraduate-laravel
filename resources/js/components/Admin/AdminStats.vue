@@ -233,38 +233,21 @@ export default {
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
                 if(notification.type=="App\\\Notifications\\\NewMovie") {
-                    this.moviesNum++
-                    this.movieUpdate = notification.created_at
-                    this.latestMovie = notification.created_at
-                    this.movies.unshift(notification.data)
-                    this.movies.splice(-1,1)
-                    this.newElement('newMovie')
+                    this.newElement(this.moviesNum, this.movieUpdate, this.latestMovie, this.movies, notification)
+                    this.newElementStyle('newMovie')
                 }
                 if(notification.type=="App\\\Notifications\\\NewComment") {
-                    this.commentsNum++
-                    this.commentUpdate = notification.created_at
-                    this.latestComment = notification.created_at
-                    this.comments.unshift(notification.data)
-                    this.comments.splice(-1,1)
-                    this.newElement('newComment')
+                    this.newElement(this.commentsNum, this.commentUpdate, this.latestComment, this.comments, notification)
+                    this.newElementStyle('newComment')
                 }
                 if(notification.type=="App\\\Notifications\\\NewRating") {
-                    this.ratingsNum++;
-                    this.ratingUpdate = notification.created_at
-                    this.latestRating = notification.created_at
-                    this.ratings.unshift(notification.data)
-                    this.ratings.splice(-1,1)
-                    this.newElement('newRating')
+                    this.newElement(this.ratingsNum, this.ratingUpdate, this.latestRating, this.ratings, notification)
+                    this.newElementStyle('newRating')
                 }
                 if(notification.type=="App\\\Notifications\\\NewUser") {
-                    this.usersNum++;
-                    this.userUpdate = notification.created_at
-                    this.latestUser = notification.created_at
-                    this.users.unshift(notification.data)
-                    this.users.splice(-1,1)
-                    this.newElement('newUser')
+                    this.newElement(this.usersNum, this.userUpdate, this.latestUser, this.users, notification)
+                    this.newElementStyle('newUser')
                 }
-                console.log(notification)
             })
     },
 
@@ -274,7 +257,6 @@ export default {
             this.userUpdate = new Date().toJSON()
             this.commentUpdate = new Date().toJSON()
             this.ratingUpdate = new Date().toJSON()
-            console.log(this.commentUpdate);
 
             axios.get('/getStats')
                 .then(response => {
@@ -290,27 +272,34 @@ export default {
                     this.latestMovie = response.data.movies[0].created_at
                     this.latestComment = response.data.comments[0].created_at
                     this.latestRating = response.data.ratings[0].created_at
-                    console.log(response)
                 })
         },
 
-        newElement(property) {
+        newElement(num, update, latest, array, notification) {
+            num++
+            update = notification.created_at
+            latest = notification.created_at
+            array.unshift(notification.data)
+            array.splice(-1,1)
+        },
+
+        newElementStyle(property) {
             let $ref = this.$refs[property]
             $ref[0].style.backgroundColor = 'rgb(148,0,211,0.4)'
             $ref[0].style.transition = 'background-color 3s ease-out'
             this.newElementInterval = setTimeout(() => $ref[0].style.backgroundColor = '',4000)
-        }
+        },
+
+
     },
 
     beforeDestroy() {
         clearInterval(this.interval)
         clearInterval(this.newElementInterval)
     }
-
 }
 </script>
 
 <style scoped>
-    #shine {
-    }
+
 </style>
