@@ -89,7 +89,7 @@
                                 <th>Country</th>
                             </thead>
                             <tbody>
-                                <tr v-for="user in users">
+                                <tr v-for="user in users" ref="newUser">
                                     <td>{{ user.id }}</td>
                                     <td>{{ user.username }}</td>
                                     <td>{{ user.email }}</td>
@@ -117,7 +117,7 @@
                                 <th>Year</th>
                             </thead>
                             <tbody>
-                            <tr v-for="movie in movies">
+                            <tr v-for="movie in movies" ref="newMovie">
                                 <td>{{ movie.id }}</td>
                                 <td>{{ movie.name }}</td>
                                 <td>{{ movie.genre }}</td>
@@ -147,7 +147,7 @@
                                 <th>Content</th>
                             </thead>
                             <tbody>
-                            <tr v-for="comment in comments">
+                            <tr v-for="comment in comments" ref="newComment">
                                 <td>{{ comment.commentable_id }}</td>
                                 <td>{{ comment.user.username }}</td>
                                 <td>{{ comment.content.substring(0,20)+"..." }}</td>
@@ -173,7 +173,7 @@
                                 <th>Rating</th>
                             </thead>
                             <tbody>
-                                <tr v-for="rating in ratings">
+                                <tr v-for="rating in ratings" ref="newRating">
                                     <td>{{ rating.movie.name }}</td>
                                     <td>{{ rating.user.username }}</td>
                                     <td><i class="fa fa-star"></i> {{ rating.rating }}/10 </td>
@@ -207,6 +207,7 @@ export default {
             ratingsNum: '',
             usersNum: '',
             interval: null,
+            newElementInterval: null,
             movieUpdate: '',
             commentUpdate: '',
             ratingUpdate: '',
@@ -227,6 +228,7 @@ export default {
     },
 
     created() {
+
         this.interval = setInterval(() => this.getStats(), 600*1000)
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
@@ -236,13 +238,15 @@ export default {
                     this.latestMovie = notification.created_at
                     this.movies.unshift(notification.data)
                     this.movies.splice(-1,1)
+                    this.newElement('newMovie')
                 }
                 if(notification.type=="App\\\Notifications\\\NewComment") {
-                    this.commentsNum++;
+                    this.commentsNum++
                     this.commentUpdate = notification.created_at
                     this.latestComment = notification.created_at
                     this.comments.unshift(notification.data)
                     this.comments.splice(-1,1)
+                    this.newElement('newComment')
                 }
                 if(notification.type=="App\\\Notifications\\\NewRating") {
                     this.ratingsNum++;
@@ -250,6 +254,7 @@ export default {
                     this.latestRating = notification.created_at
                     this.ratings.unshift(notification.data)
                     this.ratings.splice(-1,1)
+                    this.newElement('newRating')
                 }
                 if(notification.type=="App\\\Notifications\\\NewUser") {
                     this.usersNum++;
@@ -257,6 +262,7 @@ export default {
                     this.latestUser = notification.created_at
                     this.users.unshift(notification.data)
                     this.users.splice(-1,1)
+                    this.newElement('newUser')
                 }
                 console.log(notification)
             })
@@ -286,16 +292,25 @@ export default {
                     this.latestRating = response.data.ratings[0].created_at
                     console.log(response)
                 })
+        },
+
+        newElement(property) {
+            let $ref = this.$refs[property]
+            $ref[0].style.backgroundColor = 'rgb(148,0,211,0.4)'
+            $ref[0].style.transition = 'background-color 3s ease-out'
+            this.newElementInterval = setTimeout(() => $ref[0].style.backgroundColor = '',4000)
         }
     },
 
     beforeDestroy() {
         clearInterval(this.interval)
+        clearInterval(this.newElementInterval)
     }
 
 }
 </script>
 
 <style scoped>
-
+    #shine {
+    }
 </style>

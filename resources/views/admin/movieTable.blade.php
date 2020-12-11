@@ -68,5 +68,5 @@
 
                 </table>
                 <br>
-                 {{ $movies->links() }} 
+                 {{ $movies->links() }}
             @endsection
