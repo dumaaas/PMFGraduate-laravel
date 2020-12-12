@@ -49,13 +49,19 @@ class MovieController extends Controller
     }
 //---------------------------------------------------------------------------------\\
 
-public function getMovies() {
-    //get all movies ordered by latest added and return movie index
-    $movies = Cache::remember('movies', Carbon::now()->addMinutes(10), function() {
-        return Movie::latest()->get();
-    });
-    return $movies;
-}
+    public function getMovies() {
+        //get all movies ordered by latest added and return movie index
+        $movies = Cache::remember('movies', Carbon::now()->addMinutes(10), function() {
+            return Movie::latest()->get();
+        });
+        return $movies;
+    }
+
+    public function getMoviesAdmin() {
+        //get all movies ordered by latest added and return movie index
+        $movies =  Movie::latest()->get();
+        return $movies;
+    }
 
 //---------------------------------SHOW MOVIE--------------------------------------\\
     public function show(Movie $movie)
@@ -274,7 +280,7 @@ public function getMovies() {
     public function destroy(Movie $movie)
     {
         Movie::destroy($movie->id);
-        return back();
+        return ['message' => 'Movie has been deleted!'];
     }
 //----------------------------------------------------------------------------------\\
 

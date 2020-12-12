@@ -8,7 +8,7 @@
                             <i class="fa fa-users"></i>
                         </div>
                         <p class="card-category">Users</p>
-                        <h3 class="card-title">{{usersNum}}</h3>
+                        <h3 class="card-title" ref="newUserNum">{{usersNum}}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -25,7 +25,7 @@
                             <i class="fa fa-film"></i>
                         </div>
                         <p class="card-category">Movies</p>
-                        <h3 class="card-title">{{ moviesNum }}</h3>
+                        <h3 class="card-title" ref="newMovieNum">{{ moviesNum }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -42,7 +42,7 @@
                             <i class="fa fa-comment"></i>
                         </div>
                         <p class="card-category">Comments</p>
-                        <h3 class="card-title">{{ commentsNum }}</h3>
+                        <h3 class="card-title" ref="newCommentNum">{{ commentsNum }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -59,7 +59,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <p class="card-category">Ratings</p>
-                        <h3 class="card-title">{{ ratingsNum }}</h3>
+                        <h3 class="card-title" ref="newRatingNum">{{ ratingsNum }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -233,20 +233,28 @@ export default {
         Echo.private('App.User.' +this.user.id)
             .notification((notification) => {
                 if(notification.type=="App\\\Notifications\\\NewMovie") {
-                    this.newElement(this.moviesNum, this.movieUpdate, this.latestMovie, this.movies, notification)
+                    this.moviesNum++
+                    this.newElement(this.movieUpdate, this.latestMovie, this.movies, notification)
                     this.newElementStyle('newMovie')
+                    this.newElementNumStyle('newMovieNum')
                 }
                 if(notification.type=="App\\\Notifications\\\NewComment") {
-                    this.newElement(this.commentsNum, this.commentUpdate, this.latestComment, this.comments, notification)
+                    this.commentsNum++
+                    this.newElement(this.commentUpdate, this.latestComment, this.comments, notification)
                     this.newElementStyle('newComment')
+                    this.newElementNumStyle('newCommentNum')
                 }
                 if(notification.type=="App\\\Notifications\\\NewRating") {
-                    this.newElement(this.ratingsNum, this.ratingUpdate, this.latestRating, this.ratings, notification)
+                    this.ratingsNum++
+                    this.newElement(this.ratingUpdate, this.latestRating, this.ratings, notification)
                     this.newElementStyle('newRating')
+                    this.newElementNumStyle('newRatingNum')
                 }
                 if(notification.type=="App\\\Notifications\\\NewUser") {
-                    this.newElement(this.usersNum, this.userUpdate, this.latestUser, this.users, notification)
+                    this.usersNum++
+                    this.newElement(this.userUpdate, this.latestUser, this.users, notification)
                     this.newElementStyle('newUser')
+                    this.newElementNumStyle('newUserNum')
                 }
             })
     },
@@ -275,8 +283,7 @@ export default {
                 })
         },
 
-        newElement(num, update, latest, array, notification) {
-            num++
+        newElement(update, latest, array, notification) {
             update = notification.created_at
             latest = notification.created_at
             array.unshift(notification.data)
@@ -290,7 +297,12 @@ export default {
             this.newElementInterval = setTimeout(() => $ref[0].style.backgroundColor = '',4000)
         },
 
-
+        newElementNumStyle(property) {
+            let $ref = this.$refs[property]
+            $ref.style.color = 'rgb(148,0,211,0.6)'
+            $ref.style.transition = 'color 3s ease-out'
+            this.newElementInterval = setTimeout(() => $ref.style.color = '#606477', 4000)
+        }
     },
 
     beforeDestroy() {

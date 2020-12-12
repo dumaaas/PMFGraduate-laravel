@@ -24,9 +24,17 @@
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewMovie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewMovie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Admin/AdminStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Admin/AdminStats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/movieTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/movieTable.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/userTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/userTable.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tablesLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tablesLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +207,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -251,7 +260,11 @@
       <workItem from="1607587531182" duration="1840000" />
       <workItem from="1607589669349" duration="16481000" />
       <workItem from="1607617024595" duration="12600000" />
-      <workItem from="1607689129075" duration="5903000" />
+      <workItem from="1607689129075" duration="6476000" />
+      <workItem from="1607696491794" duration="533000" />
+      <workItem from="1607705619635" duration="1820000" />
+      <workItem from="1607716447322" duration="2250000" />
+      <workItem from="1607775915861" duration="9687000" />
     </task>
     <servers />
   </component>

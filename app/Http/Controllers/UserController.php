@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
+    public function index()
+    {
+        return User::latest()->get();
+    }
+
 //-------------------------------SHOWING USER PROFILE----------------------------------\\
     public function show(User $user)
     {
@@ -162,7 +167,7 @@ class UserController extends Controller
     {
         //delete user and return back to the userTable in dashboard
         User::destroy($user->id);
-        return back();
+        return ['message' => 'User has been deleted!'];
     }
 
     public function ban(User $user)
@@ -170,7 +175,7 @@ class UserController extends Controller
         //ban user for 7 days and return to the userTable in dashboard
         $user->banned_until = Carbon::now()->addDays(7);
         $user->save();
-        return back();
+        return ['message' => 'User has been banned!'];
     }
 //--------------------------------------------------------------------------------------\\
 

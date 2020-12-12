@@ -12,7 +12,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 //------------------------ROUTES FOR USER------------------------------\\
 Route::get('/users', 'UserController@index');
-Route::get('/users/ban/{user}', 'UserController@ban');
+Route::post('/users/ban/{user}', 'UserController@ban');
 Route::get('/sortUsers', 'UserController@sortUsers');
 Route::get('/users/create', 'UserController@create');
 Route::get('/users/{user}', 'UserController@show');
@@ -21,12 +21,13 @@ Route::post('/updateDetails/{user}', 'UserController@updateUserDetails');
 Route::post('/privateProfile/{user}/{privacy}', 'UserController@privateProfile');
 Route::post('/updatePassword/{user}', 'UserController@updatePassword');
 Route::post('/uploadImage/{user}', 'UserController@uploadImage');
-Route::get('/users/delete/{user}', 'UserController@destroy');
+Route::post('/users/delete/{user}', 'UserController@destroy');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR MOVIE------------------------------\\
 Route::get('/movies', 'MovieController@index');
 Route::get('/getMovies', 'MovieController@getMovies');
+Route::get('/getMoviesAdmin', 'MovieController@getMoviesAdmin');
 Route::post('/addMovie', 'MovieController@store');
 Route::get('/newMovie', 'MovieController@create');
 Route::get('/movies/{movie}', 'MovieController@show');
@@ -35,7 +36,7 @@ Route::get('/editMovie/{movie}', 'MovieController@edit');
 Route::put('/movies/{movie}', 'MovieController@update');
 Route::post('/addToList/{movie}/{type}', 'MovieController@storeListItem');
 Route::post('/removeFromList/{movie}/{type}', 'MovieController@destroyFromList');
-Route::get('/movies/delete/{movie}', 'MovieController@destroy');
+Route::post('/movies/delete/{movie}', 'MovieController@destroy');
 Route::get('/responseMovie/{movie}', 'MovieController@responseMovie');
 //----------------------------------------------------------------------\\
 

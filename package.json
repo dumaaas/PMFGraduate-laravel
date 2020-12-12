@@ -27,6 +27,7 @@
         "laravel-echo": "^1.9.0",
         "numeral": "^2.0.6",
         "pusher-js": "^7.0.2",
+        "sweetalert": "^2.1.2",
         "v-calendar": "^2.1.1",
         "vue-moment": "^4.1.0",
         "vue-moments-ago": "^0.2.0",
