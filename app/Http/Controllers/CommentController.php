@@ -20,6 +20,11 @@ class CommentController extends Controller
         return $comment->replies()->latest()->paginate(25);
     }
 
+    public function getComments()
+    {
+        return Comment::latest()->get();
+    }
+
 //-----------------------------ADD NEW COMMENT--------------------------------------\\
     public function store(Request $request, Movie $movie)
     {
@@ -49,7 +54,7 @@ class CommentController extends Controller
     {
         //delete comment and return to the comment table in dashboard
         Comment::destroy($id);
-        return back();
+        return ['message' => 'Comment has been deleted!'];
     }
 //----------------------------------------------------------------------------------\\
 

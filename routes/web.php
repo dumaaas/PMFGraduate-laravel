@@ -49,9 +49,10 @@ Route::get('/sortCast', 'CastController@sortCast');
 
 //---------------------ROUTES FOR COMMENTS------------------------------\\
 Route::post('/addComment/{movie}', 'CommentController@store');
-Route::get('/comments/delete/{comment}', 'CommentController@destroy');
+Route::post('/comments/delete/{comment}', 'CommentController@destroy');
 Route::get('/movies/{movie}/comments', 'CommentController@index');
 Route::get('/comments/{comment}/replies', 'CommentController@show');
+Route::get('/getComments', 'CommentController@getComments');
 //----------------------------------------------------------------------\\
 
 //------------------------ROUTES FOR LIKEABLE---------------------------\\
@@ -62,8 +63,9 @@ Route::post('/likeComment/{comment}/{type}', 'LikeableController@likeComment')->
 
 //-----------------------ROUTES FOR RATING------------------------------\\
 Route::post('/addRating/{movie}/{rating}', 'RatingController@store');
-Route::get('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
+Route::post('/ratings/delete/{movie}/{user}', 'RatingController@destroy');
 Route::get('/ratings/{movie}', 'RatingController@index');
+Route::get('/getRatings', 'RatingController@getRatings');
 //----------------------------------------------------------------------\\
 
 //-----------------------ROUTES FOR MOVIELIST------------------------------\\

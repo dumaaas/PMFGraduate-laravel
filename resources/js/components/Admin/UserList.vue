@@ -26,7 +26,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr v-for="user in users" ref="user">
+                <tr v-for="user in users">
                     <td class="text-primary">
                         {{ user.id }}
                     </td>
@@ -92,7 +92,7 @@ export default {
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this movie!",
                 icon: "warning",
-                buttons: true,
+                buttons: ['Cancel', 'Delete'],
                 dangerMode: true,
             })
                 .then((willDelete) => {
@@ -114,7 +114,7 @@ export default {
                 title: "Are you sure?",
                 text: "If u ban this user, he can't access to site for 7 days!",
                 icon: "warning",
-                buttons: true,
+                buttons: ['Cancel', 'Ban'],
                 dangerMode: true,
             })
                 .then((willDelete) => {

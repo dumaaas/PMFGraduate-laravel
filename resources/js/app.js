@@ -14,6 +14,8 @@ import NotificationsAll from "./components/Notifications/NotificationsAll";
 import AdminStats from "./components/Admin/AdminStats";
 import UserList from "./components/Admin/UserList";
 import MovieTable from "./components/Admin/MovieTable";
+import RatingTable from "./components/Admin/RatingTable";
+import CommentTable from "./components/Admin/CommentTable";
 
 require('./bootstrap');
 
@@ -36,6 +38,8 @@ Vue.component('notifications-all', NotificationsAll);
 Vue.component('admin-stats', AdminStats);
 Vue.component('user-list', UserList);
 Vue.component('movie-table', MovieTable);
+Vue.component('rating-table', RatingTable);
+Vue.component('comment-table', CommentTable);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

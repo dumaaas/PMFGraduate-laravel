@@ -17,6 +17,10 @@ class RatingController extends Controller
         return $ratings;
     }
 
+    public function getRatings() {
+        return Rating::latest()->get();
+    }
+
 //------------------------------ADD NEW RATING--------------------------------------\\
     public function store(Request $request, Movie $movie, $rating)
     {
@@ -39,12 +43,8 @@ class RatingController extends Controller
             foreach ($users as $u) {
                 $u->notify(new NewRating($newR));
             }
-
-
         }
-
         return ['message' => 'New movie rating'.$rating];
-
     }
 //----------------------------------------------------------------------------------\\
 
@@ -52,8 +52,8 @@ class RatingController extends Controller
     public function destroy($movieId, $userId)
     {
         //delete rating and return back to the rating table in dashboard
-        $rating = Rating::where('movie_id', 'LIKE', $movieId)->where('user_id', 'LIKE', $userId)->delete();
-        return back();
+        Rating::where('movie_id', 'LIKE', $movieId)->where('user_id', 'LIKE', $userId)->delete();
+        return ['message' => 'Rating has been deleted!'];
     }
 //----------------------------------------------------------------------------------\\
 

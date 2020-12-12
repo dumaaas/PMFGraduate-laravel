@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "laravel-echo": "^1.9.0",
+        "moment": "^2.29.1",
         "numeral": "^2.0.6",
         "pusher-js": "^7.0.2",
         "sweetalert": "^2.1.2",
