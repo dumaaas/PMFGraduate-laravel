@@ -16,6 +16,8 @@ import UserList from "./components/Admin/UserList";
 import MovieTable from "./components/Admin/MovieTable";
 import RatingTable from "./components/Admin/RatingTable";
 import CommentTable from "./components/Admin/CommentTable";
+import AddMovie from "./components/Admin/AddMovie"
+import EditMovie from "./components/Admin/EditMovie";
 
 require('./bootstrap');
 
@@ -40,6 +42,8 @@ Vue.component('user-list', UserList);
 Vue.component('movie-table', MovieTable);
 Vue.component('rating-table', RatingTable);
 Vue.component('comment-table', CommentTable);
+Vue.component('add-movie', AddMovie);
+Vue.component('edit-movie', EditMovie);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -149,7 +149,6 @@ class MovieController extends Controller
             'duration'=>'required',
             'trailer'=>'required',
             'description'=>'required',
-            'actors'=>'required'
         ]);
 
         $movie = new Movie();
@@ -191,7 +190,7 @@ class MovieController extends Controller
         }
 
         //return to the add new movie page
-        return back();
+        return ['message' => 'Movie added successfully!'];
     }
 //----------------------------------------------------------------------------------\\
 
@@ -235,7 +234,7 @@ class MovieController extends Controller
         $movie->save();
 
         //return back to the edit movie form
-        return back();
+        return ['message' => 'Movie edited successfully!'];
     }
 //----------------------------------------------------------------------------------\\
 
@@ -280,6 +279,10 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         Movie::destroy($movie->id);
+        $comments = Comment::where('commentable_id', '=', $movie->id)->where('commentable_type', '=', 'App\Movie')->get();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
         return ['message' => 'Movie has been deleted!'];
     }
 //----------------------------------------------------------------------------------\\

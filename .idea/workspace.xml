@@ -24,15 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Admin/MovieTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Admin/MovieTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Admin/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Admin/UserList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/commentTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/commentTable.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ratingTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ratingTable.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/editMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/editMovie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -263,7 +259,7 @@
       <workItem from="1607696491794" duration="533000" />
       <workItem from="1607705619635" duration="1820000" />
       <workItem from="1607716447322" duration="2250000" />
-      <workItem from="1607775915861" duration="12226000" />
+      <workItem from="1607775915861" duration="17477000" />
     </task>
     <servers />
   </component>

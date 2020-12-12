@@ -33,7 +33,7 @@ Route::get('/newMovie', 'MovieController@create');
 Route::get('/movies/{movie}', 'MovieController@show');
 Route::get('/sortMovies/{sort}', 'MovieController@sortMovies');
 Route::get('/editMovie/{movie}', 'MovieController@edit');
-Route::put('/movies/{movie}', 'MovieController@update');
+Route::put('/movies/editMovie/{movie}', 'MovieController@update');
 Route::post('/addToList/{movie}/{type}', 'MovieController@storeListItem');
 Route::post('/removeFromList/{movie}/{type}', 'MovieController@destroyFromList');
 Route::post('/movies/delete/{movie}', 'MovieController@destroy');
