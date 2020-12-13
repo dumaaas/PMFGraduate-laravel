@@ -3,7 +3,6 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class=" title-hd-sm">
             <h4>List of following <i class="ion-ios-arrow-right"></i></h4>
-
         </div>
         <div class="flex-wrap-movielist grid-fav">
             @foreach ($following as $f)
@@ -23,4 +22,5 @@
 
             @endforeach
         </div>
-    @endsection
+    </div>
+@endsection

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('movieList')
+@section('movies')
 
     <div class="hero common-hero">
         <div class="container">

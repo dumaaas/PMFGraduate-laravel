@@ -18,6 +18,7 @@ import RatingTable from "./components/Admin/RatingTable";
 import CommentTable from "./components/Admin/CommentTable";
 import AddMovie from "./components/Admin/AddMovie"
 import EditMovie from "./components/Admin/EditMovie";
+import Chat from "./components/Chat/Chat"
 
 require('./bootstrap');
 
@@ -44,6 +45,7 @@ Vue.component('rating-table', RatingTable);
 Vue.component('comment-table', CommentTable);
 Vue.component('add-movie', AddMovie);
 Vue.component('edit-movie', EditMovie);
+Vue.component('chat', Chat);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

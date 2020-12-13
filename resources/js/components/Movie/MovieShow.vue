@@ -70,7 +70,7 @@
                             <div class="movie-tabs">
                                 <div class="tabs">
                                     <ul class="cont4 tab-links tabs-mv">
-                                        <li class=" active"><a href="#overview">Overview</a></li>
+                                        <li class="active"><a href="#overview">Overview</a></li>
                                         <li><a href="#comments">Comments</a></li>
                                         <li><a href="#reviews">Reviews</a></li>
                                     </ul>

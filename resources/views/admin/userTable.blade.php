@@ -8,8 +8,6 @@
         <div class="card-body">
             <div class="table-responsive">
                 <user-list></user-list>
-                <br>
-                {{ $users->links() }}
             </div>
         </div>
     </div>

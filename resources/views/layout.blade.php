@@ -137,9 +137,10 @@
         @yield('userProfile')
         @yield('showMovie')
         @yield('showCast')
-        @yield('movieList')
+        @yield('movies')
         @yield('castList')
         @yield('userList')
+        <chat></chat>
 
         <!-- START | Footer-->
         <footer class="ht-footer">

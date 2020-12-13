@@ -2,22 +2,15 @@
 
 @section('userProfile')
     <div class="hero user-hero">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="hero-ct">
                         <h1>{{ $user->username }} profile page</h1>
                     </div>
-
                 </div>
-
             </div>
-
-
-
         </div>
-
     </div>
     <div class="page-single">
         <div class="container">
@@ -26,9 +19,10 @@
                     <div class="user-information">
                         @include('flash::message')
                         <div class="user-img">
-                            <a href="#"><img src="/images/users/{{ $user->avatar }}" alt="" style="border-radius: 50%"
-                                    width="200px"><br></a>
-
+                            <a href="#">
+                                <img src="/images/users/{{ $user->avatar }}" alt="" style="border-radius: 50%" width="200px">
+                                <br>
+                            </a>
                             @auth
                                 @if (Auth::user()->is($user))
                                     <form action="/uploadImage/{{ $user->id }}" method="POST" enctype="multipart/form-data">
@@ -54,44 +48,38 @@
                                     @endif
                                 @endif
                             @endauth
-
-
-
                             <br>
-
                         </div>
                         <div class="user-fav">
                             <p>Account Details</p>
                             <ul>
-
                                 <li class="active"><a href="/users/{{ $user->id }}">Profile</a></li>
                                 @auth
                                     @if ($user->privacy == 'private' && !Auth::user()->isFollowing($user) && !Auth::user()->currentUser($user))
                                     @else
                                         <li><a href="/users/{{ $user->id }}/following">Following</a></li>
                                         <li><a href="/users/{{ $user->id }}/followers">Followers</a></li>
-
-
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'watched'])}}">Watched movies</a></li>
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'favorite'])}}">Favorite movies</a></li>
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'watchlist'])}}">Watchlist</a></li>
                                         <li><a href="{{route('movielist.index', ['user' => $user->id, 'type' => 'custom'])}}">Custom movies</a></li>
                                         <li><a href="/users/{{ $user->id }}/favoriteCast">Favorite celebrities</a></li>
-
                                         @can('edit', $user)
                                             <li><a href="/users/{{ $user->id }}/edit">Edit profile</a></li>
                                         @endcan
                                     @endif
                                 @endauth
-
-
                             </ul>
                         </div>
                         @auth
                             <div class="user-fav">
                                 <p>Others</p>
                                 <ul>
-                                    <li><a href="/logout">Log out</a></li>
+                                    <li>
+                                        <a href="/logout">
+                                            Log out
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         @endauth
@@ -99,14 +87,10 @@
                 </div>
 
                 @yield('profile')
-                @yield('customList')
                 @yield('editProfile')
-                @yield('favoriteList')
                 @yield('favoriteCastList')
                 @yield('followers')
                 @yield('following')
-                @yield('watchedList')
-                @yield('watchlist')
                 @yield('movieList')
                 @yield('name')
                 @yield('notifications')

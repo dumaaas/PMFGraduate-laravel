@@ -9,8 +9,7 @@
     <title>
         Admin Dashboard
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -21,9 +20,6 @@
     <link href="/demo/demo.css" rel="stylesheet" />
 
     <!--   Core JS Files   -->
-
-
-
     <script src="/js/core/jquery.min.js"></script>
     <script src="/js/core/popper.min.js"></script>
     <script src="/js/core/bootstrap-material-design.min.js"></script>
@@ -48,15 +44,11 @@
 <body class="dark-edition">
     <div id="app" class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/cover.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="logo"><a href="/home" class="simple-text logo-normal">
+            <div class="logo">
+                <a href="/home" class="simple-text logo-normal">
                     movieTime
-                </a></div>
-
+                </a>
+            </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{{Request::is('showDashboard') ? 'nav-item active' : 'nav-item'}} ">
@@ -123,10 +115,5 @@
             @yield('editMovie')
         </div>
     </div>
-
-
-
-
 </body>
-
 </html>

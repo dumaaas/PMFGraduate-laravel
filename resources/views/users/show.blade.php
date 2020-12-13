@@ -1,6 +1,5 @@
 @extends('userLayout')
 @section('profile')
-
     @auth
         @if ($user->privacy == 'private' && !Auth::user()->isFollowing($user) && !Auth::user()->currentUser($user))
             <div class="col-md-9 col-sm-12 col-xs-12">
@@ -9,12 +8,9 @@
                     <h4>Follow user if you want to see more.</h4>
                 </div>
             </div>
-
         @else
-
             <div class="col-md-9 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-pro">
-
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-style-1 user-pro" action="">
@@ -28,22 +24,18 @@
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="/users/{{ $user->id }}/watched"> <i class="fa fa-film"> </i>
-
                                             Movies Watched:
                                             <br><br><br><label>{{ $moviesNum }} movies</label></center>
                                 </h4>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="/users/{{ $user->id }}/following"><i class="fa fa-user-plus"> </i>
                                             Following:</a <br><br><br><br><label>{{ $followingNum }}</label> </center>
                                 </h4>
@@ -53,9 +45,7 @@
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="/users/{{ $user->id }}/followers"><i class="fa fa-user-plus"> </i>
-
                                             Followers:
                                             <br><br><br><label>{{ $followersNum }}</label></a></center>
                                 </h4>
@@ -63,7 +53,6 @@
                         </div>
                     </div>
                     <br>
-
                     <div class="row">
                         <div class=" cont 1 col-md-3 col-sm-3 col-xs-3">
                                 <h4>Full name:</h4>
@@ -82,7 +71,6 @@
                             <p>{{ $user->email }}</p>
                         </div>
                     </div>
-               
                     <br><br><br><br>
                     <div class="row">
                         <div class=" cont1 col-md-12 col-sm-12 col-xs-12">
@@ -93,9 +81,6 @@
                             <p>{{ $user->description }}</p>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         @endif
@@ -108,12 +93,9 @@
                     <h4> <a href="/register">Create account</a> and follow this user if you want to see more!</h4>
                 </div>
             </div>
-
         @else
-
             <div class="col-md-9 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-pro">
-
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-style-1 user-pro" action="">
@@ -127,25 +109,20 @@
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="#"> <i class="fa fa-film"> </i>
-
                                             Movies Watched:
                                             <br><br><br><label>{{ $moviesNum }} movies</label></center>
                                 </h4>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="#"><i class="fa fa-user-plus"> </i>
-
-                                            Following:</a <br><br><br><br><label>{{ $followingNum }}</label> </center>
+                                            Following:</a> <br><br><br><br><label>{{ $followingNum }}</label> </center>
                                 </h4>
                             </div>
                         </div>
@@ -153,7 +130,6 @@
                             <div class="form-style-1 user-pro" action="">
                                 <h4>
                                     <center>
-
                                         <a href="#"><i class="fa fa-user-plus"> </i>
                                             Followers:
                                             <br><br><br><label>{{ $followersNum }}</label></a></center>
@@ -162,7 +138,6 @@
                         </div>
                     </div>
                     <br>
-
                     <div class="row">
                         <div class=" cont1 col-md-12 col-sm-12 col-xs-12">
                             <div class=" title-hd-sm">

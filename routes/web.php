@@ -109,6 +109,11 @@ Route::get('/getNotifications', 'NotificationController@getNotifications');
 Route::get('/markAsReadNotifications', 'NotificationController@markAsReadNotifications');
 //----------------------------------------------------------------------\\
 
+//------------------------ROUTES FOR CHAT------------------------------\\
+Route::get('/showChat/{user}', 'ChatController@show');
+Route::post('/sendMessage/{user}/{message}', 'ChatController@sendMessage');
+//---------------------------------------------------------------------\\
+
 
 
 

@@ -24,11 +24,17 @@
   <component name="ChangeListManager">
     <list default="true" id="aadbb989-6bd9-4e7b-8352-a68364cff058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/editMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/editMovie.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/newMovie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Movie/MovieShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Movie/MovieShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/userTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/userTable.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/movies/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/movies/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/userLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/following.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/following.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,6 +219,9 @@
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/public/js" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Korisnik\Desktop\Laravel\movieTime\resources\js\components\Chat" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -259,7 +268,9 @@
       <workItem from="1607696491794" duration="533000" />
       <workItem from="1607705619635" duration="1820000" />
       <workItem from="1607716447322" duration="2250000" />
-      <workItem from="1607775915861" duration="17477000" />
+      <workItem from="1607775915861" duration="19236000" />
+      <workItem from="1607857049459" duration="12944000" />
+      <workItem from="1607877602216" duration="16675000" />
     </task>
     <servers />
   </component>
