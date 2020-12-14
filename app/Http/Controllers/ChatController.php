@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\User;
 use App\Chat;
 use Auth;
@@ -22,6 +23,8 @@ class ChatController extends Controller
         $chat->message = $message;
 
         $chat->save();
+
+        broadcast(new MessageSent($chat))->toOthers();
 
         return $chat;
     }

@@ -3,8 +3,21 @@
         <div class="showChat" v-show="showChat">
             <p class="activeUsers">Active friends</p>
             <hr>
-            <div v-for="user in users" @click="openUser(user)" class="user">
+            <div v-for="user in activeUsers" @click="openUser(user)" class="user">
                 <ul id="activeUser">
+                    <li>
+                        <img :src="'/images/users/'+user.avatar" alt="" style="border-radius: 50%" width="50px" height="50px">
+                    </li>
+                    <li class="user-info">
+                        <p>{{user.firstName}} {{user.lastName}}</p>
+                    </li>
+                    <i class="fa fa-circle circleStyle"></i>
+                </ul>
+            </div>
+            <p class="activeUsers">Offline friends</p>
+            <hr>
+            <div v-for="user in offlineUsers" @click="openUser(user)" class="user">
+                <ul id="offlineUser">
                     <li>
                         <img :src="'/images/users/'+user.avatar" alt="" style="border-radius: 50%" width="50px" height="50px">
                     </li>
@@ -48,7 +61,8 @@ export default {
     data() {
         return {
             showChat: false,
-            users: '',
+            offlineUsers: [],
+            activeUsers: [],
             showUser: false,
             message: '',
             messages: [],
@@ -58,6 +72,26 @@ export default {
 
     created() {
         this.getUsers();
+
+        Echo.join('chat')
+            .here(user => {
+                this.activeUsers = user
+                this.activeUsers.forEach(users => {
+                    this.offlineUsers = this.offlineUsers.filter(u => u.id != users.id)
+                })
+                console.log(this.offlineUsers)
+            })
+            .joining(user => {
+                this.activeUsers.push(user);
+                this.offlineUsers = this.offlineUsers.filter(u => u.id != user.id)
+            })
+            .leaving(user => {
+                this.activeUsers = this.activeUsers.filter(u => u.id != user.id)
+                this.offlineUsers.push(user);
+            })
+            .listen('MessageSent', (event) => {
+                this.messages.push(event.chat)
+            })
     },
 
     methods: {
@@ -68,7 +102,7 @@ export default {
         getUsers() {
             axios.get('/users')
                 .then(response => {
-                    this.users = response.data
+                    this.offlineUsers = response.data
                 })
         },
 
@@ -76,11 +110,8 @@ export default {
             const x = document.getElementById("username")
             this.getChat(user.id)
             this.scrollDown()
-
             this.id = user.id
-
             x.innerHTML = user.firstName+' '+user.lastName
-
             this.showUser = true;
 
         },
@@ -89,7 +120,6 @@ export default {
             axios.get('/showChat/'+id)
                 .then(response => {
                     this.messages = response.data
-                    console.log(response.data)
                 })
         },
 
@@ -100,7 +130,6 @@ export default {
         sendMessage() {
             axios.post('/sendMessage/'+this.id+'/'+this.message)
                 .then(response => {
-                    console.log(response)
                     this.messages.push(response.data)
                 })
             this.scrollDown()
@@ -152,6 +181,26 @@ export default {
         margin-top: 2%;
         margin-left: 2%;
         position: relative;
+    }
+
+    #offlineUser {
+        list-style: none;
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 2%;
+        margin-left: 2%;
+        position: relative;
+    }
+
+    #offlineUser .circleStyle {
+        position: absolute;
+        top: 77%;
+        left: 10%;
+        color: red;
+    }
+
+    #offlineUser > li {
+        display: inline-block;
     }
 
     #activeUser > li {

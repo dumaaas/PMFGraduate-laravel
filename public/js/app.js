@@ -3063,11 +3063,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showChat: false,
-      users: '',
+      offlineUsers: [],
+      activeUsers: [],
       showUser: false,
       message: '',
       messages: [],
@@ -3075,17 +3089,44 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     this.getUsers();
+    Echo.join('chat').here(function (user) {
+      _this.activeUsers = user;
+
+      _this.activeUsers.forEach(function (users) {
+        _this.offlineUsers = _this.offlineUsers.filter(function (u) {
+          return u.id != users.id;
+        });
+      });
+
+      console.log(_this.offlineUsers);
+    }).joining(function (user) {
+      _this.activeUsers.push(user);
+
+      _this.offlineUsers = _this.offlineUsers.filter(function (u) {
+        return u.id != user.id;
+      });
+    }).leaving(function (user) {
+      _this.activeUsers = _this.activeUsers.filter(function (u) {
+        return u.id != user.id;
+      });
+
+      _this.offlineUsers.push(user);
+    }).listen('MessageSent', function (event) {
+      _this.messages.push(event.chat);
+    });
   },
   methods: {
     openChat: function openChat() {
       this.showChat = !this.showChat;
     },
     getUsers: function getUsers() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/users').then(function (response) {
-        _this.users = response.data;
+        _this2.offlineUsers = response.data;
       });
     },
     openUser: function openUser(user) {
@@ -3097,23 +3138,20 @@ __webpack_require__.r(__webpack_exports__);
       this.showUser = true;
     },
     getChat: function getChat(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/showChat/' + id).then(function (response) {
-        _this2.messages = response.data;
-        console.log(response.data);
+        _this3.messages = response.data;
       });
     },
     closeUser: function closeUser() {
       this.showUser = false;
     },
     sendMessage: function sendMessage() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('/sendMessage/' + this.id + '/' + this.message).then(function (response) {
-        console.log(response);
-
-        _this3.messages.push(response.data);
+        _this4.messages.push(response.data);
       });
       this.scrollDown();
     },
@@ -9204,7 +9242,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.showChat[data-v-38984674] {\n    position: fixed;\n    right: 0;\n    bottom: 3%;\n    width: 18%;\n    height: 60%;\n    background-color: black;\n    border: 1px solid #233A50;\n}\n.chat[data-v-38984674] {\n    position: fixed;\n    right: 0;\n    bottom: 0;\n    width: 18%;\n    height: 3%;\n    background-color: #233A50;\n    color: white;\n    border: 0px;\n    border-radius: 3px;\n}\n.activeUsers[data-v-38984674] {\n    font-size: 20px;\n    font-weight: bold;\n    margin-top: 2%;\n    margin-left: 2%;\n}\n#activeUser[data-v-38984674] {\n    list-style: none;\n    font-size: 15px;\n    font-weight: bold;\n    margin-top: 2%;\n    margin-left: 2%;\n    position: relative;\n}\n#activeUser > li[data-v-38984674] {\n    display: inline-block;\n}\n.user-info[data-v-38984674] {\n    margin-left: 2%;\n}\n#activeUser .circleStyle[data-v-38984674] {\n    position: absolute;\n    top: 77%;\n    left: 10%;\n    color: green;\n}\n.showUser[data-v-38984674] {\n    position: fixed;\n    background-color: black;\n    border: 1px solid #233A50;\n    width: 18%;\n    height: 45%;\n    bottom: 0;\n    left: 63%;\n}\n.user[data-v-38984674]:hover {\n    background-color: #233A50;\n    padding-top: 2%;\n    padding-bottom: 0.1%;\n}\n.top-part[data-v-38984674] {\n    position: fixed;\n    width: 18%;\n    height: 4%;\n    background-color: #233A50;\n}\n.closeButton[data-v-38984674] {\n    position: absolute;\n    top:0;\n    right: 1%;\n    pointer: cursor;\n}\n#username[data-v-38984674] {\n    margin-left: 2%;\n    margin-top: 2%;\n    font-size: 15px;\n    font-weight: bold;\n}\n.bottom-part[data-v-38984674] {\n    position: absolute;\n    bottom: 0;\n}\n.bottom-part input[data-v-38984674] {\n    margin-left: 5%;\n    margin-bottom: 3%;\n    width: 160%;\n    border-radius: 10px;\n    background-color: #233A50;\n    border: 0px;\n    color: white;\n}\n.sendMessage[data-v-38984674] {\n    position: fixed;\n    bottom: 1.2%;\n    right: 20%;\n    font-size: 20px;\n    color: #233A50;\n}\n#mid-part[data-v-38984674] {\n    position: absolute;\n    top: 10%;\n    bottom: 13%;\n    height: 79%;\n    width: 100%;\n    overflow-y: auto;\n    scroll-behavior: smooth;\n}\n.message[data-v-38984674] {\n    display: flex;\n}\n.message img[data-v-38984674] {\n    display: block;\n    margin-left: 2%;\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n}\n.receivedMessage[data-v-38984674] {\n    margin-left: 4%;\n    margin-bottom: 2%;\n    margin-right: 50%;\n    padding: 1%;\n    border-radius: 10px;\n    background-color: #233A50;\n}\n.message2[data-v-38984674] {\n    display: flex;\n}\n.sendedMessage[data-v-38984674] {\n    float: right;\n    margin-left: 50%;\n    margin-bottom: 2%;\n    margin-right: 2%;\n    padding: 1%;\n    border-radius: 10px;\n    background-color: dodgerblue;\n}\n\n", ""]);
+exports.push([module.i, "\n.showChat[data-v-38984674] {\n    position: fixed;\n    right: 0;\n    bottom: 3%;\n    width: 18%;\n    height: 60%;\n    background-color: black;\n    border: 1px solid #233A50;\n}\n.chat[data-v-38984674] {\n    position: fixed;\n    right: 0;\n    bottom: 0;\n    width: 18%;\n    height: 3%;\n    background-color: #233A50;\n    color: white;\n    border: 0px;\n    border-radius: 3px;\n}\n.activeUsers[data-v-38984674] {\n    font-size: 20px;\n    font-weight: bold;\n    margin-top: 2%;\n    margin-left: 2%;\n}\n#activeUser[data-v-38984674] {\n    list-style: none;\n    font-size: 15px;\n    font-weight: bold;\n    margin-top: 2%;\n    margin-left: 2%;\n    position: relative;\n}\n#offlineUser[data-v-38984674] {\n    list-style: none;\n    font-size: 15px;\n    font-weight: bold;\n    margin-top: 2%;\n    margin-left: 2%;\n    position: relative;\n}\n#offlineUser .circleStyle[data-v-38984674] {\n    position: absolute;\n    top: 77%;\n    left: 10%;\n    color: red;\n}\n#offlineUser > li[data-v-38984674] {\n    display: inline-block;\n}\n#activeUser > li[data-v-38984674] {\n    display: inline-block;\n}\n.user-info[data-v-38984674] {\n    margin-left: 2%;\n}\n#activeUser .circleStyle[data-v-38984674] {\n    position: absolute;\n    top: 77%;\n    left: 10%;\n    color: green;\n}\n.showUser[data-v-38984674] {\n    position: fixed;\n    background-color: black;\n    border: 1px solid #233A50;\n    width: 18%;\n    height: 45%;\n    bottom: 0;\n    left: 63%;\n}\n.user[data-v-38984674]:hover {\n    background-color: #233A50;\n    padding-top: 2%;\n    padding-bottom: 0.1%;\n}\n.top-part[data-v-38984674] {\n    position: fixed;\n    width: 18%;\n    height: 4%;\n    background-color: #233A50;\n}\n.closeButton[data-v-38984674] {\n    position: absolute;\n    top:0;\n    right: 1%;\n    pointer: cursor;\n}\n#username[data-v-38984674] {\n    margin-left: 2%;\n    margin-top: 2%;\n    font-size: 15px;\n    font-weight: bold;\n}\n.bottom-part[data-v-38984674] {\n    position: absolute;\n    bottom: 0;\n}\n.bottom-part input[data-v-38984674] {\n    margin-left: 5%;\n    margin-bottom: 3%;\n    width: 160%;\n    border-radius: 10px;\n    background-color: #233A50;\n    border: 0px;\n    color: white;\n}\n.sendMessage[data-v-38984674] {\n    position: fixed;\n    bottom: 1.2%;\n    right: 20%;\n    font-size: 20px;\n    color: #233A50;\n}\n#mid-part[data-v-38984674] {\n    position: absolute;\n    top: 10%;\n    bottom: 13%;\n    height: 79%;\n    width: 100%;\n    overflow-y: auto;\n    scroll-behavior: smooth;\n}\n.message[data-v-38984674] {\n    display: flex;\n}\n.message img[data-v-38984674] {\n    display: block;\n    margin-left: 2%;\n    width: 35px;\n    height: 35px;\n    border-radius: 50%;\n}\n.receivedMessage[data-v-38984674] {\n    margin-left: 4%;\n    margin-bottom: 2%;\n    margin-right: 50%;\n    padding: 1%;\n    border-radius: 10px;\n    background-color: #233A50;\n}\n.message2[data-v-38984674] {\n    display: flex;\n}\n.sendedMessage[data-v-38984674] {\n    float: right;\n    margin-left: 50%;\n    margin-bottom: 2%;\n    margin-right: 2%;\n    padding: 1%;\n    border-radius: 10px;\n    background-color: dodgerblue;\n}\n\n", ""]);
 
 // exports
 
@@ -72288,7 +72326,7 @@ var render = function() {
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
-        _vm._l(_vm.users, function(user) {
+        _vm._l(_vm.activeUsers, function(user) {
           return _c(
             "div",
             {
@@ -72301,6 +72339,47 @@ var render = function() {
             },
             [
               _c("ul", { attrs: { id: "activeUser" } }, [
+                _c("li", [
+                  _c("img", {
+                    staticStyle: { "border-radius": "50%" },
+                    attrs: {
+                      src: "/images/users/" + user.avatar,
+                      alt: "",
+                      width: "50px",
+                      height: "50px"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "user-info" }, [
+                  _c("p", [
+                    _vm._v(_vm._s(user.firstName) + " " + _vm._s(user.lastName))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("i", { staticClass: "fa fa-circle circleStyle" })
+              ])
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "activeUsers" }, [_vm._v("Offline friends")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._l(_vm.offlineUsers, function(user) {
+          return _c(
+            "div",
+            {
+              staticClass: "user",
+              on: {
+                click: function($event) {
+                  return _vm.openUser(user)
+                }
+              }
+            },
+            [
+              _c("ul", { attrs: { id: "offlineUser" } }, [
                 _c("li", [
                   _c("img", {
                     staticStyle: { "border-radius": "50%" },
