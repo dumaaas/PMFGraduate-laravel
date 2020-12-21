@@ -3482,6 +3482,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     moviestotal: '',
@@ -3521,7 +3525,7 @@ __webpack_require__.r(__webpack_exports__);
       this.searchMovies();
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     axios.get('/getMovies/').then(function (response) {
@@ -72894,7 +72898,13 @@ var render = function() {
                             _vm._s(movie.name) +
                               "\n                                "
                           ),
-                          _c("span", [_vm._v(_vm._s(movie.releaseYear))])
+                          _c("span", [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(movie.releaseYear) +
+                                "\n                                "
+                            )
+                          ])
                         ])
                       ]),
                       _vm._v(" "),
@@ -72947,7 +72957,7 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "searh-form" }, [
+              _c("div", { staticClass: "search-form" }, [
                 _c("h4", { staticClass: "sb-title" }, [
                   _vm._v("Search for movie")
                 ]),

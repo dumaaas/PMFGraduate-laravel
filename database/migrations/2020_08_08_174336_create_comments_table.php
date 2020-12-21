@@ -12,7 +12,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->nullableMorphs('commentable');
-            $table->string('content');
+            $table->string('content', 1000);
             $table->unsignedBigInteger('comment_id')->nullable();
             $table->timestamps();
 

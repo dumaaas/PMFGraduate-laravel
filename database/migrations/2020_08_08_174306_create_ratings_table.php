@@ -18,7 +18,7 @@ class CreateRatingsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('movie_id');
             $table->integer('rating')->default(0);
-            $table->string('review')->nullable();
+            $table->string('review', 1000)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

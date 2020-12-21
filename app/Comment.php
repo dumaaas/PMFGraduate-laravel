@@ -2,11 +2,13 @@
 
 namespace App;
 use Auth;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 class Comment extends Model
 {
+    use HasFactory;
 
     protected $guarded = [];
     protected $with = ['user', 'likes'];

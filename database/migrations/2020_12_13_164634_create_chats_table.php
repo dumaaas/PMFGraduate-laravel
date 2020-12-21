@@ -17,7 +17,7 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->foreignId('sender_user_id');
             $table->foreignId('receiver_user_id');
-            $table->text('message');
+            $table->text('message', 1000);
 
             $table->timestamps();
             $table->foreign('sender_user_id')

@@ -20,7 +20,7 @@ class CreateMoviesTable extends Migration
             $table->string('genre');
             $table->string('releaseYear');
             $table->string('avatar')->default('default.jpg');
-            $table->string('description', 255)->nullable();
+            $table->string('description', 1000)->nullable();
             $table->double('imdb')->nullable();
             $table->string('duration');
             $table->string('trailer');

@@ -51,15 +51,17 @@ class MovieController extends Controller
 
     public function getMovies() {
         //get all movies ordered by latest added and return movie index
-        $movies = Cache::remember('movies', Carbon::now()->addMinutes(10), function() {
+        $movies = Cache::remember('movies', Carbon::now()->addSeconds(1), function() {
             return Movie::latest()->get();
         });
+        $movies->makeHidden('commentCount');
         return $movies;
     }
 
     public function getMoviesAdmin() {
         //get all movies ordered by latest added and return movie index
         $movies =  Movie::latest()->get();
+        $movies->makeHidden('commentCount');
         return $movies;
     }
 

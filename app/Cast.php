@@ -2,10 +2,13 @@
 
 namespace App;
 use Auth;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cast extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     public function acting() {

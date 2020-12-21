@@ -1,33 +1,37 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Cast;
-use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+class CastFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Cast::class;
 
-$factory->define(Cast::class, function (Faker $faker) {
-    return [
-        'firstName' => $faker->firstName,
-        'lastName' => $faker->lastName,
-        'movieName' => $faker->name,
-        'wikipedia' => $faker->domainName,
-        'occupation' => $faker->randomElement(['Actor', 'Director', 'Actress']),
-        'description' => $faker->paragraph,
-        'avatar' => $faker->unique()->numberBetween($min=1, $max=53).'.jpg',
-        'country' => $faker->country,
-        'birthDate' => $faker->numberBetween($min=1950, $max=2020).'-'.$faker->numberBetween($min=1, $max=12).'-'.$faker->numberBetween($min=1, $max=31),
-        'height' => $faker->numberBetween($min=150, $max=220),
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'firstName' => $this->faker->firstName,
+            'lastName' => $this->faker->lastName,
+            'movieName' => $this->faker->name,
+            'wikipedia' => $this->faker->domainName,
+            'occupation' => $this->faker->randomElement(['Actor', 'Director', 'Actress']),
+            'description' => $this->faker->paragraph,
+            'avatar' => $this->faker->numberBetween($min=1, $max=53).'.jpg',
+            'country' => $this->faker->country,
+            'birthDate' => $this->faker->numberBetween($min=1950, $max=2020).'-'.$this->faker->numberBetween($min=1, $max=12).'-'.$this->faker->numberBetween($min=1, $max=31),
+            'height' => $this->faker->numberBetween($min=150, $max=220),
+        ];
+    }
+}

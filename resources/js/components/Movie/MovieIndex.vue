@@ -18,8 +18,13 @@
                         <div v-for="movie in movies" :key="movie.id" class="movie-item-style-2">
                             <img :src="'/images/movies/'+movie.avatar" alt="" width="60px">
                             <div class="mv-item-infor">
-                                <h6><a :href="'/movies/'+movie.id">{{ movie.name}}
-                                    <span>{{ movie.releaseYear }}</span></a></h6>
+                                <h6>
+                                    <a :href="'/movies/'+movie.id">{{ movie.name}}
+                                    <span>
+                                        {{ movie.releaseYear }}
+                                    </span>
+                                    </a>
+                                </h6>
                                 <p class="rate"><i class="ion-android-star"></i><span>{{ movie.imdb }}</span> /10</p>
                                 <p class="describe">{{ movie.description }}</p>
                                 <p class="run-time"> Duration: {{ movie.duration }} min</p>
@@ -32,13 +37,12 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar">
                             <div class="celebrities">
-
                                 <h4 v-if="auth" class="form-style-1 sb-title">
                                     You watched
                                     <span>{{ watchedcount }}/{{ moviestotal }} ({{ percent }}%)</span>
                                 </h4>
                             </div>
-                            <div class="searh-form">
+                            <div class="search-form">
                                 <h4 class="sb-title">Search for movie</h4>
                                 <form @submit.prevent="searchMovies" class="form-style-1">
                                     <div class="row">
@@ -139,7 +143,7 @@ export default {
         }
     },
 
-    created() {
+    mounted() {
         axios.get('/getMovies/')
             .then(response => {
                 this.movies = response.data
